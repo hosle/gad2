@@ -42,7 +42,7 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 	private BmobChatUser targetUser;
 	private String targetId="";
 	//要发送的命令内容
-	private final String commandString="111";
+	private  String commandString="111";
 
 	private BmobChatManager manager;
 	
@@ -137,6 +137,9 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		//初始化聊天对象
 		targetUser =(BmobChatUser) userAdapter.getItem(position);
 		targetId=targetUser.getObjectId();
+		
+		//设置发送的命令
+		commandString="#"+Config.nandu+"#"+Config.imageId;
 		
 		BmobMsg commandBmobMsg=BmobMsg.createTextSendMsg(this, targetId, commandString);
 		manager.sendTextMessage(targetUser, commandBmobMsg);

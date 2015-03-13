@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import android.R.string;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -32,8 +31,7 @@ import com.bmob.im.demo.ui.SetMyInfoActivity;
 import com.bmob.im.demo.util.FaceTextUtils;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.bmob.im.demo.util.TimeUtil;
-import com.game.pintu.MainActivity;
-import com.game.pintu.SelectImage;
+import com.game.pintu.NewGame_received;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -145,7 +143,7 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 		final ImageView iv_fail_resend = ViewHolder.get(convertView, R.id.iv_fail_resend);//失败重发
 		final TextView tv_send_status = ViewHolder.get(convertView, R.id.tv_send_status);//发送状态
 		TextView tv_time = ViewHolder.get(convertView, R.id.tv_time);
-		final TextView tv_message = ViewHolder.get(convertView, R.id.tv_message);
+		TextView tv_message = ViewHolder.get(convertView, R.id.tv_message);
 		//图片
 		ImageView iv_picture = ViewHolder.get(convertView, R.id.iv_picture);
 		final ProgressBar progress_load = ViewHolder.get(convertView, R.id.progress_load);//进度条
@@ -230,27 +228,39 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 		final String text = item.getContent();
 		switch (item.getMsgType()) {
 		case BmobConfig.TYPE_TEXT:
-			    
+			try {
 				SpannableString spannableString = FaceTextUtils
 						.toSpannableString(mContext, text);
 				tv_message.setText(spannableString);
 				
-				
 					tv_message.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					if (text.matches("^#[1-9]{1}#(\\d){10}")) {
+					Log.i("test", "text  :  "+text);
 						
-						@Override
-						public void onClick(View arg0) {
-							// TODO Auto-generated method stub
-							if (text.equals("111")) {
-							//Log.i("test", "you click  :"+text);
-							Intent intent =new Intent(mContext, SelectImage.class);
-							mContext.startActivity(intent);
-							}
-						}
-					});
-				
-				
-		
+						//取得图片id及难度值
+						//int vNandu=Integer.parseInt(text.substring(1, 1));
+						//int vId=Integer.parseInt(text.substring(3));
+						
+						String vNandu=text.substring(1, 1);
+						String vId=text.substring(3);
+						
+						//Log.i("test", "nandu  :  "+vNandu);
+						//Log.i("test", "picid  :  "+vId);
+					Intent intent =new Intent(mContext, NewGame_received.class);
+					intent.putExtra("nandu", vNandu);
+					intent.putExtra("picid", vId);
+					mContext.startActivity(intent);
+					}
+				}
+			});
+
+			} catch (Exception e) {
+			}
+			break;
 
 		case BmobConfig.TYPE_IMAGE://图片类
 			try {
