@@ -1,0 +1,192 @@
+package com.game.pintu;
+
+import java.util.List;
+import java.util.TimerTask;
+
+
+import cn.bmob.im.bean.BmobChatUser;
+import cn.bmob.im.bean.BmobMsg;
+import cn.bmob.im.inteface.UploadListener;
+
+import com.bmob.BmobProFile;
+import com.game.config.Config;
+import com.userim.User;
+import com.userim.util.SerializableBCU;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class NewGame extends Activity  {
+	
+	private TextView nandu,time;
+	private Handler handler = new Handler();
+
+	private Button sendButton;
+	
+	
+	@Override
+	protected void onCreate( Bundle savedInstanceState) {
+		// TODO 自动生成的方法存根
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.new_game);
+		
+		sendButton=(Button)findViewById(R.id.btn_sendgame);
+		
+		nandu = (TextView) findViewById(R.id.nandu);
+		
+		time = (TextView) findViewById(R.id.time);
+		Config.startTime = System.currentTimeMillis();
+		handler.removeCallbacks(runnable);
+		handler.postDelayed(runnable,50); 
+		
+		
+		
+		
+		
+		
+		switch(Config.nandu){
+		case 3:
+			nandu.setText("难度:简单");
+			break;
+		case 4:
+			nandu.setText("难度:一般");
+			break;
+		case 5:
+			nandu.setText("难度:困难");
+			break;
+	
+		}
+		
+		 sendButton.setOnClickListener(new OnClickListener() {
+	 			
+	 			@Override
+	 			public void onClick(View arg0) {
+	 				// TODO Auto-generated method stub
+	 				
+	 				//Intent it= new Intent(NewGame.this,ContactActivity.class);
+	 				
+	 				//startActivity(it);
+	 				upload();
+
+	 			}
+	 		});
+		
+		//handler.removeCallbacks(runnable);
+
+	}
+	/**
+	 * @Description:单一文件上传
+	 * @param  
+	 * @return void
+	 * @throws
+	 */
+	ProgressDialog dialog =null;
+	
+	private void upload(){
+		dialog = new ProgressDialog(NewGame.this);
+		String filePath = "/mnt/sdcard/beautydata/beauty.jpg";
+		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);                 
+		dialog.setTitle("上传中...");
+		dialog.setIndeterminate(false);               
+		dialog.setCancelable(true);       
+		dialog.setCanceledOnTouchOutside(false);  
+		dialog.show();
+		
+		com.bmob.btp.file.BTPFileResponse response = BmobProFile.getInstance(NewGame.this).upload(filePath, new com.bmob.btp.callback.UploadListener() {
+			
+			@Override
+			public void onError(int arg0, String arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onSuccess(String fileName, String url) {
+				// TODO Auto-generated method stub
+				downloadName = fileName;
+				dialog.dismiss();
+				//如果你想得到一个可以直接在客户端显示的图片地址，那么可以使用BmobProFile类的静态方法获取可访问的URL地址,且不建议开启URL签名认证
+				String URL = BmobProFile.getInstance(NewGame.this).signURL(fileName,url,"7272c7c3949a62a21702b8a9172633b1",0,null);
+				showLog("MainActivity -onSuccess :"+fileName+",签名后的URL = "+ URL);
+				showToast("文件已上传成功："+fileName);
+
+			}
+			
+			@Override
+			public void onProgress(int arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+
+		showLog("upload方法返回的code = "+response.getStatusCode());
+	}
+
+	private static String downloadName= "12dc89a758d94f91bf71c53dda3059ef.jpg";
+	
+	Toast mToast;
+
+	public void showToast(String text) {
+		if (!TextUtils.isEmpty(text)) {
+			if (mToast == null) {
+				mToast = Toast.makeText(getApplicationContext(), text,
+						Toast.LENGTH_SHORT);
+			} else {
+				mToast.setText(text);
+			}
+			mToast.show();
+		}
+	}
+	
+	public void showToast(int resId) {
+		if (mToast == null) {
+			mToast = Toast.makeText(getApplicationContext(), resId,
+					Toast.LENGTH_SHORT);
+		} else {
+			mToast.setText(resId);
+		}
+		mToast.show();
+	}
+	
+	public static void showLog(String msg) {
+		Log.i("BmobPro", msg);
+	}
+	
+
+    private Runnable runnable = new Runnable() {
+         public void run () {
+             update();
+         handler.postDelayed(this,50); 
+         
+        
+      }
+    };
+
+    private void update(){
+    	
+    	Config.time = (int)((System.currentTimeMillis() - Config.startTime) / 1000);
+    	time.setText("时间:"+Config.time);
+    	
+    	
+    }
+
+
+
+
+
+
+}
+
+

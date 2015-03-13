@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package com.userim.util;
+
+import java.io.Serializable;
+
+/**
+ * @author HenryTam
+ *
+ */
+public class SerializableMap implements Serializable {
+
+}
