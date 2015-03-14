@@ -1,5 +1,9 @@
 package com.game.pintu;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +16,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.text.format.Time;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,6 +40,20 @@ public class GameView extends View implements DialogInterface.OnClickListener {
 	
 	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		Time t=new Time(); // or Time t=new Time("GMT+8"); 加上Time Zone资料。
+		t.setToNow(); // 取得系统时间。
+		int year = t.year;
+		int month = t.month;
+		int date = t.monthDay;
+		int hour = t.hour; // 0-23
+		int minute = t.minute;
+		int second = t.second;
+		String str = ""+year+"_"+month+"_"+date+"_"+hour+"_"+minute+"_"+second;
+		String newimg[];
+		newimg = new String[1];
+		newimg[0] = str;
+		com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
+		
 		if (Config.imageId == R.id.iv1) {
 			img = BitmapFactory.decodeResource(getResources(), R.drawable.icon1);
 		} else if (Config.imageId == R.id.iv2) {
@@ -49,9 +68,7 @@ public class GameView extends View implements DialogInterface.OnClickListener {
 			img = BitmapFactory.decodeResource(getResources(), R.drawable.icon6);
 		}
 		
-		
-		
-		
+		saveMyBitmap(str,img);
 		
 		paint = new Paint();	
 		Config.bushu = 0;	//将步数初始化为0
@@ -103,7 +120,32 @@ public class GameView extends View implements DialogInterface.OnClickListener {
 	}
 	
 		
-	
+	public void saveMyBitmap(String bitName,Bitmap mBitmap)
+	{
+		File f = new File("/mnt/sdcard/gameimage/" + bitName + ".jpg");
+	    try {
+		   f.createNewFile();
+		}catch (IOException e) {
+		   // TODO Auto-generated catch block
+		}
+		FileOutputStream fOut = null;
+		try {
+		   fOut = new FileOutputStream(f);
+		} catch (FileNotFoundException e) {
+		   e.printStackTrace();
+		}
+		mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+		try {
+		    fOut.flush();
+		} catch (IOException e) {
+		e.printStackTrace();
+		}
+	    try {
+		   fOut.close();
+		} catch (IOException e) {
+		   e.printStackTrace();
+		}
+	}	
 
 	@Override
 	protected void onDraw(Canvas canvas) {

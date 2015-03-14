@@ -10,11 +10,11 @@ import cn.bmob.im.BmobChatManager;
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.im.bean.BmobMsg;
 
-
+import com.bmob.BmobProFile;
+import com.bmob.btp.callback.UploadListener;
 import com.game.config.Config;
 import com.game.util.CharacterParser;
 import com.game.util.PinyinComparator;
-
 import com.userim.view.MyLetterView;
 import com.userim.view.MyLetterView.OnTouchingLetterChangedListener;
 import com.userim.User;
@@ -22,6 +22,8 @@ import com.userim.adapter.UserFriendAdapter;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -30,6 +32,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ContactActivity extends  Activity implements OnItemClickListener {
 
@@ -81,7 +84,7 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 	private void init() {
 		characterParser = CharacterParser.getInstance();
 		pinyinComparator = new PinyinComparator();
-
+		upload();
 		initListView();
 		initRightLetterView();
 
@@ -176,6 +179,98 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		}
 	}
 
+	String downLoadUrl = "";
+	/**
+	 * @Description:单一文件上传
+	 * @param  
+	 * @return void
+	 * @throws
+	 */
+	ProgressDialog updialog =null;
+
+	
+	
+	private void upload(){
+
+		updialog = new ProgressDialog(ContactActivity.this);
+		//saveMyBitmap(str,bmp);
+		String newimg[];
+		newimg = new String[1];
+		com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/newimage.txt",newimg);
+		String bitName = newimg[0];
+		//showToast(bitName);//测试是否读取到了图像的名称
+		
+		String filePath = "/mnt/sdcard/gameimage/" + bitName+".jpg";//实验发现同一图片只能传一次
+		//showToast(filePath);
+		
+		updialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);                 
+		updialog.setTitle("上传中...");
+		updialog.setIndeterminate(false);               
+		updialog.setCancelable(true);       
+		updialog.setCanceledOnTouchOutside(false);  
+		updialog.show();//"cc9a6ee19b0211fc6a46b1a4bce30c72"
+		com.bmob.btp.file.BTPFileResponse response = BmobProFile.getInstance(ContactActivity.this).upload(filePath, new UploadListener() {
+
+			@Override
+			public void onSuccess(String fileName,String url) {
+				// TODO Auto-generated method stub
+				//downloadName = fileName;
+				updialog.dismiss();
+				//如果你想得到一个可以直接在客户端显示的图片地址，那么可以使用BmobProFile类的静态方法获取可访问的URL地址,且不建议开启URL签名认证
+				String URL = BmobProFile.getInstance(ContactActivity.this).signURL(fileName,url,"填入你web后台管理应用密钥中的AccessKey",0,null);
+				showLog("MainActivity -onSuccess :"+fileName+",签名后的URL = "+ URL);
+				showToast("文件已上传成功："+fileName);
+			}
+
+			@Override
+			public void onProgress(int ratio) {
+				// TODO Auto-generated method stub
+				showLog("MainActivity -onProgress :"+ratio);
+				updialog.setProgress(ratio);
+			}
+
+			@Override
+			public void onError(int statuscode, String errormsg) {
+				// TODO Auto-generated method stub
+				//				showLog("MainActivity -onError :"+statuscode +"--"+errormsg);
+				updialog.dismiss();
+				showToast("上传出错："+errormsg);
+			}
+		});
+
+		showLog("upload方法返回的code = "+response.getStatusCode());
+	}
+
+
+	
+	Toast mToast;
+
+	public void showToast(String text) {
+		if (!TextUtils.isEmpty(text)) {
+			if (mToast == null) {
+				mToast = Toast.makeText(getApplicationContext(), text,
+						Toast.LENGTH_SHORT);
+			} else {
+				mToast.setText(text);
+			}
+			mToast.show();
+		}
+	}
+	
+	public void showToast(int resId) {
+		if (mToast == null) {
+			mToast = Toast.makeText(getApplicationContext(), resId,
+					Toast.LENGTH_SHORT);
+		} else {
+			mToast.setText(resId);
+		}
+		mToast.show();
+	}
+	
+	public static void showLog(String msg) {
+		Log.i("BmobPro", msg);
+	}
+	
 	
 	public void filledData(List<BmobChatUser> datas) {
 		// TODO Auto-generated method stub
