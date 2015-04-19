@@ -52,6 +52,11 @@ public class GameView extends View implements DialogInterface.OnClickListener {
 		String newimg[];
 		newimg = new String[1];
 		newimg[0] = str;
+		File destDir = new File("/mnt/sdcard/gameimage/newimage.txt");
+		  if (!destDir.exists()) {
+		   destDir.mkdirs();
+		  }
+
 		com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
 		
 		if (Config.imageId == R.id.iv1) {
