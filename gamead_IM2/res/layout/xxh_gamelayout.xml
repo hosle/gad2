@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="@color/base_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/common_actionbar"
+        layout="@layout/include_action_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
+        android:orientation="vertical" >
+
+       <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp" >
+
+           <TextView
+               android:id="@+id/official_game"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_centerVertical="true"
+               android:text="官方游戏"
+               android:textAppearance="?android:attr/textAppearanceLarge" />
+
+           <ImageButton
+               android:id="@+id/xxh_imagebnt1"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_alignParentTop="true"
+               android:src="@drawable/fxb_r" />      
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp" >
+           
+            <TextView
+               android:id="@+id/receive_game"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_centerVertical="true"
+               android:text="收到的游戏"
+               android:textAppearance="?android:attr/textAppearanceLarge" />
+
+           <ImageButton
+               android:id="@+id/xxh_imagebnt2"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_alignParentTop="true"
+               android:src="@drawable/fxb_r" />      
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp" >
+           <TextView
+               android:id="@+id/save_game"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_centerVertical="true"
+               android:text="定制/收藏的游戏"
+               android:textAppearance="?android:attr/textAppearanceLarge" />
+
+           <ImageButton
+               android:id="@+id/xxh_imagebnt3"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_alignParentTop="true"
+               android:src="@drawable/fxb_r" />  
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

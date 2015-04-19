@@ -11,11 +11,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-
+import android.widget.ImageButton;
 import cn.bmob.im.bean.BmobChatUser;
 
 import com.bmob.im.demo.CustomApplcation;
@@ -23,13 +24,14 @@ import com.bmob.im.demo.R;
 import com.bmob.im.demo.adapter.GamesGridAdapter;
 import com.bmob.im.demo.ui.FragmentBase;
 import com.bmob.im.demo.util.CollectionUtils;
+import com.bmob.im.demo.xxh.OfficalActivity;
 import com.game.config.Config;
 import com.game.pintu.MainActivity;
 import com.userim.util.SerializableBCU;
 
 public class GamesFragment extends FragmentBase {
 
-	
+	ImageButton offbnt;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -41,8 +43,22 @@ public class GamesFragment extends FragmentBase {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
+		offbnt = (ImageButton)findViewById(R.id.xxh_imagebnt1);
+		offbnt.setOnClickListener(new OfficalLayout());
 		initView();
 	}
+	
+	private class OfficalLayout implements OnClickListener
+    {     
+        @Override  
+        public void onClick(View v) 
+        {  
+            // TODO Auto-generated method stub  
+        	Intent it= new Intent(getActivity(),OfficalActivity.class);
+        	startAnimActivity(it);
+        	
+        }  
+    }
 	
 	private void initView(){
 		GridView mGridView=(GridView)findViewById(R.id.gridgame);

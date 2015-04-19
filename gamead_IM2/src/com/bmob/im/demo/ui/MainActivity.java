@@ -25,6 +25,7 @@ import com.bmob.im.demo.ui.fragment.ContactFragment;
 import com.bmob.im.demo.ui.fragment.GamesFragment;
 import com.bmob.im.demo.ui.fragment.RecentFragment;
 import com.bmob.im.demo.ui.fragment.SettingsFragment;
+import com.bmob.im.demo.ui.fragment.ShowFragmentXXH1;
 
 /**
  * 登陆
@@ -39,7 +40,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 	private ContactFragment contactFragment;
 	private RecentFragment recentFragment;
 	private SettingsFragment settingFragment;
-	private GamesFragment gamesFragment;
+	private ShowFragmentXXH1 gamesFragment1;
 	
 	private Fragment[] fragments;
 	private int index;
@@ -78,12 +79,12 @@ public class MainActivity extends ActivityBase implements EventListener{
 		contactFragment = new ContactFragment();
 		recentFragment = new RecentFragment();
 		settingFragment = new SettingsFragment();
-		gamesFragment= new GamesFragment();
+		gamesFragment1= new ShowFragmentXXH1();
 		
-		fragments = new Fragment[] {recentFragment, contactFragment, gamesFragment ,settingFragment};
+		fragments = new Fragment[] {recentFragment, contactFragment, gamesFragment1,settingFragment};
 		// 添加显示第一个fragment
-		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, recentFragment).add(R.id.fragment_container, gamesFragment).
-			add(R.id.fragment_container, contactFragment).hide(contactFragment).show(recentFragment).hide(gamesFragment).commit();
+		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, recentFragment).add(R.id.fragment_container, gamesFragment1).
+			add(R.id.fragment_container, contactFragment).hide(contactFragment).show(recentFragment).hide(gamesFragment1).commit();
 	}
 	
 	

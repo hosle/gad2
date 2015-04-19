@@ -159,6 +159,10 @@
             android:name="com.game.pintu.NewGame_received"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.game.xxh.MainActivityXXH"
+            android:label="@string/app_name" >
+        </activity>
         
         <!-- ************************************************* -->
         

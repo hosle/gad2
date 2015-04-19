@@ -3,13 +3,16 @@ package com.game.pintu;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.Toast;
 
 import com.game.config.Config;
+import com.game.xxh.MainActivityXXH;
 
 
 public class SelectImage extends Activity implements OnClickListener,OnCheckedChangeListener {
@@ -40,8 +43,12 @@ public class SelectImage extends Activity implements OnClickListener,OnCheckedCh
 	public void onClick(View v) {
 		// TODO 自动生成的方法存根
 		Config.imageId = v.getId();
-		Intent intent = new Intent(this,NewGame.class);
+		//Intent intent = new Intent(this,NewGame.class);
+		Intent intent = new Intent(this,MainActivityXXH.class);
 		startActivity(intent);
+		/*Toast t = Toast.makeText(getApplicationContext(),"数据保存完成！", Toast.LENGTH_LONG); 
+    	t.setGravity(Gravity.CENTER, 0, 0); 
+    	t.show();*/
 		
 		
 	}
