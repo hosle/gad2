@@ -36,14 +36,14 @@ public final class R {
 		public static final int transparent = 0x7f060012;
 	}
 	public static final class drawable {
-		public static final int head = 0x7f02005c;
-		public static final int ic_launcher = 0x7f02005d;
-		public static final int v2_sortlistview_sidebar_background = 0x7f0200b4;
+		public static final int head = 0x7f02005d;
+		public static final int ic_launcher = 0x7f02005e;
+		public static final int v2_sortlistview_sidebar_background = 0x7f0200b5;
 	}
 	public static final class id {
-		public static final int alpha_userim = 0x7f0b0097;
-		public static final int img_friend_avatar_userim = 0x7f0b0098;
-		public static final int tv_friend_name_userim = 0x7f0b0099;
+		public static final int alpha_userim = 0x7f0b0099;
+		public static final int img_friend_avatar_userim = 0x7f0b009a;
+		public static final int tv_friend_name_userim = 0x7f0b009b;
 	}
 	public static final class layout {
 		public static final int item_user_friendpt = 0x7f03002e;
