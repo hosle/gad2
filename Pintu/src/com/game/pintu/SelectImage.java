@@ -37,18 +37,19 @@ public class SelectImage extends Activity implements OnClickListener,OnCheckedCh
 			imgView[i].setOnClickListener(this);
 		}
 		
+		
 		r = (RadioGroup) findViewById(R.id.radioGroup1);
 		r.setOnCheckedChangeListener(this);
-		
-		
 		
 		Config.metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(Config.metrics);
 		
-		Bundle bundle=getIntent().getExtras();
+		
+		/*Bundle bundle=getIntent().getExtras();
 		SerializableBCU serializableBCU=(SerializableBCU)bundle.get("userlist");
 			
-		Config.mbcuser=serializableBCU.getUsr();
+		Config.mbcuser=serializableBCU.getUsr();*/
+		
 	}
 	@Override
 	public void onClick(View v) {

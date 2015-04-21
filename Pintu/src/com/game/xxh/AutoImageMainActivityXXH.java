@@ -1,83 +1,76 @@
 package com.game.xxh;
 
-import java.util.TimerTask;
 
 import com.game.config.Config;
 import com.game.pintu.ContactActivity;
 import com.game.pintu.R;
 import com.game.pintu.SelectImage;
-import com.game.xxh.view.GamePintuLayout;
+import com.game.xxh.view.AutoGamePintuLayout;
+import com.userim.util.SerializableBCU;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivityXXH extends Activity  {
+public class AutoImageMainActivityXXH extends Activity  {
 	
-	private TextView nandu,time;
+	private TextView time;
 	private Handler handler = new Handler();
 	
-	private Button sendButton,personalButton;
-	GamePintuLayout mGameView;
+	private Button sendButton, personalButton;
+	AutoGamePintuLayout mGameView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO 自动生成的方法存根
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.activity_xxh_main);
+		setContentView(R.layout.activity_xxh_mainautoimage);
 		
-		nandu = (TextView) findViewById(R.id.nandu);
+		Bundle bundle=getIntent().getExtras();
+		SerializableBCU serializableBCU=(SerializableBCU)bundle.get("userlist");
+			
+		Config.mbcuser=serializableBCU.getUsr();
+		//nandu = (TextView) findViewById(R.id.nandu);
 		
-		sendButton=(Button)findViewById(R.id.btn_sendgame);
-		personalButton = (Button)findViewById(R.id.btn_personial);
+		sendButton = (Button)findViewById(R.id.btn_sendgame_a);
+		personalButton = (Button)findViewById(R.id.btn_personial_a);
 
 		
-		time = (TextView) findViewById(R.id.time);
+		time = (TextView) findViewById(R.id.time_a);
 		Config.startTime = System.currentTimeMillis();
 		handler.removeCallbacks(runnable);
 		handler.postDelayed(runnable,50); 
 		
-		switch(Config.nandu){
-		case 3:
-			nandu.setText("难度:简单");
-			break;
-		case 4:
-			nandu.setText("难度:一般");
-			break;
-		case 5:
-			nandu.setText("难度:困难");
-			break;
-	
-		}
 		
-		mGameView = (GamePintuLayout) findViewById(R.id.id_gameview);
+		mGameView = (AutoGamePintuLayout) findViewById(R.id.id_gameview_a);
 		
 		sendButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent(MainActivityXXH.this, ContactActivity.class);
+				Intent intent = new Intent(AutoImageMainActivityXXH.this, ContactActivity.class);
 				startActivity(intent);
 			}
 		});
 
 		//handler.removeCallbacks(runnable);
 		personalButton.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-				Intent intent = new Intent(MainActivityXXH.this, SelectImage.class);
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(AutoImageMainActivityXXH.this, SelectImage.class);
 				startActivity(intent);
 			}
 		});
+
 	}
 	
     private Runnable runnable = new Runnable() {

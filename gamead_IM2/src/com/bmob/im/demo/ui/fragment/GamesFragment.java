@@ -27,7 +27,6 @@ import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.xxh.OfficalActivity;
 import com.game.config.Config;
 import com.game.pintu.MainActivity;
-import com.game.pintu.SelectImage;
 import com.userim.util.SerializableBCU;
 
 public class GamesFragment extends FragmentBase {
@@ -74,7 +73,7 @@ public class GamesFragment extends FragmentBase {
 				
 					Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
 				    
-					Intent it= new Intent(getActivity(), SelectImage.class);
+					Intent it= new Intent(getActivity(), MainActivity.class);
 					//´«µÝlist¶ÔÏó
 					//seri
 					 //SerializableBCU myMap =new SerializableMap();
