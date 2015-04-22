@@ -1,5 +1,7 @@
 package com.userim;
 
+import android.R.integer;
+
 import com.userim.Blog;
 
 import cn.bmob.im.bean.BmobChatUser;
@@ -43,6 +45,17 @@ public class User extends BmobChatUser {
 	
 	private Integer hight;
 	
+	//用户积分
+	//用户金币
+	private int gold;
+	
+	public int getGold(){
+		return gold;
+	}
+	
+	public void setGold(Integer gold){
+		this.gold=gold;
+	}
 	
 	public Blog getBlog() {
 		return blog;

@@ -20,7 +20,8 @@ import cn.bmob.v3.listener.UpdateListener;
 
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.bean.User;
+//import com.bmob.im.demo.bean.User;
+import com.userim.*;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.view.HeaderLayout;
 import com.bmob.im.demo.view.HeaderLayout.HeaderStyle;

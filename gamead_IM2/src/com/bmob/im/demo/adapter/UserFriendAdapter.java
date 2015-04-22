@@ -14,7 +14,8 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.bean.User;
+//import com.bmob.im.demo.bean.User;
+import com.userim.*;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

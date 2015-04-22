@@ -45,8 +45,10 @@ import cn.bmob.v3.listener.UploadFileListener;
 
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.bean.Blog;
-import com.bmob.im.demo.bean.User;
+//import com.bmob.im.demo.bean.Blog;
+
+//import com.bmob.im.demo.bean.User;
+import com.userim.*;
 import com.bmob.im.demo.config.BmobConstants;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.util.ImageLoadOptions;
