@@ -16,7 +16,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="42dp" >
+            android:layout_height="42dp"
+            android:background="@drawable/xxh_game_dir" >
 
             <TextView
                 android:id="@+id/official_game"
@@ -24,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:text="官方游戏"
+                android:text="官方"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <ImageButton
@@ -32,8 +33,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/fxb_d" />
+                android:layout_alignTop="@+id/official_game"
+                android:background="@drawable/xxh_game_bkimgbnt"
+                android:src="@drawable/xxh_game_ad" />
+
         </RelativeLayout>
     </LinearLayout>
 
@@ -71,7 +74,8 @@
         
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="42dp" >
+            android:layout_height="42dp" 
+            android:background="@drawable/xxh_game_dir" >
            
             <TextView
                android:id="@+id/receive_game"
@@ -79,7 +83,7 @@
                android:layout_height="wrap_content"
                android:layout_alignParentLeft="true"
                android:layout_centerVertical="true"
-               android:text="收到的游戏"
+               android:text="DIY"
                android:textAppearance="?android:attr/textAppearanceLarge" />
 
            <ImageButton
@@ -87,29 +91,34 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_alignParentRight="true"
-               android:layout_alignParentTop="true"
-               android:src="@drawable/fxb_r" />      
+               android:layout_alignTop="@+id/receive_game"
+               android:background="@drawable/xxh_game_bkimgbnt"
+               android:src="@drawable/xxh_game_ar" />
+   
         </RelativeLayout>
         
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="42dp" >
+            android:layout_height="42dp" 
+            android:background="@drawable/xxh_game_dir" >
            <TextView
                android:id="@+id/save_game"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_alignParentLeft="true"
                android:layout_centerVertical="true"
-               android:text="定制/收藏的游戏"
+               android:text="收到/收藏"
                android:textAppearance="?android:attr/textAppearanceLarge" />
 
            <ImageButton
                android:id="@+id/xxh_imagebnt3"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+               android:layout_alignParentBottom="true"
                android:layout_alignParentRight="true"
-               android:layout_alignParentTop="true"
-               android:src="@drawable/fxb_r" />  
+               android:background="@drawable/xxh_game_bkimgbnt"
+               android:src="@drawable/xxh_game_ar" />
+  
         </RelativeLayout>
         
     </LinearLayout>

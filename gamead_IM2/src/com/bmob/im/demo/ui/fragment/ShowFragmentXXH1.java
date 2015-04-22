@@ -100,6 +100,7 @@ public class ShowFragmentXXH1 extends FragmentBase {
 	
 	
 	private void initView(){
+		initTopBarForOnlyTitle("сно╥");
 		GridView mGridView=(GridView)findViewById(R.id.gridgame);
 		mGridView.setAdapter(new GamesGridAdapter(getActivity()));
 		
