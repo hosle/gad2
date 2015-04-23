@@ -58,17 +58,24 @@ public final class R {
         public static int background=0x7f020002;
         public static int fxb_d=0x7f020003;
         public static int fxb_r=0x7f020004;
-        public static int head=0x7f020005;
-        public static int ic_launcher=0x7f020006;
-        public static int icon1=0x7f020007;
-        public static int icon2=0x7f020008;
-        public static int icon3=0x7f020009;
-        public static int icon4=0x7f02000a;
-        public static int icon5=0x7f02000b;
-        public static int icon6=0x7f02000c;
-        public static int t5_xxh=0x7f02000d;
-        public static int v2_gallery_contacts_dialog_background=0x7f02000e;
-        public static int v2_sortlistview_sidebar_background=0x7f02000f;
+        public static int game_bar=0x7f020005;
+        public static int game_bar_02=0x7f020006;
+        public static int game_bar_03=0x7f020007;
+        public static int game_bar_04=0x7f020008;
+        public static int head=0x7f020009;
+        public static int ic_launcher=0x7f02000a;
+        public static int icon1=0x7f02000b;
+        public static int icon2=0x7f02000c;
+        public static int icon3=0x7f02000d;
+        public static int icon4=0x7f02000e;
+        public static int icon5=0x7f02000f;
+        public static int icon6=0x7f020010;
+        public static int t5_xxh=0x7f020011;
+        public static int v2_gallery_contacts_dialog_background=0x7f020012;
+        public static int v2_sortlistview_sidebar_background=0x7f020013;
+        public static int xxhpintu_game_bar_02=0x7f020014;
+        public static int xxhpintu_game_bkimgbnt=0x7f020015;
+        public static int xxhpintu_game_dir=0x7f020016;
     }
     public static final class id {
         public static int action_settings=0x7f09002d;

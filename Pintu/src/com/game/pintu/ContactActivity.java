@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.net.ssl.ManagerFactoryParameters;
+
 import cn.bmob.im.BmobChatManager;
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.im.bean.BmobMsg;
