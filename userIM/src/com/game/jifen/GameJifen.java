@@ -9,12 +9,18 @@ import cn.bmob.v3.BmobObject;
 
 public class GameJifen extends BmobObject {
 
+	private int jifen;
 	private User player;//游戏玩家
-	//private String playerName;
 	private String gameId;//游戏编号
 	private float exRate;//兑换比率
 	
 	
+	public int getJifen() {
+		return jifen;
+	}
+	public void setJifen(int jifen) {
+		this.jifen = jifen;
+	}
 	public User getPlayer() {
 		return player;
 	}

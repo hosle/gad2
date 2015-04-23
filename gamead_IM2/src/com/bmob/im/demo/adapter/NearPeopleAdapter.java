@@ -13,9 +13,9 @@ import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.adapter.base.BaseListAdapter;
 import com.bmob.im.demo.adapter.base.ViewHolder;
-import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.userim.User;
 
 /**
  * ¸½½üµÄÈË

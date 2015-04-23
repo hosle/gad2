@@ -2,7 +2,8 @@ package com.bmob.im.demo.util;
 
 import java.util.Comparator;
 
-import com.bmob.im.demo.bean.User;
+import com.userim.User;
+
 
 public class PinyinComparator implements Comparator<User> {
 

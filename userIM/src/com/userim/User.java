@@ -43,7 +43,7 @@ public class User extends BmobChatUser {
 	
 	private Integer hight;
 	
-<<<<<<< HEAD
+
 	
 	//ÓÃ»§½ð±Ò
 	private int gold;
@@ -67,9 +67,7 @@ public class User extends BmobChatUser {
 	public void setGold(Integer gold){
 		this.gold=gold;
 	}
-=======
->>>>>>> 6f21da7730e4f3a2d6d8052ea570d6d61c867c14
-	
+
 	public Blog getBlog() {
 		return blog;
 	}

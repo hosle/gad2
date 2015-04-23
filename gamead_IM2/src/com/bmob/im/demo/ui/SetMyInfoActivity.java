@@ -45,14 +45,14 @@ import cn.bmob.v3.listener.UploadFileListener;
 
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.bean.Blog;
-import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.config.BmobConstants;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.bmob.im.demo.util.PhotoUtil;
 import com.bmob.im.demo.view.dialog.DialogTips;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.userim.Blog;
+import com.userim.User;
 
 /**
  * 个人资料页面

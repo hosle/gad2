@@ -20,13 +20,13 @@ import cn.bmob.v3.listener.UpdateListener;
 
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.view.HeaderLayout;
 import com.bmob.im.demo.view.HeaderLayout.HeaderStyle;
 import com.bmob.im.demo.view.HeaderLayout.onLeftImageButtonClickListener;
 import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
 import com.bmob.im.demo.view.dialog.DialogTips;
+import com.userim.User;
 
 /** »ùÀà
   * @ClassName: BaseActivity

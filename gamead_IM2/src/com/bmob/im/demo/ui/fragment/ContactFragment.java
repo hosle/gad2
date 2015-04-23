@@ -37,7 +37,6 @@ import cn.bmob.v3.listener.UpdateListener;
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.adapter.UserFriendAdapter;
-import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.ui.AddFriendActivity;
 import com.bmob.im.demo.ui.FragmentBase;
 import com.bmob.im.demo.ui.NearPeopleActivity;
@@ -51,6 +50,7 @@ import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
 import com.bmob.im.demo.view.MyLetterView;
 import com.bmob.im.demo.view.MyLetterView.OnTouchingLetterChangedListener;
 import com.bmob.im.demo.view.dialog.DialogTips;
+import com.userim.User;
 
 /**
  * ÁªÏµÈË

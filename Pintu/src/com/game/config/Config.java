@@ -16,6 +16,7 @@ public class Config {
 	public static int time = 0;
 	public static int bushu = 0;
 	public static long startTime;
+	public static long pauseTime=0;
 	public static int imageId=R.id.iv1;
 	
 	public static List<BmobChatUser> mbcuser;

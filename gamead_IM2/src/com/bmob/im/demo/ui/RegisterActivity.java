@@ -14,9 +14,9 @@ import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.listener.SaveListener;
 
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.config.BmobConstants;
 import com.bmob.im.demo.util.CommonUtils;
+import com.userim.User;
 
 public class RegisterActivity extends BaseActivity {
 
