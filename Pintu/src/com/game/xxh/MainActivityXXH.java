@@ -12,7 +12,9 @@ import com.game.pintu.R;
 import com.game.pintu.SelectImage;
 import com.game.xxh.view.GamePintuLayout;
 import com.userim.User;
+import com.game.operator.*;
 
+import a.This;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -35,6 +37,8 @@ public class MainActivityXXH extends Activity  {
 	
 	private ImageButton sendButton,personalButton;
 	GamePintuLayout mGameView;
+	
+	private JifenManager jifenManager=JifenManager.getInstance(this);
 	
 	private BmobUserManager userManager = BmobUserManager.getInstance(this);
 	private User mUser;
@@ -117,7 +121,7 @@ public class MainActivityXXH extends Activity  {
 
     private void update(){
     	
-    	Config.time = (int)((System.currentTimeMillis() - Config.startTime+Config.pauseTime) / 1000);
+    	Config.time = (int)((System.currentTimeMillis() - Config.startTime) / 1000);
     	time.setText("时间:"+Config.time);
     	
     	
@@ -128,7 +132,7 @@ public class MainActivityXXH extends Activity  {
     	// TODO Auto-generated method stub
     	if (keyCode==KeyEvent.KEYCODE_BACK) {
 			showDialogJifen();
-			Config.pauseTime=Config.time;
+			//Config.pauseTime=Config.time;
 			//handler.removeCallbacks(runnable);
 			return true;
 		}
@@ -142,15 +146,16 @@ public class MainActivityXXH extends Activity  {
     
     private void showDialogJifen(){
     	Builder mDialog=new AlertDialog.Builder(this);
+    	final int score=Config.time;
     	mDialog.setTitle("你的积分");
-    	mDialog.setMessage("确定退出吗？你当前积分是:"+Config.time);
+    	mDialog.setMessage("确定退出吗？你当前积分是:"+score);
     	mDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				// TODO Auto-generated method stub
 				
-				saveGameJifen(Config.time);//上传积分
+				jifenManager.saveGameJifen(score);//上传积分
 				finish();
 			}
 		});
@@ -167,77 +172,7 @@ public class MainActivityXXH extends Activity  {
     	mDialog.show();
     }
     
-    //上传本次游戏积分
-    
-    /**
-     * @param vJifen 本次游戏的积分
-     */
-    private void saveGameJifen(int vJifen) {
-    	
-    	
-    	 mJifen=new GameJifen();
-    	 mJifen.setPlayer(mUser);
-    	 mJifen.setJifen(vJifen);
-    	 mJifen.setGameId("0303003");
-    	 mJifen.setExRate((float)0.38);
-    	 
-    	 mJifen.save(this, new SaveListener() {
-			
-			@Override
-			public void onSuccess() {
-				// TODO Auto-generated method stub
-				toast("你成功获得一次积分");
-				addGameJifenToUser();
-			}
-			
-			@Override
-			public void onFailure(int arg0, String arg1) {
-				// TODO Auto-generated method stub
-				toast("fail");
-			}
-		});
-    	  
-    	  
-	}
-    
-    /**
-	 * 添加积分到用户的积分信息中
-	 */
-	private void addGameJifenToUser(){
-		if(TextUtils.isEmpty(mUser.getObjectId()) || 
-				TextUtils.isEmpty(mJifen.getObjectId())){
-			toast("当前用户或者当前Card对象的object为空");
-			return;
-		}
-		
-		BmobRelation jifens = new BmobRelation();
-		jifens.add(mJifen);
-		mUser.setGameJifen(jifens);
-		mUser.update(this, new UpdateListener() {
-			
-			@Override
-			public void onSuccess() {
-				// TODO Auto-generated method stub
-				toast("已成功添加到用户的积分信息中");
-			}
-			
-			@Override
-			public void onFailure(int arg0, String arg1) {
-				// TODO Auto-generated method stub
-				toast("很遗憾，用户的积分信息添加失败");
-			}
-		});
-	}
-
-	/**
-	 * 自定义一个Toast方法
-	 * 
-	 * @param msg
-	 *            要输出的提示信息
-	 */
-	private void toast(String msg) {
-		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-	}
+  
 
 
 

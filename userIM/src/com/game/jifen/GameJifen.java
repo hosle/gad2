@@ -1,14 +1,15 @@
 package com.game.jifen;
 
-import android.text.TextUtils;
-import android.widget.Toast;
-
 import com.userim.User;
 
 import cn.bmob.v3.BmobObject;
 
 public class GameJifen extends BmobObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int jifen;
 	private User player;//”Œœ∑ÕÊº“
 	private String gameId;//”Œœ∑±‡∫≈
