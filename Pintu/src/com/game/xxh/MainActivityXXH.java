@@ -5,6 +5,7 @@ import java.util.TimerTask;
 import com.game.config.Config;
 import com.game.pintu.ContactActivity;
 import com.game.pintu.R;
+import com.game.pintu.SelectImage;
 import com.game.xxh.view.GamePintuLayout;
 
 import android.app.Activity;
@@ -26,7 +27,7 @@ public class MainActivityXXH extends Activity  {
 	private TextView nandu,time;
 	private Handler handler = new Handler();
 	
-	private Button sendButton;
+	private Button sendButton,personalButton;
 	GamePintuLayout mGameView;
 
 	@Override
@@ -39,6 +40,7 @@ public class MainActivityXXH extends Activity  {
 		nandu = (TextView) findViewById(R.id.nandu);
 		
 		sendButton=(Button)findViewById(R.id.btn_sendgame);
+		personalButton = (Button)findViewById(R.id.btn_personial);
 
 		
 		time = (TextView) findViewById(R.id.time);
@@ -72,7 +74,14 @@ public class MainActivityXXH extends Activity  {
 		});
 
 		//handler.removeCallbacks(runnable);
-
+		personalButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+				Intent intent = new Intent(MainActivityXXH.this, SelectImage.class);
+				startActivity(intent);
+			}
+		});
 	}
 	
     private Runnable runnable = new Runnable() {

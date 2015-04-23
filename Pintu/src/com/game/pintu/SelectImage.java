@@ -3,9 +3,11 @@ package com.game.pintu;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import com.game.config.Config;
 import com.game.xxh.MainActivityXXH;
+import com.userim.util.SerializableBCU;
 
 
 public class SelectImage extends Activity implements OnClickListener,OnCheckedChangeListener {
@@ -37,6 +40,15 @@ public class SelectImage extends Activity implements OnClickListener,OnCheckedCh
 		
 		r = (RadioGroup) findViewById(R.id.radioGroup1);
 		r.setOnCheckedChangeListener(this);
+		
+		Config.metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(Config.metrics);
+		
+		
+		/*Bundle bundle=getIntent().getExtras();
+		SerializableBCU serializableBCU=(SerializableBCU)bundle.get("userlist");
+			
+		Config.mbcuser=serializableBCU.getUsr();*/
 		
 	}
 	@Override

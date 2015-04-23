@@ -37,5 +37,15 @@
         android:drawableTop="@drawable/btn_chat_add_location_selector"
         android:text="@string/location"
         />
+    <TextView 
+        android:id="@+id/tv_xxh_game"
+        android:layout_width="0dp"
+        android:layout_weight="1.0"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/bnt_chat_xxh_game"
+        android:text="@string/xxh_game"
+        />
 
 </LinearLayout>

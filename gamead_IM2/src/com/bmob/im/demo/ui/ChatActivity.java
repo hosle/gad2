@@ -107,7 +107,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 
 	private ViewPager pager_emo;
 
-	private TextView tv_picture, tv_camera, tv_location;
+	private TextView tv_picture, tv_camera, tv_location, tv_xxh_game;
 
 	// 语音有关
 	RelativeLayout layout_record;
@@ -376,9 +376,12 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 		tv_picture = (TextView) findViewById(R.id.tv_picture);
 		tv_camera = (TextView) findViewById(R.id.tv_camera);
 		tv_location = (TextView) findViewById(R.id.tv_location);
+		tv_xxh_game = (TextView) findViewById(R.id.tv_xxh_game);
+		
 		tv_picture.setOnClickListener(this);
 		tv_location.setOnClickListener(this);
 		tv_camera.setOnClickListener(this);
+		tv_xxh_game.setOnClickListener(this);
 	}
 
 	private void initBottomView() {
@@ -751,11 +754,28 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 		case R.id.tv_location:// 位置
 			selectLocationFromMap();
 			break;
+		case R.id.tv_xxh_game:// 游戏
+			selectGame();
+			break;
 		default:
 			break;
 		}
 	}
 
+	/**
+	 * 启动地图
+	 * 
+	 * @Title: selectLocationFromMap
+	 * @Description: TODO
+	 * @param
+	 * @return void
+	 * @throws
+	 */
+	private void selectGame() {
+		setContentView(R.layout.fragment_games);
+	}
+	
+	
 	/**
 	 * 启动地图
 	 * 
