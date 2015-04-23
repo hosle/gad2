@@ -772,7 +772,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	 * @throws
 	 */
 	private void selectGame() {
-		setContentView(R.layout.fragment_games);
+		setContentView(R.layout.xxh_gamelayout1);
 	}
 	
 	

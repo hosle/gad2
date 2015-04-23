@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class AutoImageMainActivityXXH extends Activity  {
@@ -22,7 +23,7 @@ public class AutoImageMainActivityXXH extends Activity  {
 	private TextView time;
 	private Handler handler = new Handler();
 	
-	private Button sendButton, personalButton;
+	private ImageButton sendButton, personalButton;
 	AutoGamePintuLayout mGameView;
 
 	@Override
@@ -38,8 +39,8 @@ public class AutoImageMainActivityXXH extends Activity  {
 		Config.mbcuser=serializableBCU.getUsr();
 		//nandu = (TextView) findViewById(R.id.nandu);
 		
-		sendButton = (Button)findViewById(R.id.btn_sendgame_a);
-		personalButton = (Button)findViewById(R.id.btn_personial_a);
+		sendButton = (ImageButton)findViewById(R.id.btn_sendgame_a);
+		personalButton = (ImageButton)findViewById(R.id.btn_personial_a);
 
 		
 		time = (TextView) findViewById(R.id.time_a);

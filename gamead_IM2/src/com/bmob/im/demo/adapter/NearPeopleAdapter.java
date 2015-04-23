@@ -13,8 +13,7 @@ import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.adapter.base.BaseListAdapter;
 import com.bmob.im.demo.adapter.base.ViewHolder;
-//import com.bmob.im.demo.bean.User;
-import com.userim.*;
+import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -26,7 +25,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  * @author smile
  * @date 2014-6-24 ÏÂÎç5:27:14
  */
-public class NearPeopleAdapter extends BaseListAdapter< User> {
+public class NearPeopleAdapter extends BaseListAdapter<User> {
 
 	public NearPeopleAdapter(Context context, List<User> list) {
 		super(context, list);
