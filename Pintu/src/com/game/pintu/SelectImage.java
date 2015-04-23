@@ -58,6 +58,7 @@ public class SelectImage extends Activity implements OnClickListener,OnCheckedCh
 		//Intent intent = new Intent(this,NewGame.class);
 		Intent intent = new Intent(this,MainActivityXXH.class);
 		startActivity(intent);
+		finish();
 		/*Toast t = Toast.makeText(getApplicationContext(),"数据保存完成！", Toast.LENGTH_LONG); 
     	t.setGravity(Gravity.CENTER, 0, 0); 
     	t.show();*/

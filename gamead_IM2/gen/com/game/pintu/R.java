@@ -59,25 +59,25 @@ public final class R {
 	}
 	public static final class id {
 		public static final int action_settings = 0x7f0b00cc;
-		public static final int ad_info = 0x7f0b003f;
-		public static final int ad_info_a = 0x7f0b0048;
-		public static final int alpha_userim = 0x7f0b00a5;
-		public static final int b_return = 0x7f0b006d;
+		public static final int ad_info = 0x7f0b003e;
+		public static final int ad_info_a = 0x7f0b0047;
+		public static final int alpha_userim = 0x7f0b00a4;
+		public static final int b_return = 0x7f0b006c;
 		public static final int btn_personial = 0x7f0b003b;
-		public static final int btn_personial_a = 0x7f0b0045;
+		public static final int btn_personial_a = 0x7f0b0044;
 		public static final int btn_save = 0x7f0b0039;
-		public static final int btn_save_a = 0x7f0b0043;
+		public static final int btn_save_a = 0x7f0b0042;
 		public static final int btn_sendgame = 0x7f0b003a;
-		public static final int btn_sendgame_a = 0x7f0b0044;
+		public static final int btn_sendgame_a = 0x7f0b0043;
 		public static final int btnnewGame = 0x7f0b001d;
 		public static final int button1 = 0x7f0b003d;
-		public static final int button1_a = 0x7f0b0047;
+		public static final int button1_a = 0x7f0b0046;
 		public static final int dialog_activity = 0x7f0b000b;
 		public static final int exit = 0x7f0b0020;
 		public static final int help = 0x7f0b001f;
 		public static final int id_gameview = 0x7f0b003c;
-		public static final int id_gameview_a = 0x7f0b0046;
-		public static final int img_friend_avatar_userim = 0x7f0b00a6;
+		public static final int id_gameview_a = 0x7f0b0045;
+		public static final int img_friend_avatar_userim = 0x7f0b00a5;
 		public static final int iv1 = 0x7f0b00af;
 		public static final int iv2 = 0x7f0b00b0;
 		public static final int iv3 = 0x7f0b00b1;
@@ -96,13 +96,13 @@ public final class R {
 		public static final int right_letter_activity = 0x7f0b000c;
 		public static final int textView1 = 0x7f0b001c;
 		public static final int time = 0x7f0b0036;
-		public static final int time_a = 0x7f0b0040;
-		public static final int tv_friend_name_userim = 0x7f0b00a7;
+		public static final int time_a = 0x7f0b003f;
+		public static final int tv_friend_name_userim = 0x7f0b00a6;
 		public static final int url_info = 0x7f0b0037;
-		public static final int url_info_a = 0x7f0b0041;
-		public static final int view = 0x7f0b003e;
+		public static final int url_info_a = 0x7f0b0040;
+		public static final int view = 0x7f0b00a7;
 		public static final int xxh_imagebntdo = 0x7f0b0038;
-		public static final int xxh_imagebntdo_a = 0x7f0b0042;
+		public static final int xxh_imagebntdo_a = 0x7f0b0041;
 	}
 	public static final class layout {
 		public static final int activity_contact = 0x7f030003;

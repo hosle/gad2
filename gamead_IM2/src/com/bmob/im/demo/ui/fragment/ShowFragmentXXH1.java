@@ -40,6 +40,7 @@ import com.game.config.Config;
 import com.game.pintu.MainActivity;
 import com.game.pintu.SelectImage;
 import com.game.xxh.AutoImageMainActivityXXH;
+import com.game.xxh.MainActivityXXH;
 import com.userim.util.SerializableBCU;
 
 public class ShowFragmentXXH1 extends FragmentBase {
@@ -124,17 +125,10 @@ public class ShowFragmentXXH1 extends FragmentBase {
 					
 					Bundle bundle =new Bundle();
 					bundle.putSerializable("userlist", myList);
+					//bundle.putString("fatherName", "gameFrag");
 					it.putExtras(bundle);
-					//it.putExtra("userlist", (Serializable)bcu);
+					//it.putExtra("fatherName", "gameFrag");
 					
-					
-					/*if (bcu==null) {
-						Log.i("test", "bcu=null");
-					}
-					else {
-						Log.i("test", "bcu sth");
-					}*/
-					//startActivity(it);
 					if (position==0) {
 						
 						Time t=new Time(); // or Time t=new Time("GMT+8"); 加上Time Zone资料。

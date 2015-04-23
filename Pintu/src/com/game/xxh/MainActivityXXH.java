@@ -7,6 +7,7 @@ import com.game.pintu.ContactActivity;
 import com.game.pintu.R;
 import com.game.pintu.SelectImage;
 import com.game.xxh.view.GamePintuLayout;
+import com.userim.util.SerializableBCU;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -37,16 +39,34 @@ public class MainActivityXXH extends Activity  {
 		
 		setContentView(R.layout.activity_xxh_main);
 		
+		
+		
+		Bundle bundle=getIntent().getExtras();
+		
+		//SerializableBCU serializableBCU=(SerializableBCU)bundle.get("userlist");	
+		//Config.mbcuser=serializableBCU.getUsr();
+		
+		/*String fatherName=bundle.getString("fatherName");
+		if (fatherName=="gameFrag") {
+			Config.imageId=R.id.iv1;
+			Config.nandu=3;
+			
+			//Config.metrics = new DisplayMetrics();
+			//getWindowManager().getDefaultDisplay().getMetrics(Config.metrics);
+		}*/
+		
 		nandu = (TextView) findViewById(R.id.nandu);
 		
 		sendButton=(Button)findViewById(R.id.btn_sendgame);
 		personalButton = (Button)findViewById(R.id.btn_personial);
+		personalButton.setEnabled(false);
 
 		
 		time = (TextView) findViewById(R.id.time);
 		Config.startTime = System.currentTimeMillis();
 		handler.removeCallbacks(runnable);
 		handler.postDelayed(runnable,50); 
+		
 		
 		switch(Config.nandu){
 		case 3:
