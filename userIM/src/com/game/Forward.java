@@ -1,7 +1,5 @@
 package com.game;
 
-import com.userim.User;
-
 import cn.bmob.v3.BmobObject;
 
 /**
@@ -15,27 +13,27 @@ public class Forward extends BmobObject {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private User senderUser;//发送者
-	private User receiverUser;//接收者
-	private Game game;//游戏
+	private String senderName;//发送者
+	private String receiverName;//接收者
+	private String gameId;//游戏
 	
-	public User getSenderUser() {
-		return senderUser;
+	public String getSenderName() {
+		return senderName;
 	}
-	public void setSenderUser(User senderUser) {
-		this.senderUser = senderUser;
+	public void setSenderName(String senderUser) {
+		this.senderName = senderUser;
 	}
-	public User getReceiverUser() {
-		return receiverUser;
+	public String getReceiverName() {
+		return receiverName;
 	}
-	public void setReceiverUser(User receiverUser) {
-		this.receiverUser = receiverUser;
+	public void setReceiverName(String receiverUser) {
+		this.receiverName = receiverUser;
 	}
-	public Game getGame() {
-		return game;
+	public String getGameId() {
+		return gameId;
 	}
-	public void setGame(Game game) {
-		this.game = game;
+	public void setGameId(String game) {
+		this.gameId = game;
 	}
 	
 	

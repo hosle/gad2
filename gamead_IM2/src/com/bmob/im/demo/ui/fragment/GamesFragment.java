@@ -8,6 +8,9 @@ import java.util.Map;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +18,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import cn.bmob.im.bean.BmobChatUser;
 
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.adapter.GamesGridAdapter;
+import com.bmob.im.demo.adapter.GamesGridAdapter2;
 import com.bmob.im.demo.ui.FragmentBase;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.xxh.OfficalActivity;
@@ -31,7 +35,12 @@ import com.userim.util.SerializableBCU;
 
 public class GamesFragment extends FragmentBase {
 
-	ImageButton offbnt;
+	private Fragment mContent;
+	private ShowFragmentXXH1 gamesFragment1;
+	private ShowFragmentXXH2 gamesFragment2;
+	private ShowFragmentXXH3 gamesFragment3;
+
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -43,67 +52,28 @@ public class GamesFragment extends FragmentBase {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		offbnt = (ImageButton)findViewById(R.id.xxh_imagebnt1);
-		offbnt.setOnClickListener(new OfficalLayout());
+		
 		initView();
 	}
 	
-	private class OfficalLayout implements OnClickListener
-    {     
-        @Override  
-        public void onClick(View v) 
-        {  
-            // TODO Auto-generated method stub  
-        	Intent it= new Intent(getActivity(),OfficalActivity.class);
-        	startAnimActivity(it);
-        	
-        }  
-    }
+	
 	
 	private void initView(){
-		GridView mGridView=(GridView)findViewById(R.id.gridgame);
-		mGridView.setAdapter(new GamesGridAdapter(getActivity()));
 		
-		mGridView.setOnItemClickListener(new OnItemClickListener() {
+		gamesFragment1= new ShowFragmentXXH1();
+		gamesFragment2= new ShowFragmentXXH2();
+		gamesFragment3= new ShowFragmentXXH3();
+			
+		
+		
 
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-					long arg3) {
-				// TODO Auto-generated method stub
-				
-					Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
-				    
-					Intent it= new Intent(getActivity(), MainActivity.class);
-					//´«µÝlist¶ÔÏó
-					//seri
-					 //SerializableBCU myMap =new SerializableMap();
-					List<BmobChatUser> bcu=CollectionUtils.map2list(users);
-					final SerializableBCU myList =new SerializableBCU();
-					myList.setUsr(bcu);
-					
-					
-					Bundle bundle =new Bundle();
-					bundle.putSerializable("userlist", myList);
-					it.putExtras(bundle);
-					//it.putExtra("userlist", (Serializable)bcu);
-					
-					
-					/*if (bcu==null) {
-						Log.i("test", "bcu=null");
-					}
-					else {
-						Log.i("test", "bcu sth");
-					}*/
-					//startActivity(it);
-					if (position==0) {
-						startAnimActivity(it);
-					}
-					
-					
-				
-			}
-		});
+		getFragmentManager().beginTransaction().add(R.id.gamefragment_container, gamesFragment1).add(R.id.gamefragment_container, gamesFragment2).
+		add(R.id.gamefragment_container, gamesFragment3).hide(gamesFragment2).show(gamesFragment1).hide(gamesFragment3).commit();
+		
+		
+		
 	}
+	
 	
 	
 }

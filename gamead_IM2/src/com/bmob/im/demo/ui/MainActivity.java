@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import cn.bmob.im.BmobChatManager;
 import cn.bmob.im.BmobNotifyManager;
@@ -26,6 +28,8 @@ import com.bmob.im.demo.ui.fragment.GamesFragment;
 import com.bmob.im.demo.ui.fragment.RecentFragment;
 import com.bmob.im.demo.ui.fragment.SettingsFragment;
 import com.bmob.im.demo.ui.fragment.ShowFragmentXXH1;
+import com.bmob.im.demo.ui.fragment.ShowFragmentXXH2;
+import com.bmob.im.demo.ui.fragment.ShowFragmentXXH3;
 
 /**
  * 登陆
@@ -40,7 +44,8 @@ public class MainActivity extends ActivityBase implements EventListener{
 	private ContactFragment contactFragment;
 	private RecentFragment recentFragment;
 	private SettingsFragment settingFragment;
-	private ShowFragmentXXH1 gamesFragment1;
+	//private ShowFragmentXXH1  gamesFragment1;
+	private GamesFragment gamesFragment;
 	
 	private Fragment[] fragments;
 	private int index;
@@ -60,6 +65,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		initTagMessageBroadCast();
 		initView();
 		initTab();
+		
 	}
 
 	private void initView(){
@@ -79,13 +85,16 @@ public class MainActivity extends ActivityBase implements EventListener{
 		contactFragment = new ContactFragment();
 		recentFragment = new RecentFragment();
 		settingFragment = new SettingsFragment();
-		gamesFragment1= new ShowFragmentXXH1();
+		//gamesFragment1= new ShowFragmentXXH1();
+		gamesFragment=new GamesFragment();
 		
-		fragments = new Fragment[] {recentFragment, contactFragment, gamesFragment1,settingFragment};
+		
+		fragments = new Fragment[] {recentFragment, contactFragment, gamesFragment,settingFragment};
 		// 添加显示第一个fragment
-		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, recentFragment).add(R.id.fragment_container, gamesFragment1).
-			add(R.id.fragment_container, contactFragment).hide(contactFragment).show(recentFragment).hide(gamesFragment1).commit();
+		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, recentFragment).add(R.id.fragment_container, gamesFragment).
+			add(R.id.fragment_container, contactFragment).hide(contactFragment).show(recentFragment).hide(gamesFragment).commit();
 	}
+	
 	
 	
 	

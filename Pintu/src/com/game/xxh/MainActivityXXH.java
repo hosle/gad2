@@ -40,9 +40,8 @@ public class MainActivityXXH extends Activity  {
 	
 	private JifenManager jifenManager=JifenManager.getInstance(this);
 	
-	private BmobUserManager userManager = BmobUserManager.getInstance(this);
-	private User mUser;
-	private GameJifen mJifen;
+	//private BmobUserManager userManager = BmobUserManager.getInstance(this);
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +49,6 @@ public class MainActivityXXH extends Activity  {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_xxh_main);
-		
-		mUser =  userManager.getCurrentUser(User.class);
 		
 		Bundle bundle=getIntent().getExtras();
 		

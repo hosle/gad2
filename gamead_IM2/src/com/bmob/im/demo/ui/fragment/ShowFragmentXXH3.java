@@ -30,7 +30,7 @@ import cn.bmob.im.bean.BmobChatUser;
 
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.adapter.GamesGridAdapter;
+import com.bmob.im.demo.adapter.GamesGridAdapter2;
 import com.bmob.im.demo.ui.FragmentBase;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.xxh.OfficalActivity;
@@ -101,7 +101,7 @@ public class ShowFragmentXXH3 extends FragmentBase {
 	private void initView(){
 		initTopBarForOnlyTitle("сно╥");
 		GridView mGridView=(GridView)findViewById(R.id.gridgame);
-		mGridView.setAdapter(new GamesGridAdapter(getActivity()));
+		mGridView.setAdapter(new GamesGridAdapter2(getActivity()));
 		
 		mGridView.setOnItemClickListener(new OnItemClickListener() {
 

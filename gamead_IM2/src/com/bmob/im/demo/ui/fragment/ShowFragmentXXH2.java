@@ -30,7 +30,7 @@ import cn.bmob.im.bean.BmobChatUser;
 
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.adapter.GamesGridAdapter;
+import com.bmob.im.demo.adapter.GamesGridAdapter2;
 import com.bmob.im.demo.ui.FragmentBase;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.xxh.OfficalActivity;
@@ -50,22 +50,30 @@ public class ShowFragmentXXH2 extends FragmentBase {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		
 		return inflater.inflate(R.layout.xxh_gamelayout2, container, false);
 	}
 	
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+	}
+	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		
-		
 		initView();
+		
+		//initView();
 		imgbnt1 = (ImageButton)findViewById(R.id.xxh_imagebnt1);
 		imgbnt1.setOnClickListener(new ChangeFragment1());
 		
 		imgbnt3 = (ImageButton)findViewById(R.id.xxh_imagebnt3);
 		imgbnt3.setOnClickListener(new ChangeFragment3());
 	}
+	
 	
 	private class ChangeFragment1 implements OnClickListener
     {     
@@ -101,7 +109,7 @@ public class ShowFragmentXXH2 extends FragmentBase {
 	private void initView(){
 		initTopBarForOnlyTitle("сно╥");
 		GridView mGridView=(GridView)findViewById(R.id.gridgame);
-		mGridView.setAdapter(new GamesGridAdapter(getActivity()));
+		mGridView.setAdapter(new GamesGridAdapter2(getActivity()));
 		
 		mGridView.setOnItemClickListener(new OnItemClickListener() {
 

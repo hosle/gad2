@@ -49,9 +49,17 @@ public class User extends BmobChatUser {
 	private int gold;
 	//用户积分
 	private BmobRelation gameJifen;
+	//用户生成的游戏
+	private BmobRelation myGame;
 	
-	
-	
+	public BmobRelation getmyGame() {
+		return myGame;
+	}
+
+	public void setmyGame(BmobRelation mGame) {
+		this.myGame = mGame;
+	}
+
 	public BmobRelation getGameJifen() {
 		return gameJifen;
 	}

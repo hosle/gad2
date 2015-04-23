@@ -14,6 +14,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.format.Time;
@@ -32,7 +34,8 @@ import cn.bmob.im.bean.BmobChatUser;
 
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.adapter.GamesGridAdapter;
+import com.bmob.im.demo.adapter.GamesGridAdapter1;
+import com.bmob.im.demo.adapter.GamesGridAdapter2;
 import com.bmob.im.demo.ui.FragmentBase;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.xxh.OfficalActivity;
@@ -45,8 +48,9 @@ import com.userim.util.SerializableBCU;
 
 public class ShowFragmentXXH1 extends FragmentBase {
 
-	ImageButton imgbnt2;
-	ImageButton imgbnt3;
+	Fragment mContent;
+	private ImageButton imgbnt2;
+	private ImageButton imgbnt3;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,6 +73,9 @@ public class ShowFragmentXXH1 extends FragmentBase {
 		imgbnt3.setOnClickListener(new ChangeFragment3());
 	}
 	
+	
+
+
 	private class ChangeFragment2 implements OnClickListener
     {     
         @Override  
@@ -76,6 +83,7 @@ public class ShowFragmentXXH1 extends FragmentBase {
         {  
         	// TODO Auto-generated method stub  
         	ShowFragmentXXH2 demoFragment = new ShowFragmentXXH2();
+        	
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction transaction =fragmentManager.beginTransaction();
             transaction.replace(R.id.fragment_container, demoFragment);
@@ -102,8 +110,9 @@ public class ShowFragmentXXH1 extends FragmentBase {
 	
 	private void initView(){
 		initTopBarForOnlyTitle("сно╥");
+		
 		GridView mGridView=(GridView)findViewById(R.id.gridgame);
-		mGridView.setAdapter(new GamesGridAdapter(getActivity()));
+		mGridView.setAdapter(new GamesGridAdapter1(getActivity()));
 		
 		mGridView.setOnItemClickListener(new OnItemClickListener() {
 
