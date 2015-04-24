@@ -8,7 +8,7 @@ import cn.bmob.v3.BmobObject;
  * @author HenryTam
  *
  */
-public class Game extends BmobObject {
+public class Game extends BmobObject{
 
 	/**
 	 * 

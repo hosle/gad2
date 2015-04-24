@@ -36,9 +36,9 @@ public final class R {
 		public static final int transparent = 0x7f060012;
 	}
 	public static final class drawable {
-		public static final int head = 0x7f020061;
-		public static final int ic_launcher = 0x7f020062;
-		public static final int v2_sortlistview_sidebar_background = 0x7f0200b9;
+		public static final int head = 0x7f020062;
+		public static final int ic_launcher = 0x7f020063;
+		public static final int v2_sortlistview_sidebar_background = 0x7f0200bb;
 	}
 	public static final class id {
 		public static final int alpha_userim = 0x7f0b009b;

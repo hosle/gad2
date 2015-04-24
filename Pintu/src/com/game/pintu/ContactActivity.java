@@ -35,6 +35,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 public class ContactActivity extends  Activity implements OnItemClickListener {
 
 	TextView dialog;
@@ -75,6 +77,7 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		manager=BmobChatManager.getInstance(this);
 		gameManager=GameManager.getInstance(this);
 		init();
+		
 	}
 
 	@Override

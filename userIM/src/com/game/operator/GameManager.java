@@ -13,12 +13,18 @@ import com.game.Forward;
 import com.game.Game;
 import com.userim.User;
 
+/**
+ * @author HenryTam
+ *
+ */
 public class GameManager {
 
 	private Context mContext;
 	private static GameManager instance;
 	private BmobUserManager userManager ;
 	private User mUser;
+	
+	private Game currentGame;//当前的游戏，用SharedPreferences来存储
 	
 	private Game mGame;//新生成的游戏
 	//private Game sendGame;//要发送的游戏
@@ -39,9 +45,20 @@ public class GameManager {
 		
 	}
 	
-//上传我定制的游戏
-    
-    /**
+	
+	
+    //读写当前的游戏
+    public Game getCurrentGame() {
+		return currentGame;
+	}
+
+	public void setCurrentGame(Game currentGame) {
+		if(this.currentGame!=null)
+			this.currentGame=null;
+		this.currentGame = currentGame;
+	}
+	//上传我定制的游戏
+	/**
      * @param vJifen 本次游戏的内容
      */
     public void saveMyGame(String changeString) {
