@@ -121,14 +121,15 @@ public class AutoGamePintuLayout extends RelativeLayout implements OnClickListen
 	{
 		if (mBitmap == null)
 		{
-			String newimg[];
+			/*String newimg[];
 			newimg = new String[1];
 			com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/newimage.txt",newimg);
 			String bitName = newimg[0];
 			//showToast(bitName);//测试是否读取到了图像的名称
 			
-			String filePath = "/mnt/sdcard/gameimage/" + bitName+".jpg";//实验发现同一图片只能传一次
-			mBitmap = BitmapFactory.decodeFile(filePath/*Environment.getExternalStorageDirectory()+"/gameimage/" + bitName+".jpg"*/);   
+			String filePath = "/mnt/sdcard/gameimage/" + bitName+".jpg";//实验发现同一图片只能传一次*/
+			String filePathgame = "/mnt/sdcard/gameimage/offical.jpg";//实验发现同一图片只能传一次
+			mBitmap = BitmapFactory.decodeFile(filePathgame/*Environment.getExternalStorageDirectory()+"/gameimage/" + bitName+".jpg"*/);   
 			//mBitmap = BitmapFactory.decodeResource(getResources(),
 					//R.drawable.aa_xxh);
 		}

@@ -84,8 +84,6 @@ public class ShowFragmentXXH1 extends FragmentBase {
 		GridView mGridView=(GridView)findViewById(R.id.gridgame);
 		GamesGridAdapter1 adapter1=new GamesGridAdapter1(getActivity());
 		mGridView.setAdapter(adapter1);
-		
-		
 	}
 	
 	

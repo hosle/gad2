@@ -12,6 +12,7 @@ import cn.bmob.im.bean.BmobMsg;
 
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
+import com.game.Game;
 import com.game.config.Config;
 import com.game.operator.GameManager;
 import com.game.util.CharacterParser;
@@ -90,9 +91,10 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 	private void init() {
 		characterParser = CharacterParser.getInstance();
 		pinyinComparator = new PinyinComparator();
-		upload();
+		
 		initListView();
 		initRightLetterView();
+		//upload();
 
 	}
 
@@ -161,6 +163,7 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		
 		// 刷新界面
 		//refreshMessage(message);
+		upload();
 		this.finish();
 	}
 
@@ -201,6 +204,8 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 	
 	private void upload(){
 
+		//Game tempGame=GameManager.getInstance(this).getCurrentGame();
+		
 		updialog = new ProgressDialog(ContactActivity.this);
 		//saveMyBitmap(str,bmp);
 		String newimg[];
@@ -209,7 +214,7 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		String bitName = newimg[0];
 		//showToast(bitName);//测试是否读取到了图像的名称
 		
-		String filePath = "/mnt/sdcard/gameimage/" + bitName+".jpg";//实验发现同一图片只能传一次
+		String filePath = "/mnt/sdcard/gameimage/" + bitName +".jpg";//实验发现同一图片只能传一次
 		//showToast(filePath);
 		
 		updialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);                 

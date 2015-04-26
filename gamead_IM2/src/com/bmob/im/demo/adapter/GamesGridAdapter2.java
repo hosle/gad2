@@ -13,7 +13,7 @@ import android.content.Context;
  *自定义游戏列表adapter
  *查询所有我定制的数据，返回表
  */
-public class GamesGridAdapter2 extends GamesGridAdapterBase {
+public class GamesGridAdapter2 extends GamesGridAdapterBase2 {
 
 	//private Context mContext;
 	
