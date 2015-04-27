@@ -65,6 +65,7 @@ import com.bmob.im.demo.adapter.MessageChatAdapter;
 import com.bmob.im.demo.adapter.NewRecordPlayClickListener;
 import com.bmob.im.demo.bean.FaceText;
 import com.bmob.im.demo.config.BmobConstants;
+import com.bmob.im.demo.ui.fragment.ShowFragmentXXH1;
 import com.bmob.im.demo.util.CommonUtils;
 import com.bmob.im.demo.util.FaceTextUtils;
 import com.bmob.im.demo.view.EmoticonsEditText;
@@ -763,7 +764,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	/**
-	 * 启动地图
+	 * 启动游戏选择界面
 	 * 
 	 * @Title: selectLocationFromMap
 	 * @Description: TODO
@@ -772,7 +773,9 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	 * @throws
 	 */
 	private void selectGame() {
-		setContentView(R.layout.xxh_gamelayout1);
+		Intent it=new Intent(this, ShowFragmentXXH1.class);
+		startActivity(it);
+		//setContentView(R.layout.xxh_gamelayout1);
 	}
 	
 	

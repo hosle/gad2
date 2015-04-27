@@ -6,6 +6,8 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
 import com.game.Game;
+import com.userim.User;
+
 import android.content.Context;
 
 /**
@@ -13,7 +15,7 @@ import android.content.Context;
  *自定义游戏列表adapter
  *查询所有我定制的数据，返回表
  */
-public class GamesGridAdapter2 extends GamesGridAdapterBase {
+public class GamesGridAdapter2 extends GamesGridAdapterBase2 {
 
 	//private Context mContext;
 	
@@ -22,7 +24,7 @@ public class GamesGridAdapter2 extends GamesGridAdapterBase {
 		//this.mContext = mContext;
 		//查询所有我定制的数据，返回表
 		BmobQuery<Game> query=new BmobQuery<Game>();
-		query.addWhereNotEqualTo("gameOwnerUser", "0");
+		query.addWhereEqualTo("gameOwnerUser", User.getCurrentUser(mContext));
 		query.findObjects(mContext, new FindListener<Game>() {
 
 			@Override

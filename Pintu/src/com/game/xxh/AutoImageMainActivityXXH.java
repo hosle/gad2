@@ -1,7 +1,9 @@
 package com.game.xxh;
 
 
+import com.game.Game;
 import com.game.config.Config;
+import com.game.operator.GameManager;
 import com.game.pintu.ContactActivity;
 import com.game.pintu.R;
 import com.game.pintu.SelectImage;
@@ -48,6 +50,8 @@ public class AutoImageMainActivityXXH extends Activity  {
 		handler.removeCallbacks(runnable);
 		handler.postDelayed(runnable,50); 
 		
+		//Game tempGame=GameManager.getInstance(this).getCurrentGame();
+		//tempGame.getPreference();
 		
 		mGameView = (AutoGamePintuLayout) findViewById(R.id.id_gameview_a);
 		
@@ -69,6 +73,7 @@ public class AutoImageMainActivityXXH extends Activity  {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(AutoImageMainActivityXXH.this, SelectImage.class);
 				startActivity(intent);
+				finish();
 			}
 		});
 

@@ -15,7 +15,7 @@ public class Forward extends BmobObject {
 	
 	private String senderName;//发送者
 	private String receiverName;//接收者
-	private String gameId;//游戏
+	private Game gameforward;//游戏
 	
 	public String getSenderName() {
 		return senderName;
@@ -29,11 +29,11 @@ public class Forward extends BmobObject {
 	public void setReceiverName(String receiverUser) {
 		this.receiverName = receiverUser;
 	}
-	public String getGameId() {
-		return gameId;
+	public Game getGameforward() {
+		return gameforward;
 	}
-	public void setGameId(String game) {
-		this.gameId = game;
+	public void setGameforward(Game gameforward) {
+		this.gameforward = gameforward;
 	}
 	
 	

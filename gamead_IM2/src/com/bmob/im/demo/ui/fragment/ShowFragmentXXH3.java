@@ -11,8 +11,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageButton;
+
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.adapter.GamesGridAdapter2;
+import com.bmob.im.demo.adapter.GamesGridAdapter3;
 import com.bmob.im.demo.ui.FragmentBase;
 
 public class ShowFragmentXXH3 extends FragmentBase {
@@ -75,7 +77,7 @@ public class ShowFragmentXXH3 extends FragmentBase {
 	private void initView(){
 		initTopBarForOnlyTitle("сно╥");
 		GridView mGridView=(GridView)findViewById(R.id.gridgame);
-		mGridView.setAdapter(new GamesGridAdapter2(getActivity()));
+		mGridView.setAdapter(new GamesGridAdapter3(getActivity()));
 		
 	}
 	

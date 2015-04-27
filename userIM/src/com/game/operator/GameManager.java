@@ -28,7 +28,7 @@ public class GameManager {
 	
 	private Game mGame;//新生成的游戏
 	//private Game sendGame;//要发送的游戏
-	//private Forward forwardGame;
+	private Forward forwardrecord;//游戏转发记录
 	
 	public GameManager(Context context) {
 		// TODO Auto-generated constructor stub
@@ -78,6 +78,7 @@ public class GameManager {
 				// TODO Auto-generated method stub
 				//toast("你成功生成一个游戏");
 				addNewGameToUser();
+				
 			}
 			
 			@Override
@@ -109,6 +110,8 @@ public class GameManager {
 			public void onSuccess() {
 				// TODO Auto-generated method stub
 				toast("已成功添加新的游戏");
+				//将新修改的游戏变成当前游戏
+				GameManager.getInstance(mContext).setCurrentGame(mGame);
 			}
 			
 			@Override
@@ -158,28 +161,58 @@ public class GameManager {
 	/**
 	 * 发送游戏
 	 */
-	public void sendGame(String gameId,String receiver)
+	public void sendGame(String receiver)
 	{
 		//sendGame=game;
 		final String vReceiver=receiver;
-	    Forward forwardGame=new Forward();
-		forwardGame.setGameId(gameId);
-		forwardGame.setSenderName(mUser.getUsername());
-		forwardGame.setReceiverName(receiver);
+		forwardrecord=new Forward();
+		forwardrecord.setGameforward(currentGame);
+		
+		forwardrecord.setSenderName(mUser.getUsername());
+		forwardrecord.setReceiverName(receiver);
 
-		forwardGame.save(mContext, new SaveListener() {
+		forwardrecord.save(mContext, new SaveListener() {
 			
 			@Override
 			public void onSuccess() {
 				// TODO Auto-generated method stub
 				toast("你成功发送了一个游戏给"+vReceiver);
-				//addForwardToGame();
+				addNewForwardToGame();
 			}
 			
 			@Override
 			public void onFailure(int arg0, String arg1) {
 				// TODO Auto-generated method stub
 				toast("fail");
+			}
+		});
+	}
+	 /**
+		 * 添加新转发记录到游戏列表中
+		 */
+	private void addNewForwardToGame(){
+		if(TextUtils.isEmpty(currentGame.getObjectId()) || 
+					TextUtils.isEmpty(currentGame.getObjectId())){
+				toast("当前用户或者当前game对象的object为空");
+				return;
+		}
+			
+		BmobRelation forwards = new BmobRelation();
+		forwards.add(forwardrecord);
+		currentGame.setForward(forwards);
+		
+		currentGame.update(mContext, new UpdateListener() {
+				
+			@Override
+			public void onSuccess() {
+					// TODO Auto-generated method stub
+					toast("已成功转发游戏");
+			}
+				
+			@Override
+			public void onFailure(int arg0, String arg1) {
+					// TODO Auto-generated method stub
+					toast("很遗憾，转发游戏失败");
 			}
 		});
 	}

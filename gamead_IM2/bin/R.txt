@@ -576,6 +576,7 @@ int string show_notice 0x7f070046
 int string tips 0x7f07002c
 int string title_activity_contact 0x7f07000c
 int string title_activity_main_contact_list 0x7f07000b
+int string title_activity_select_game_to_send 0x7f070047
 int string toast_error_comfirm_password 0x7f070033
 int string toast_error_password_null 0x7f070031
 int string toast_error_username_null 0x7f070032

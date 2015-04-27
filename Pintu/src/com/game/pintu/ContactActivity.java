@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.net.ssl.ManagerFactoryParameters;
-
 import cn.bmob.im.BmobChatManager;
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.im.bean.BmobMsg;
@@ -90,9 +88,10 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 	private void init() {
 		characterParser = CharacterParser.getInstance();
 		pinyinComparator = new PinyinComparator();
-		upload();
+		
 		initListView();
 		initRightLetterView();
+		//upload();
 
 	}
 
@@ -154,13 +153,14 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		manager.sendTextMessage(targetUser, commandBmobMsg);
 		
 		//发送游戏
-		gameManager.sendGame("00000",targetUser.getUsername());
+		gameManager.sendGame(targetUser.getUsername());
 		
 		
 		// 默认发送完成，将数据保存到本地消息表和最近会话表中
 		
 		// 刷新界面
 		//refreshMessage(message);
+		upload();
 		this.finish();
 	}
 
@@ -201,6 +201,8 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 	
 	private void upload(){
 
+		//Game tempGame=GameManager.getInstance(this).getCurrentGame();
+		
 		updialog = new ProgressDialog(ContactActivity.this);
 		//saveMyBitmap(str,bmp);
 		String newimg[];
@@ -209,7 +211,7 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		String bitName = newimg[0];
 		//showToast(bitName);//测试是否读取到了图像的名称
 		
-		String filePath = "/mnt/sdcard/gameimage/" + bitName+".jpg";//实验发现同一图片只能传一次
+		String filePath = "/mnt/sdcard/gameimage/" + bitName +".jpg";//实验发现同一图片只能传一次
 		//showToast(filePath);
 		
 		updialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);                 

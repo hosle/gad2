@@ -88,7 +88,7 @@ public class GamesGridAdapterBase extends BaseAdapter {
 			holder.mImageView.setFocusable(false);
 			holder.mImageView.setOnClickListener(new OnClickListener() {
 				
-				@Override
+				@SuppressLint("SdCardPath") @Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
 					//存储当前的游戏game类
@@ -96,6 +96,7 @@ public class GamesGridAdapterBase extends BaseAdapter {
 					//获取当前的游戏game类
 					Game tempGame=GameManager.getInstance(mContext).getCurrentGame();
 					
+					//String gameImagePath = tempGame.getPreference();//得到定制的图片的名字
 					String name2=tempGame.getGameId();
 					toast(name2);
 					
@@ -118,7 +119,7 @@ public class GamesGridAdapterBase extends BaseAdapter {
 					
 					
 						
-						Time t=new Time(); // or Time t=new Time("GMT+8"); 加上Time Zone资料。
+						/*Time t=new Time(); // or Time t=new Time("GMT+8"); 加上Time Zone资料。
 						t.setToNow(); // 取得系统时间。
 						int year = t.year;
 						int month = t.month;
@@ -126,22 +127,31 @@ public class GamesGridAdapterBase extends BaseAdapter {
 						int hour = t.hour; // 0-23
 						int minute = t.minute;
 						int second = t.second;
-						String str = ""+year+"_"+month+"_"+date+"_"+hour+"_"+minute+"_"+second;
+						String str = "_"+year+"_"+month+"_"+date+"_"+hour+"_"+minute+"_"+second;*/
+						
+						
+						int imgName = R.id.iv1;
+						//String nameImg = Integer.toString(imgName)+str;
+						String PnameImg = Integer.toString(imgName);
+						
 						String newimg[];
 						newimg = new String[1];
-						newimg[0] = str;
+						newimg[0] = PnameImg;//str
+						
+						
 						File destDir = new File("/mnt/sdcard/gameimage/newimage.txt");
 						  if (!destDir.exists()) {
 						   destDir.mkdirs();
 						  }
 
+						//com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
 						com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
-						
-						
-						Bitmap img = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.icon1);
-						
-						saveMyBitmapxxh(str,img);
-						
+
+					    Bitmap img = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.icon1);		
+						//saveMyBitmapxxh(str,img);
+						saveMyBitmapxxh(PnameImg,img);
+						saveMyBitmapxxh("offical",img);
+
 						mContext.startActivity(it);
 					
 				}

@@ -58,6 +58,11 @@ public final class R {
     
  Default screen margins, per the Android Design guidelines. 
 
+         Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
+    
+
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
@@ -622,6 +627,7 @@ public final class R {
         public static final int tips=0x7f07002c;
         public static final int title_activity_contact=0x7f07000c;
         public static final int title_activity_main_contact_list=0x7f07000b;
+        public static final int title_activity_select_game_to_send=0x7f070047;
         public static final int toast_error_comfirm_password=0x7f070033;
         public static final int toast_error_password_null=0x7f070031;
         public static final int toast_error_username_null=0x7f070032;
