@@ -10,6 +10,7 @@ import cn.bmob.im.bean.BmobMsg;
 
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
+import com.game.Game;
 import com.game.config.Config;
 import com.game.operator.GameManager;
 import com.game.util.CharacterParser;
@@ -152,8 +153,9 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		BmobMsg commandBmobMsg=BmobMsg.createTextSendMsg(this, targetId, commandString);
 		manager.sendTextMessage(targetUser, commandBmobMsg);
 		
+		Game sendgame=gameManager.getCurrentGame();
 		//发送游戏
-		gameManager.sendGame(targetUser.getUsername());
+		gameManager.sendGame(sendgame,targetUser.getUsername());
 		
 		
 		// 默认发送完成，将数据保存到本地消息表和最近会话表中

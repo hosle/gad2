@@ -30,6 +30,8 @@ public class GameManager {
 	//private Game sendGame;//要发送的游戏
 	private Forward forwardrecord;//游戏转发记录
 	
+	private Game selectGame;//选中需要发送的游戏
+	
 	public GameManager(Context context) {
 		// TODO Auto-generated constructor stub
 		mContext=context;
@@ -45,9 +47,17 @@ public class GameManager {
 		
 	}
 	
+	//读写选中的游戏
 	
-	
-    //读写当前的游戏
+    public Game getSelectGame() {
+		return selectGame;
+	}
+
+	public void setSelectGame(Game selectGame) {
+		this.selectGame = selectGame;
+	}
+
+	//读写当前的游戏
     public Game getCurrentGame() {
 		return currentGame;
 	}
@@ -161,12 +171,12 @@ public class GameManager {
 	/**
 	 * 发送游戏
 	 */
-	public void sendGame(String receiver)
+	public void sendGame(Game sendgame,String receiver)
 	{
-		//sendGame=game;
+		final Game mSendgame=sendgame;
 		final String vReceiver=receiver;
 		forwardrecord=new Forward();
-		forwardrecord.setGameforward(currentGame);
+		forwardrecord.setGameforward(mSendgame);
 		
 		forwardrecord.setSenderName(mUser.getUsername());
 		forwardrecord.setReceiverName(receiver);
@@ -177,7 +187,7 @@ public class GameManager {
 			public void onSuccess() {
 				// TODO Auto-generated method stub
 				toast("你成功发送了一个游戏给"+vReceiver);
-				addNewForwardToGame();
+				addNewForwardToGame(mSendgame);
 			}
 			
 			@Override
@@ -190,18 +200,18 @@ public class GameManager {
 	 /**
 		 * 添加新转发记录到游戏列表中
 		 */
-	private void addNewForwardToGame(){
-		if(TextUtils.isEmpty(currentGame.getObjectId()) || 
-					TextUtils.isEmpty(currentGame.getObjectId())){
+	private void addNewForwardToGame(Game vsendgame){
+		if(TextUtils.isEmpty(vsendgame.getObjectId()) || 
+					TextUtils.isEmpty(vsendgame.getObjectId())){
 				toast("当前用户或者当前game对象的object为空");
 				return;
 		}
 			
 		BmobRelation forwards = new BmobRelation();
 		forwards.add(forwardrecord);
-		currentGame.setForward(forwards);
+		vsendgame.setForward(forwards);
 		
-		currentGame.update(mContext, new UpdateListener() {
+		vsendgame.update(mContext, new UpdateListener() {
 				
 			@Override
 			public void onSuccess() {

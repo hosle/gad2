@@ -85,7 +85,7 @@ public class GamesGridAdapterBase2 extends BaseAdapter {
 			holder.mImageView=(ImageView) convertView
 					.findViewById(R.id.ImgGrid);
 			holder.mImageView.setImageResource(mThumbID);
-			holder.mImageView.setFocusable(false);
+			
 			holder.mImageView.setOnClickListener(new OnClickListener() {
 				
 				@SuppressLint("SdCardPath") @Override

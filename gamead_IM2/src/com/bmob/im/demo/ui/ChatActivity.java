@@ -73,6 +73,8 @@ import com.bmob.im.demo.view.HeaderLayout;
 import com.bmob.im.demo.view.dialog.DialogTips;
 import com.bmob.im.demo.view.xlist.XListView;
 import com.bmob.im.demo.view.xlist.XListView.IXListViewListener;
+import com.game.Game;
+import com.game.operator.GameManager;
 
 /**
  * 聊天界面
@@ -118,6 +120,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	private Drawable[] drawable_Anims;// 话筒动画
 
 	BmobRecordManager recordManager;
+	private GameManager gameManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +128,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
 		manager = BmobChatManager.getInstance(this);
+		gameManager=GameManager.getInstance(this);
 		MsgPagerNum = 0;
 		// 组装聊天对象
 		targetUser = (BmobChatUser) getIntent().getSerializableExtra("user");
@@ -773,9 +777,11 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	 * @throws
 	 */
 	private void selectGame() {
-		Intent it=new Intent(this, ShowFragmentXXH1.class);
-		startActivity(it);
-		//setContentView(R.layout.xxh_gamelayout1);
+		gameManager.setSelectGame(null);
+		Intent it=new Intent(this, SelectGameToSendActivity.class);
+		
+		startActivityForResult(it, BmobConstants.REQUESTCODE_TAKE_GAME);
+		
 	}
 	
 	
@@ -876,10 +882,38 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 				}
 
 				break;
+			case BmobConstants.REQUESTCODE_TAKE_GAME:
+				String gameIdString=data.getStringExtra("gameId");
+				if (gameIdString!=null) {
+					ShowToast("成功拿到数据"+gameIdString);
+				}else {
+					ShowToast("失败拿到数据");
+				}
+				
+					sendGameMessage(gameIdString);
 			}
 		}
 	}
 
+	/**
+	 * 发送游戏消息
+	 */
+	private void sendGameMessage(String gameString){
+		// 组装BmobMessage对象
+		BmobMsg message = BmobMsg.createTextSendMsg(this, targetId, "我发送了一条游戏："+gameString);
+		// 默认发送完成，将数据保存到本地消息表和最近会话表中
+		manager.sendTextMessage(targetUser, message);
+		// 刷新界面
+		refreshMessage(message);
+		
+		Game selectgame=gameManager.getSelectGame();
+		if (selectgame!=null) {
+			gameManager.sendGame(selectgame,targetUser.getUsername());
+		}else {
+			ShowToast("选择不了的游戏");
+		}
+		
+	}
 	/**
 	 * 发送位置信息
 	 * @Title: sendLocationMessage

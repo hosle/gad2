@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:text="游戏"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/base_color_text_white"
+        android:background="@drawable/xxh_game_bkimgbnt"
+        android:gravity="center"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.bmob.im.demo.view.myExpandableListView
+            android:id="@+id/expendlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:groupIndicator="@null"
+            >
+        </com.bmob.im.demo.view.myExpandableListView>
+    </RelativeLayout>
+
+</LinearLayout>

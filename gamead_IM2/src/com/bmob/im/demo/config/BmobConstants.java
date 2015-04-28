@@ -32,6 +32,7 @@ public class BmobConstants {
 	public static final int REQUESTCODE_TAKE_CAMERA = 0x000001;//拍照
 	public static final int REQUESTCODE_TAKE_LOCAL = 0x000002;//本地图片
 	public static final int REQUESTCODE_TAKE_LOCATION = 0x000003;//位置
+	public static final int REQUESTCODE_TAKE_GAME=0x000004;//要发送的游戏
 	public static final String EXTRA_STRING = "extra_string";
 	
 	
