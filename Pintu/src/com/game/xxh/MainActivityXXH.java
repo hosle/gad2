@@ -33,7 +33,7 @@ import android.widget.Toast;
 
 public class MainActivityXXH extends Activity  {
 	
-	private TextView nandu,time;
+	private TextView time;
 	private Handler handler = new Handler();
 	
 	private ImageButton sendButton,personalButton;
@@ -53,10 +53,7 @@ public class MainActivityXXH extends Activity  {
 		
 		Bundle bundle=getIntent().getExtras();
 		
-		
-		nandu = (TextView) findViewById(R.id.nandu);
-		
-
+	
 		sendButton=(ImageButton)findViewById(R.id.btn_sendgame);
 		personalButton = (ImageButton)findViewById(R.id.btn_personial);
 		personalButton.setEnabled(false);
@@ -72,20 +69,7 @@ public class MainActivityXXH extends Activity  {
 		handler.removeCallbacks(runnable);
 		handler.postDelayed(runnable,50); 
 		
-		
-		switch(Config.nandu){
-		case 3:
-			nandu.setText("难度:简单");
-			break;
-		case 4:
-			nandu.setText("难度:一般");
-			break;
-		case 5:
-			nandu.setText("难度:困难");
-			break;
-	
-		}
-		
+
 		mGameView = (GamePintuLayout) findViewById(R.id.id_gameview);
 		
 		sendButton.setOnClickListener(new OnClickListener() {

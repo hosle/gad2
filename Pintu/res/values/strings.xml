@@ -9,7 +9,7 @@
     <string name="help">帮助</string>
     <string name="exit">退出</string>
     <string name="b_return">返    回</string>
-    <string name="select">选择模式</string>
+    <string name="select">选择图片</string>
     <string name="selectimage">选择图片</string>
     <string name="wanfa">拼图怎么玩?问百度</string>
     <string name="title_activity_main_contact_list">MainContactListActivity</string>

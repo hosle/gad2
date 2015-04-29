@@ -78,26 +78,26 @@ public final class R {
         public static int xxhpintu_game_dir=0x7f020016;
     }
     public static final class id {
-        public static int action_settings=0x7f09002d;
-        public static int ad_info=0x7f090013;
-        public static int ad_info_a=0x7f09001c;
-        public static int alpha_userim=0x7f09001e;
-        public static int b_return=0x7f09001d;
-        public static int btn_personial=0x7f090010;
-        public static int btn_personial_a=0x7f090019;
-        public static int btn_save=0x7f09000e;
-        public static int btn_save_a=0x7f090017;
-        public static int btn_sendgame=0x7f09000f;
-        public static int btn_sendgame_a=0x7f090018;
+        public static int action_settings=0x7f09002e;
+        public static int ad_info=0x7f090012;
+        public static int ad_info_a=0x7f09001b;
+        public static int alpha_userim=0x7f09001d;
+        public static int b_return=0x7f09001c;
+        public static int btn_personial=0x7f09000f;
+        public static int btn_personial_a=0x7f090018;
+        public static int btn_save=0x7f09000d;
+        public static int btn_save_a=0x7f090016;
+        public static int btn_sendgame=0x7f09000e;
+        public static int btn_sendgame_a=0x7f090017;
         public static int btnnewGame=0x7f090009;
-        public static int button1=0x7f090012;
-        public static int button1_a=0x7f09001b;
+        public static int button1=0x7f090011;
+        public static int button1_a=0x7f09001a;
         public static int dialog_activity=0x7f090002;
         public static int exit=0x7f090008;
         public static int help=0x7f090007;
-        public static int id_gameview=0x7f090011;
-        public static int id_gameview_a=0x7f09001a;
-        public static int img_friend_avatar_userim=0x7f09001f;
+        public static int id_gameview=0x7f090010;
+        public static int id_gameview_a=0x7f090019;
+        public static int img_friend_avatar_userim=0x7f09001e;
         public static int iv1=0x7f090027;
         public static int iv2=0x7f090028;
         public static int iv3=0x7f090029;
@@ -106,7 +106,7 @@ public final class R {
         public static int iv6=0x7f09002c;
         public static int layout_list_activity=0x7f090000;
         public static int list_friends_activity=0x7f090001;
-        public static int nandu=0x7f09000a;
+        public static int nandu=0x7f090020;
         public static int newGame=0x7f090005;
         public static int ok=0x7f090026;
         public static int radio0=0x7f090023;
@@ -115,15 +115,16 @@ public final class R {
         public static int radioGroup1=0x7f090022;
         public static int ranked=0x7f090006;
         public static int right_letter_activity=0x7f090003;
+        public static int selectimagebnt_xxh=0x7f09002d;
         public static int textView1=0x7f090004;
-        public static int time=0x7f09000b;
-        public static int time_a=0x7f090014;
-        public static int tv_friend_name_userim=0x7f090020;
-        public static int url_info=0x7f09000c;
-        public static int url_info_a=0x7f090015;
+        public static int time=0x7f09000a;
+        public static int time_a=0x7f090013;
+        public static int tv_friend_name_userim=0x7f09001f;
+        public static int url_info=0x7f09000b;
+        public static int url_info_a=0x7f090014;
         public static int view=0x7f090021;
-        public static int xxh_imagebntdo=0x7f09000d;
-        public static int xxh_imagebntdo_a=0x7f090016;
+        public static int xxh_imagebntdo=0x7f09000c;
+        public static int xxh_imagebntdo_a=0x7f090015;
     }
     public static final class layout {
         public static int activity_contact=0x7f030000;
@@ -138,6 +139,7 @@ public final class R {
         public static int rr_xxh=0x7f030009;
         public static int select=0x7f03000a;
         public static int select_image=0x7f03000b;
+        public static int select_image1=0x7f03000c;
     }
     public static final class menu {
         public static int contact=0x7f080000;

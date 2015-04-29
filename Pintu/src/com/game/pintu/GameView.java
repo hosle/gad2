@@ -77,7 +77,8 @@ public class GameView extends View implements DialogInterface.OnClickListener {
 		
 		paint = new Paint();	
 		Config.bushu = 0;	//将步数初始化为0
-		o = Config.nandu;	//难度,也就是图形被分成了几个格子
+		
+		o = 3;	//难度,也就是图形被分成了几个格子
 		
 		
 		rect = new Rect[o*o];	

@@ -1,5 +1,6 @@
 package com.bmob.im.demo.adapter;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -115,9 +116,21 @@ public class GamesGridAdapter2 extends GamesGridAdapterBase {
 					//bundle.putString("fatherName", "gameFrag");
 					it.putExtras(bundle);
 					//it.putExtra("fatherName", "gameFrag");	
-					Bitmap img = BitmapFactory.decodeFile("/mnt/sdcard/gameimage/"+gameImagePath+".jpg");
-
+					Bitmap img = BitmapFactory.decodeFile("/mnt/sdcard/gameimage/"+gameImagePath+".jpg");		
 					saveMyBitmapxxh("offical",img);//用于定制进读取
+					
+					String newimg[];
+					newimg = new String[1];
+					String gameNandu = tempGame.getSource();//得到游戏的难度
+					File destDirNanDu = new File("/mnt/sdcard/gameimage/gamenandu.txt");
+					  if (!destDirNanDu.exists()) {
+						  destDirNanDu.mkdirs();
+					}
+					  
+					newimg[0] = gameNandu;
+					//com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
+					com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
+					
 					mContext.startActivity(it);
 					
 				}

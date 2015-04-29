@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 public class NewGame_received extends Activity  {
 	
-	private TextView nandu,time;
+	private TextView time;
 	private Handler handler = new Handler();
 	
 	private Button sendButton;
@@ -42,7 +42,6 @@ public class NewGame_received extends Activity  {
 		
 		setContentView(R.layout.new_game);
 		
-		nandu = (TextView) findViewById(R.id.nandu);
 		
 		sendButton=(Button)findViewById(R.id.btn_sendgame);
 
@@ -52,19 +51,7 @@ public class NewGame_received extends Activity  {
 		handler.removeCallbacks(runnable);
 		handler.postDelayed(runnable,50); 
 		
-		switch(Config.nandu){
-		case 3:
-			nandu.setText("难度:简单");
-			break;
-		case 4:
-			nandu.setText("难度:一般");
-			break;
-		case 5:
-			nandu.setText("难度:困难");
-			break;
-	
-		}
-		
+
 		sendButton.setOnClickListener(new OnClickListener() {
 			
 			@Override

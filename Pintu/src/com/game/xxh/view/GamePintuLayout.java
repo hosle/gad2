@@ -26,7 +26,7 @@ import com.game.config.Config;
 import com.game.pintu.R;
 
 /**
- * 2048的游戏面板，加入布局文件即可�?始游�?
+ * 2048的游戏面板，加入布局文件即可�?始游�?
  * 
  * @author zhy
  * 
@@ -37,9 +37,9 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	/**
 	 * 设置Item的数量n*n；默认为2
 	 */
-	private int mColumn = Config.nandu;
+	private int mColumn = 3;
 	/**
-	 * 布局的宽�?
+	 * 布局的宽�?
 	 */
 	private int mWidth;
 	/**
@@ -47,11 +47,11 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	 */
 	private int mPadding;
 	/**
-	 * 存放�?有的Item
+	 * 存放�?有的Item
 	 */
 	private ImageView[] mGamePintuItems;
 	/**
-	 * Item的宽�?
+	 * Item的宽�?
 	 */
 	private int mItemWidth;
 
@@ -61,7 +61,7 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	private int mMargin = 3;
 
 	/**
-	 * 拼图的图�?
+	 * 拼图的图�?
 	 */
 	private Bitmap mBitmap;
 	/**
@@ -87,7 +87,7 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 
 		mMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 				mMargin, getResources().getDisplayMetrics());
-		// 设置Layout的内边距，四边一致，设置为四内边距中的最小�??
+		// 设置Layout的内边距，四边一致，设置为四内边距中的最小�??
 		mPadding = min(getPaddingLeft(), getPaddingTop(), getPaddingRight(),
 				getPaddingBottom());
 	}
@@ -102,7 +102,7 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	{
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-		// 获得游戏布局的边�?
+		// 获得游戏布局的边�?
 		mWidth = Math.min(getMeasuredHeight(), getMeasuredWidth());
 
 		if (!once)
@@ -115,26 +115,43 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	}
 
 	/**
-	 * 初始化图�?
+	 * 初始化图�?
 	 */
 	private void initBitmap()
 	{
 		if (mBitmap == null)
 		{
+			String newimgnan[];
+			newimgnan= new String[1];
+			com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/gamenandu.txt",newimgnan);
+			String NanDu = newimgnan[0];
+			if(NanDu.equals("innerPintu3"))
+			{
+				mColumn = 3;
+			}
+			if(NanDu.equals("innerPintu4"))
+			{
+				mColumn = 4;
+			}
+			if(NanDu.equals("innerPintu5"))
+			{
+				mColumn = 5;
+			}
+			
 			String newimg[];
 			newimg = new String[1];
 			com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/newimage.txt",newimg);
 			String bitName = newimg[0];
-			//showToast(bitName);//�����Ƿ��ȡ����ͼ�������
+			//showToast(bitName);//�����Ƿ��ȡ����ͼ�������
 			
-			String filePath = "/mnt/sdcard/gameimage/" + bitName+".jpg";//ʵ�鷢��ͬһͼƬֻ�ܴ�һ��
+			String filePath = "/mnt/sdcard/gameimage/" + bitName+".jpg";//ʵ�鷢��ͬһͼƬֻ�ܴ�һ��
 			mBitmap = BitmapFactory.decodeFile(filePath/*Environment.getExternalStorageDirectory()+"/gameimage/" + bitName+".jpg"*/);   
 			//mBitmap = BitmapFactory.decodeResource(getResources(),
 					//R.drawable.aa_xxh);
 		}
 
 		/**
-		 * 将图片切成mColumn*mColumn�?
+		 * 将图片切成mColumn*mColumn�?
 		 */
 		mItemBitmaps = ImageSplitter.split(mBitmap, mColumn);
 
@@ -153,7 +170,7 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	 */
 	private void initItem()
 	{
-		// 获得Item的宽�?
+		// 获得Item的宽�?
 		int childWidth = (mWidth - mPadding * 2 - mMargin * (mColumn - 1))
 				/ mColumn;
 		mItemWidth = childWidth;
@@ -173,18 +190,18 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 
 			RelativeLayout.LayoutParams lp = new LayoutParams(mItemWidth,
 					mItemWidth);
-			// 设置横向边距,不是�?后一�?
+			// 设置横向边距,不是�?后一�?
 			if ((i + 1) % mColumn != 0)
 			{
 				lp.rightMargin = mMargin;
 			}
-			// 如果不是第一�?
+			// 如果不是第一�?
 			if (i % mColumn != 0)
 			{
 				lp.addRule(RelativeLayout.RIGHT_OF,//
 						mGamePintuItems[i - 1].getId());
 			}
-			// 如果不是第一行，//设置纵向边距，非�?后一�?
+			// 如果不是第一行，//设置纵向边距，非�?后一�?
 			if ((i + 1) > mColumn)
 			{
 				lp.topMargin = mMargin;
@@ -197,7 +214,7 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	}
 
 	/**
-	 * 得到多�?�中的最小�??
+	 * 得到多�?�中的最小�??
 	 * 
 	 * @param params
 	 * @return
@@ -225,7 +242,7 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 		if (isAniming)
 			return;
 		/**
-		 * 如果两次点击是同�?�?
+		 * 如果两次点击是同�?�?
 		 */
 		if (mFirst == v)
 		{
@@ -252,12 +269,12 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	 */
 	private boolean isAniming;
 	/**
-	 * 动画�?
+	 * 动画�?
 	 */
 	private RelativeLayout mAnimLayout;
 
 	/**
-	 * 交换两个Item的图�?
+	 * 交换两个Item的图�?
 	 */
 	private void exchangeView()
 	{
@@ -375,7 +392,7 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	}
 
 	/**
-	 * 获得图片的真正索�?
+	 * 获得图片的真正索�?
 	 * 
 	 * @param tag
 	 * @return
@@ -394,7 +411,7 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	}
 
 	/**
-	 * 创建动画�?
+	 * 创建动画�?
 	 */
 	private void setUpAnimLayout()
 	{

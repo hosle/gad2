@@ -195,6 +195,15 @@ public class GamesGridAdapter3 extends GamesGridAdapterBase {
 
 					//Bitmap img = BitmapFactory.decodeFile("/mnt/sdcard/gameimage/2131427498.jpg");
 					//saveMyBitmapxxh("offical",img);//用于定制进读取
+					String gameNandu = tempGame.getSource();//得到游戏的难度
+					File destDirNanDu = new File("/mnt/sdcard/gameimage/gamenandu.txt");
+					  if (!destDirNanDu.exists()) {
+						  destDirNanDu.mkdirs();
+					}
+					  
+					newimg[0] = gameNandu;
+					//com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
+					com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
 					
 					mContext.startActivity(it);
 					

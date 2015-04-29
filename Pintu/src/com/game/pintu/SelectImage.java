@@ -27,16 +27,19 @@ import com.game.operator.*;
 public class SelectImage extends Activity implements OnCheckedChangeListener {
 	
 	private ImageView[] imgView = new ImageView[6];
-	private RadioGroup r;
 	private GameManager gamemanager;
 	private int flag = 0;
-	private String innerPintu="innerPintu";
+	//private String innerPintu="innerPintu";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO 自动生成的方法存根
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.select_image);
+		String newimg[];
+		newimg = new String[1];
+		com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
+		final String NanDu = newimg[0];
 		
 		gamemanager=GameManager.getInstance(this);
 		
@@ -56,7 +59,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 					// TODO Auto-generated method stub
 					Config.imageId = v.getId();
 					
-					gamemanager.saveMyGame(Config.imageId+"","");//上传自定义游戏
+					gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 					Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 					startActivity(intent);
 					finish();
@@ -70,7 +73,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				// TODO Auto-generated method stub
 				Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"",innerPintu+Config.nandu);//上传自定义游戏
+				gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -84,7 +87,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				// TODO Auto-generated method stub
 				Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"",innerPintu+Config.nandu);//上传自定义游戏
+				gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -98,7 +101,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				// TODO Auto-generated method stub
 				Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"",innerPintu+Config.nandu);//上传自定义游戏
+				gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -112,7 +115,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				// TODO Auto-generated method stub
 				Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"",innerPintu+Config.nandu);//上传自定义游戏
+				gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -126,7 +129,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				// TODO Auto-generated method stub
 				Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"",innerPintu+Config.nandu);//上传自定义游戏
+				gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -134,9 +137,6 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 		});
 
 		
-		
-		r = (RadioGroup) findViewById(R.id.radioGroup1);
-		r.setOnCheckedChangeListener(this);
 		
 		Config.metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(Config.metrics);
@@ -223,19 +223,6 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 		saveMyBitmapxxh(PnameImg,img);//用于定制进读取
 	}
 	
-	@Override
-	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		if (checkedId == R.id.radio0) {
-			Config.nandu = 3;
-		} else if (checkedId == R.id.radio1) {
-			Config.nandu = 4;
-		} else if (checkedId == R.id.radio2) {
-			Config.nandu = 5;
-		}
-		
-		
-		
-	}
 	
 	public void saveMyBitmapxxh(String bitName,Bitmap mBitmap)
 	{
@@ -262,6 +249,12 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 		} catch (IOException e) {
 		   e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void onCheckedChanged(RadioGroup arg0, int arg1) {
+		// TODO Auto-generated method stub
+		
 	}	
 	
 
