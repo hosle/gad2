@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -102,8 +103,11 @@ public class MainActivityXXH extends Activity  {
 			@Override
 			public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-				Intent intent = new Intent(MainActivityXXH.this, SelectImage.class);
-				startActivity(intent);
+				//Intent intent = new Intent(MainActivityXXH.this, SelectImage.class);
+				//startActivity(intent);
+				Toast t = Toast.makeText(getApplicationContext(),"当前处于定制中，要再次定制请返回！", Toast.LENGTH_LONG); 
+	        	t.setGravity(Gravity.CENTER, 0, 0); 
+	        	t.show(); 
 			}
 		});
 	}

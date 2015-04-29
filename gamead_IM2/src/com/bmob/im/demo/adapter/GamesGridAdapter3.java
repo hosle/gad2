@@ -17,7 +17,7 @@ import android.content.Context;
  *我收到的游戏列表adapter
  *
  */
-public class GamesGridAdapter3 extends GamesGridAdapterBase2 {
+public class GamesGridAdapter3 extends GamesGridAdapterBase3 {
 
 	//private Context mContext;
 	private List<Game> tempGame=new ArrayList<Game>();

@@ -14,11 +14,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AutoImageMainActivityXXH extends Activity  {
 	
@@ -60,8 +62,11 @@ public class AutoImageMainActivityXXH extends Activity  {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(AutoImageMainActivityXXH.this, ContactActivity.class);
-				startActivity(intent);
+				//Intent intent = new Intent(AutoImageMainActivityXXH.this, ContactActivity.class);
+				//startActivity(intent);
+				Toast t = Toast.makeText(getApplicationContext(),"此游戏来自官方，无须分享！", Toast.LENGTH_LONG); 
+	        	t.setGravity(Gravity.CENTER, 0, 0); 
+	        	t.show(); 
 			}
 		});
 
