@@ -890,7 +890,8 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 					ShowToast("Ê§°ÜÄÃµ½Êý¾Ý");
 				}
 				
-					sendGameMessage(gameIdString);
+				sendGameMessage(gameIdString);
+				break;
 			}
 		}
 	}

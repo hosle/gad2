@@ -28,7 +28,9 @@ public class GamesGridAdapter3 extends GamesGridAdapterBase2 {
 		String myNameString=User.getCurrentUser(mContext).getUsername();
 		//查询所有我收到的游戏数据，返回表
 		BmobQuery<Forward> query=new BmobQuery<Forward>();
+		
 		query.addWhereEqualTo("receiverName", myNameString);
+		query.include("gameforward");
 		query.findObjects(mContext, new FindListener<Forward>() {
 
 			@Override
@@ -45,7 +47,11 @@ public class GamesGridAdapter3 extends GamesGridAdapterBase2 {
 				for(int i=0;i<length;i++){
 					tempGame.add(arg0.get(i).getGameforward());
 				}
+				
 				gamelist=tempGame;
+				
+				//toast("第0个收到的游戏preference："+gamelist.get(0).getPreference());
+				
 				notifyDataSetChanged();
 			}
 		});		

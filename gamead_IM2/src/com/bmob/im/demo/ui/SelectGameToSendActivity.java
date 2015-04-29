@@ -43,6 +43,7 @@ public class SelectGameToSendActivity extends Activity {
 				}
 			}
 		});
+		//默认打开第一组
 		mExpandableListView.expandGroup(0);
 	}
 	

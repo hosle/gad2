@@ -45,6 +45,7 @@ public class GamesSendAdapter3 extends BaseAdapter {
 		//查询所有我收到的游戏数据，返回表
 		BmobQuery<Forward> query=new BmobQuery<Forward>();
 		query.addWhereEqualTo("receiverName", myNameString);
+		query.include("gameforward");
 		query.findObjects(mContext, new FindListener<Forward>() {
 
 			@Override
