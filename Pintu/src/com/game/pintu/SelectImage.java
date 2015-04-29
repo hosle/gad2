@@ -30,6 +30,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 	private RadioGroup r;
 	private GameManager gamemanager;
 	private int flag = 0;
+	private String innerPintu="innerPintu";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 					// TODO Auto-generated method stub
 					Config.imageId = v.getId();
 					
-					gamemanager.saveMyGame(Config.imageId+"");//上传自定义游戏
+					gamemanager.saveMyGame(Config.imageId+"","");//上传自定义游戏
 					Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 					startActivity(intent);
 					finish();
@@ -69,7 +70,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				// TODO Auto-generated method stub
 				Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"");//上传自定义游戏
+				gamemanager.saveMyGame(Config.imageId+"",innerPintu+Config.nandu);//上传自定义游戏
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -83,7 +84,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				// TODO Auto-generated method stub
 				Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"");//上传自定义游戏
+				gamemanager.saveMyGame(Config.imageId+"",innerPintu+Config.nandu);//上传自定义游戏
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -97,7 +98,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				// TODO Auto-generated method stub
 				Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"");//上传自定义游戏
+				gamemanager.saveMyGame(Config.imageId+"",innerPintu+Config.nandu);//上传自定义游戏
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -111,7 +112,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				// TODO Auto-generated method stub
 				Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"");//上传自定义游戏
+				gamemanager.saveMyGame(Config.imageId+"",innerPintu+Config.nandu);//上传自定义游戏
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -125,7 +126,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				// TODO Auto-generated method stub
 				Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"");//上传自定义游戏
+				gamemanager.saveMyGame(Config.imageId+"",innerPintu+Config.nandu);//上传自定义游戏
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();

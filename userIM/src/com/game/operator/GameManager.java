@@ -71,14 +71,14 @@ public class GameManager {
 	/**
      * @param vJifen 本次游戏的内容
      */
-    public void saveMyGame(String changeString) {
+    public void saveMyGame(String changeString,String kindString) {
     	
     	
     	 mGame=new Game();
     	 mGame.setGameId(createGameId());//设置游戏id
     	 mGame.setGameOwnerUser(mUser);
     	 
-    	 mGame.setSource("innerGame");
+    	 mGame.setSource(kindString);
     	 mGame.setPreference(changeString);//修改的内容
     	 
     	 mGame.save(mContext, new SaveListener() {
