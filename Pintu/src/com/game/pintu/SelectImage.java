@@ -7,14 +7,19 @@ import java.io.IOException;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.format.Time;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -30,6 +35,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 	private GameManager gamemanager;
 	private int flag = 0;
 	//private String innerPintu="innerPintu";
+	private Button selectimagebnt_xxh;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +55,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 		imgView[3] = (ImageView) findViewById(R.id.iv4);
 		imgView[4] = (ImageView) findViewById(R.id.iv5);
 		imgView[5] = (ImageView) findViewById(R.id.iv6);
-		
-		
+			
 		imgView[0].setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -136,7 +141,26 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 			}
 		});
 
-		
+		selectimagebnt_xxh = (Button)findViewById(R.id.selectimagebnt_xxh);
+		selectimagebnt_xxh.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent;
+				if (Build.VERSION.SDK_INT < 19) {
+					intent = new Intent(Intent.ACTION_GET_CONTENT);
+					intent.setType("image/*");
+				} else {
+					intent = new Intent(
+							Intent.ACTION_PICK,
+							android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				}
+				startActivityForResult(intent, 0);
+				//Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
+	            //openAlbumIntent.setType("image/*");
+	            //startActivityForResult(openAlbumIntent, 0); 
+			}
+		});
 		
 		Config.metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(Config.metrics);
@@ -158,6 +182,77 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 		}
 		
 	}*/
+ 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) //与上面的结合使用ProcessClickListenerOpenIamge
+    {
+	        super.onActivityResult(requestCode, resultCode, data);
+	        if (resultCode == RESULT_OK) 
+	        {
+	                ContentResolver resolver = getContentResolver();
+	                //照片的原始资源地址
+	                Uri originalUri = data.getData();
+	                try 
+	                {
+	                    //使用ContentProvider通过URI获取原始图片
+	                    Bitmap mBitmap  = MediaStore.Images.Media.getBitmap(resolver, originalUri); 
+	                    Bitmap photo= Bitmap.createScaledBitmap(mBitmap, (int)(mBitmap.getWidth()*0.08), (int)(mBitmap.getHeight()*0.08), true);  
+	                    try {
+	                    	
+	                    	Time t=new Time(); // or Time t=new Time("GMT+8"); 加上Time Zone资料。
+	                		t.setToNow(); // 取得系统时间。
+	                		int year = t.year;
+	                		int month = t.month;
+	                		int date = t.monthDay;
+	                		int hour = t.hour; // 0-23
+	                		int minute = t.minute;
+	                		int second = t.second;
+	                		String str = "_"+year+"_"+month+"_"+date+"_"+hour+"_"+minute+"_"+second;
+	                		
+	                    	saveMyBitmapxxh(str,photo);//用于定制进读取
+	                    	
+	                    	String newimg[];
+	                		newimg = new String[1];
+	                		newimg[0] = str;
+	                		File destDir = new File("/mnt/sdcard/gameimage/newimage.txt");
+	                		  if (!destDir.exists()) {
+	                		   destDir.mkdirs();
+	                		  }
+
+	                		com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
+							
+	                		//保存相应的参数！
+	     
+	                		newimg = new String[1];
+	                		com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
+	                		final String NanDu = newimg[0];
+	                		
+	        				Config.imageId = 123456789;
+	        				gamemanager.saveMyGame(str,NanDu);//上传自定义游戏
+	        				
+	        				
+	        				//转换Activity!
+	        				Intent intent_game = new Intent(SelectImage.this, MainActivityXXH.class);
+	        				startActivity(intent_game);
+	        				finish();
+	        				
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	                    
+	                    //process
+	                  
+	                } catch (FileNotFoundException e) 
+	                {
+	                    e.printStackTrace();
+	                } catch (IOException e) 
+	                {
+	                    e.printStackTrace();
+	                }
+	         }
+    }
+    
 	
 	@SuppressLint("SdCardPath") private void OnSelectImage(int num)
 	{
@@ -219,7 +314,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 		com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
 		Bitmap img = BitmapFactory.decodeResource(this.getResources(), icon);
 		
-		saveMyBitmapxxh(nameImg,img);
+		//saveMyBitmapxxh(nameImg,img);
 		saveMyBitmapxxh(PnameImg,img);//用于定制进读取
 	}
 	
