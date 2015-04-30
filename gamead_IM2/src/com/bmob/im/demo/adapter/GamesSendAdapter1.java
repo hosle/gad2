@@ -1,13 +1,16 @@
 package com.bmob.im.demo.adapter;
 
 import java.util.List;
+
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
 import com.bmob.im.demo.R;
+import com.bmob.im.demo.adapter.GamesSendAdapterBase.ViewHolder;
 import com.bmob.im.demo.ui.SelectGameToSendActivity;
 import com.game.Game;
 import com.game.operator.GameManager;
+
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +73,7 @@ public class GamesSendAdapter1 extends GamesSendAdapterBase {
 		return arg0;
 	}
 
+	
 	
 
 	

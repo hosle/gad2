@@ -12,6 +12,7 @@ import com.bmob.BmobProFile;
 import com.bmob.btp.callback.DownloadListener;
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
+import com.bmob.im.demo.adapter.GamesGridAdapterBase.H5OnClickListener;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.game.Game;
 import com.game.operator.GameManager;
@@ -72,6 +73,8 @@ public class GamesGridAdapter2 extends GamesGridAdapterBase {
 		// TODO Auto-generated method stub
 		final int vCurrentIndex=arg0;
 		final ViewHolder holder;
+		OnClickListener myOnClickListener=null;
+		
 		if (convertView==null) {
 			convertView=View.inflate(mContext, R.layout.item_game_grid, null);
 			holder=new ViewHolder();
@@ -82,68 +85,24 @@ public class GamesGridAdapter2 extends GamesGridAdapterBase {
 			switch (tempSource) {
 			case "innerPintu3":
 				holder.mImageView.setImageResource(mThumbID[0]);
+				myOnClickListener=new myOnClickListener2(vCurrentIndex);
 				break;
 			case "innerPintu4":
 				holder.mImageView.setImageResource(mThumbID[1]);
+				myOnClickListener=new myOnClickListener2(vCurrentIndex);
 				break;
 			case "innerPintu5":
 				holder.mImageView.setImageResource(mThumbID[2]);
+				myOnClickListener=new myOnClickListener2(vCurrentIndex);
+				break;
+			case "h5":
+				holder.mImageView.setImageResource(mThumbID[3]);
+				myOnClickListener=new H5OnClickListener(vCurrentIndex);
 				break;
 			}
 			
 			
-			holder.mImageView.setOnClickListener(new OnClickListener() {
-				
-				@SuppressLint("SdCardPath") @Override
-				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					//存储当前的游戏game类
-					GameManager.getInstance(mContext).setCurrentGame(gamelist.get(vCurrentIndex));
-					//获取当前的游戏game类
-					Game tempGame=GameManager.getInstance(mContext).getCurrentGame();
-					
-					String gameImagePath = tempGame.getPreference();//得到定制的图片的名字
-					String name2=tempGame.getGameId();
-					toast(name2);
-					
-					Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
-				    
-					Intent it= new Intent(mContext, AutoImageMainActivityXXH.class);
-					//传递list对象
-					
-					 //SerializableBCU myMap =new SerializableMap();
-					List<BmobChatUser> bcu=CollectionUtils.map2list(users);
-					final SerializableBCU myList =new SerializableBCU();
-					myList.setUsr(bcu);
-					
-					
-					Bundle bundle =new Bundle();
-					bundle.putSerializable("userlist", myList);
-					//bundle.putString("fatherName", "gameFrag");
-					it.putExtras(bundle);
-					download(gameImagePath);
-					//it.putExtra("fatherName", "gameFrag");	
-					/*Bitmap img = BitmapFactory.decodeFile("/mnt/sdcard/gameimage/"+gameImagePath+".jpg");		
-					saveMyBitmapxxh("offical",img);//用于定制进读取*/
-					
-					String newimg[];
-					newimg = new String[1];
-					String gameNandu = tempGame.getSource();//得到游戏的难度
-					File destDirNanDu = new File("/mnt/sdcard/gameimage/gamenandu.txt");
-					  if (!destDirNanDu.exists()) {
-						  destDirNanDu.mkdirs();
-					}
-					  
-					newimg[0] = gameNandu;
-					//com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
-					com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
-					
-					mContext.startActivity(it);
-					
-				}
-				
-				
-			});
+			holder.mImageView.setOnClickListener(myOnClickListener);
 			
 		
 
@@ -152,82 +111,60 @@ public class GamesGridAdapter2 extends GamesGridAdapterBase {
 		return convertView;
 	}
 	
-	 ProgressDialog dialog =null;
-     
-	//test1
-		/**
-		 * @Description: 文件下载
-		 * @param  
-		 * @return void
-		 * @throws
-		 */
-		private void download(String downloadName){
-			if(downloadName.equals("")){
-				showLog("请指定下载文件名");
-				return;
-			}
-			dialog = new ProgressDialog(mContext);
-			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);                 
-			dialog.setTitle("下载中...");
-			dialog.setIndeterminate(false);               
-			dialog.setCancelable(true);       
-			dialog.setCanceledOnTouchOutside(false);  
-			dialog.show();
-			BmobProFile.getInstance(mContext).download(downloadName, new DownloadListener() {
+	private class myOnClickListener2 implements OnClickListener{
 
-				@Override
-				public void onSuccess(String fullPath) {
-					// TODO Auto-generated method stub
-					showLog("MainActivity -download-->onSuccess :"+fullPath);
-					dialog.dismiss();
-					showToast("下载成功："+fullPath);
-					Bitmap img = BitmapFactory.decodeFile(fullPath);		
-					saveMyBitmapxxh("offical",img);
-				}
-
-				@Override
-				public void onProgress(String localPath, int percent) {
-					// TODO Auto-generated method stub
-					showLog("MainActivity -download-->onProgress :"+percent);
-					dialog.setProgress(percent);
-				}
-
-				@Override
-				public void onError(int statuscode, String errormsg) {
-					// TODO Auto-generated method stub
-					showLog("MainActivity -download-->onError :"+statuscode +"--"+errormsg);
-					dialog.dismiss();
-					showToast("下载出错："+errormsg);
-				}
-			});
+		private int vCurrentIndex;
+		public myOnClickListener2(int vC) {
+			// TODO Auto-generated constructor stub
+			vCurrentIndex=vC;
 		}
-
-		
-		Toast mToast;
-
-		public void showToast(String text) {
-			if (!TextUtils.isEmpty(text)) {
-				if (mToast == null) {
-					mToast = Toast.makeText(mContext.getApplicationContext(), text,
-							Toast.LENGTH_SHORT);
-				} else {
-					mToast.setText(text);
-				}
-				mToast.show();
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			//存储当前的游戏game类
+			GameManager.getInstance(mContext).setCurrentGame(gamelist.get(vCurrentIndex));
+			//获取当前的游戏game类
+			Game tempGame=GameManager.getInstance(mContext).getCurrentGame();
+			
+			String gameImagePath = tempGame.getPreference();//得到定制的图片的名字
+			String name2=tempGame.getGameId();
+			//toast(name2);
+			
+			Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
+		    
+			Intent it= new Intent(mContext, AutoImageMainActivityXXH.class);
+			//传递list对象
+			
+			 //SerializableBCU myMap =new SerializableMap();
+			List<BmobChatUser> bcu=CollectionUtils.map2list(users);
+			final SerializableBCU myList =new SerializableBCU();
+			myList.setUsr(bcu);
+			
+			
+			Bundle bundle =new Bundle();
+			bundle.putSerializable("userlist", myList);
+			//bundle.putString("fatherName", "gameFrag");
+			it.putExtras(bundle);
+			download(gameImagePath);
+			//it.putExtra("fatherName", "gameFrag");	
+			/*Bitmap img = BitmapFactory.decodeFile("/mnt/sdcard/gameimage/"+gameImagePath+".jpg");		
+			saveMyBitmapxxh("offical",img);//用于定制进读取*/
+			
+			String newimg[];
+			newimg = new String[1];
+			String gameNandu = tempGame.getSource();//得到游戏的难度
+			File destDirNanDu = new File("/mnt/sdcard/gameimage/gamenandu.txt");
+			  if (!destDirNanDu.exists()) {
+				  destDirNanDu.mkdirs();
 			}
+			  
+			newimg[0] = gameNandu;
+			//com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
+			com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
+			
+			mContext.startActivity(it);
 		}
 		
-		public void showToast(int resId) {
-			if (mToast == null) {
-				mToast = Toast.makeText(mContext.getApplicationContext(), resId,
-						Toast.LENGTH_SHORT);
-			} else {
-				mToast.setText(resId);
-			}
-			mToast.show();
-		}
-		
-		public static void showLog(String msg) {
-			Log.i("BmobPro", msg);
-		}
+	}
+	
 }

@@ -7,6 +7,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
 import com.bmob.im.demo.R;
+import com.bmob.im.demo.adapter.GamesSendAdapterBase.ViewHolder;
 import com.bmob.im.demo.ui.SelectGameToSendActivity;
 import com.game.Forward;
 import com.game.Game;
@@ -81,6 +82,7 @@ public class GamesSendAdapter3 extends GamesSendAdapterBase {
 		// TODO Auto-generated method stub
 		return arg0;
 	}
+	
 
 
 

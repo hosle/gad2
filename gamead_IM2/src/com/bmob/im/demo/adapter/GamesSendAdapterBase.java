@@ -19,7 +19,8 @@ public class GamesSendAdapterBase extends BaseAdapter {
 
 	protected SelectGameToSendActivity mContext;
 
-	protected Integer mThumbID = R.drawable.btn_game1_grid_selector;
+	protected Integer[] mThumbID ={R.drawable.btn_game1_grid_selector,R.drawable.btn_game2_grid_selector,R.drawable.btn_game3_grid_selector,R.drawable.btn_game4_grid_selector};
+
 	protected int length=0;
 	protected List<Game> gamelist;
 	protected String gameId;
@@ -56,7 +57,23 @@ public class GamesSendAdapterBase extends BaseAdapter {
 			holder=new ViewHolder();
 			holder.mImageView=(ImageView) convertView
 					.findViewById(R.id.ImgGrid);
-			holder.mImageView.setImageResource(mThumbID);
+			
+			//”Œœ∑∑÷¿‡
+			final String tempSource=gamelist.get(vCurrentIndex).getSource();
+			switch (tempSource) {
+			case "innerPintu3":
+				holder.mImageView.setImageResource(mThumbID[0]);
+				break;
+			case "innerPintu4":
+				holder.mImageView.setImageResource(mThumbID[1]);
+				break;
+			case "innerPintu5":
+				holder.mImageView.setImageResource(mThumbID[2]);
+				break;
+			case "h5":
+				holder.mImageView.setImageResource(mThumbID[3]);
+				break;
+			}
 			
 			holder.mImageView.setOnClickListener(new OnClickListener() {
 				
