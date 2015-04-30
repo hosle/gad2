@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,15 +16,20 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.text.format.Time;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
+import com.bmob.BmobProFile;
+import com.bmob.btp.callback.UploadListener;
 import com.game.config.Config;
 import com.game.xxh.MainActivityXXH;
 import com.game.operator.*;
@@ -42,10 +48,6 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 		// TODO 自动生成的方法存根
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.select_image);
-		String newimg[];
-		newimg = new String[1];
-		com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
-		final String NanDu = newimg[0];
 		
 		gamemanager=GameManager.getInstance(this);
 		
@@ -62,9 +64,10 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				public void onClick(View v) {
 					OnSelectImage(1);
 					// TODO Auto-generated method stub
-					Config.imageId = v.getId();
+					//Config.imageId = v.getId();
 					
-					gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+					//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+					upload();
 					Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 					startActivity(intent);
 					finish();
@@ -76,9 +79,10 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 			public void onClick(View v) {
 				OnSelectImage(2);
 				// TODO Auto-generated method stub
-				Config.imageId = v.getId();
+				//Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+				//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+				upload();
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -90,9 +94,10 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 			public void onClick(View v) {
 				OnSelectImage(3);
 				// TODO Auto-generated method stub
-				Config.imageId = v.getId();
+				//Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+				//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+				upload();
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -104,9 +109,10 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 			public void onClick(View v) {
 				OnSelectImage(4);
 				// TODO Auto-generated method stub
-				Config.imageId = v.getId();
+				//Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+				//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+				upload();
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -118,9 +124,10 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 			public void onClick(View v) {
 				OnSelectImage(5);
 				// TODO Auto-generated method stub
-				Config.imageId = v.getId();
+				//Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+				//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+				upload();
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -132,9 +139,10 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 			public void onClick(View v) {
 				OnSelectImage(6);
 				// TODO Auto-generated method stub
-				Config.imageId = v.getId();
+				//Config.imageId = v.getId();
 				
-				gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+				//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+				upload();
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
 				finish();
@@ -156,9 +164,6 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 							android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 				}
 				startActivityForResult(intent, 0);
-				//Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
-	            //openAlbumIntent.setType("image/*");
-	            //startActivityForResult(openAlbumIntent, 0); 
 			}
 		});
 		
@@ -223,12 +228,14 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 							
 	                		//保存相应的参数！
 	     
-	                		newimg = new String[1];
-	                		com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
-	                		final String NanDu = newimg[0];
+	                		//newimg = new String[1];
+	                		//com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
+	                		//final String NanDu = newimg[0];
 	                		
-	        				Config.imageId = 123456789;
-	        				gamemanager.saveMyGame(str,NanDu);//上传自定义游戏
+	                		//Config.imageId = v.getId();
+	    					
+	    					//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
+	    					upload();
 	        				
 	        				
 	        				//转换Activity!
@@ -290,7 +297,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 		}
 		
 		
-		Time t=new Time(); // or Time t=new Time("GMT+8"); 加上Time Zone资料。
+		/*Time t=new Time(); // or Time t=new Time("GMT+8"); 加上Time Zone资料。
 		t.setToNow(); // 取得系统时间。
 		int year = t.year;
 		int month = t.month;
@@ -300,12 +307,12 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 		int second = t.second;
 		String str = "_"+year+"_"+month+"_"+date+"_"+hour+"_"+minute+"_"+second;
 		
-		String nameImg = Integer.toString(imgName)+str;
+		String nameImg = Integer.toString(imgName)+str;*/
 		String PnameImg = Integer.toString(imgName);
 		
 		String newimg[];
 		newimg = new String[1];
-		newimg[0] = nameImg;//str
+		newimg[0] = PnameImg;//str
 		File destDir = new File("/mnt/sdcard/gameimage/newimage.txt");
 		  if (!destDir.exists()) {
 		   destDir.mkdirs();
@@ -352,5 +359,106 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 		
 	}	
 	
+	
+	String downLoadUrl = "";
+	/**
+	 * @Description:单一文件上传
+	 * @param  
+	 * @return void
+	 * @throws
+	 */
+	ProgressDialog updialog =null;
+
+	
+	
+	private void upload(){
+
+		//Game tempGame=GameManager.getInstance(this).getCurrentGame();
+		
+		updialog = new ProgressDialog(SelectImage.this);
+		//saveMyBitmap(str,bmp);
+		String newimg[];
+		newimg = new String[1];
+		com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/newimage.txt",newimg);
+		String bitName = newimg[0];
+		//showToast(bitName);//测试是否读取到了图像的名称
+		
+		String filePath = "/mnt/sdcard/gameimage/" + bitName +".jpg";//实验发现同一图片只能传一次
+		//showToast(filePath);
+		
+		updialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);                 
+		updialog.setTitle("上传中...");
+		updialog.setIndeterminate(false);               
+		updialog.setCancelable(true);       
+		updialog.setCanceledOnTouchOutside(false);  
+		updialog.show();//"cc9a6ee19b0211fc6a46b1a4bce30c72"
+		com.bmob.btp.file.BTPFileResponse response = BmobProFile.getInstance(SelectImage.this).upload(filePath, new UploadListener() {
+
+			@Override
+			public void onSuccess(String fileName,String url) {
+				// TODO Auto-generated method stub
+				//downloadName = fileName;
+				updialog.dismiss();
+				//如果你想得到一个可以直接在客户端显示的图片地址，那么可以使用BmobProFile类的静态方法获取可访问的URL地址,且不建议开启URL签名认证
+				String URL = BmobProFile.getInstance(SelectImage.this).signURL(fileName,url,"填入你web后台管理应用密钥中的AccessKey",0,null);
+				showLog("MainActivity -onSuccess :"+fileName+",签名后的URL = "+ URL);
+				showToast("文件已上传成功："+fileName);
+				
+				String newimg[];
+				newimg = new String[1];
+				com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
+				final String NanDu = newimg[0];
+				
+				gamemanager.saveMyGame(fileName,NanDu);//上传自定义游戏
+			}
+
+			@Override
+			public void onProgress(int ratio) {
+				// TODO Auto-generated method stub
+				showLog("MainActivity -onProgress :"+ratio);
+				updialog.setProgress(ratio);
+			}
+
+			@Override
+			public void onError(int statuscode, String errormsg) {
+				// TODO Auto-generated method stub
+				//				showLog("MainActivity -onError :"+statuscode +"--"+errormsg);
+				updialog.dismiss();
+				showToast("上传出错："+errormsg);
+			}
+		});
+
+		showLog("upload方法返回的code = "+response.getStatusCode());
+	}
+
+
+	
+	Toast mToast;
+
+	public void showToast(String text) {
+		if (!TextUtils.isEmpty(text)) {
+			if (mToast == null) {
+				mToast = Toast.makeText(getApplicationContext(), text,
+						Toast.LENGTH_SHORT);
+			} else {
+				mToast.setText(text);
+			}
+			mToast.show();
+		}
+	}
+	
+	public void showToast(int resId) {
+		if (mToast == null) {
+			mToast = Toast.makeText(getApplicationContext(), resId,
+					Toast.LENGTH_SHORT);
+		} else {
+			mToast.setText(resId);
+		}
+		mToast.show();
+	}
+	
+	public static void showLog(String msg) {
+		Log.i("BmobPro", msg);
+	}
 
 }

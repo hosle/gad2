@@ -162,7 +162,7 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		
 		// Ë¢ÐÂ½çÃæ
 		//refreshMessage(message);
-		upload();
+		//upload();
 		this.finish();
 	}
 

@@ -9,6 +9,8 @@ import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
+import com.bmob.BmobProFile;
+import com.bmob.btp.callback.DownloadListener;
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.util.CollectionUtils;
@@ -20,15 +22,19 @@ import com.userim.User;
 import com.userim.util.SerializableBCU;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * @author HenryTam
@@ -98,7 +104,7 @@ public class GamesGridAdapter3 extends GamesGridAdapterBase {
 				break;
 			}
 			
-			holder.mImageView.setOnClickListener(new OnClickListener() {
+				holder.mImageView.setOnClickListener(new OnClickListener() {
 				
 				@SuppressLint("SdCardPath") @Override
 				public void onClick(View arg0) {
@@ -110,7 +116,7 @@ public class GamesGridAdapter3 extends GamesGridAdapterBase {
 					
 					String gameImagePath = tempGame.getPreference();//得到定制的图片的名字
 					String name2=tempGame.getGameId();
-					toast("xxh"+gameImagePath);
+					toast(gameImagePath);
 					
 					Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
 				    
@@ -127,74 +133,13 @@ public class GamesGridAdapter3 extends GamesGridAdapterBase {
 					bundle.putSerializable("userlist", myList);
 					//bundle.putString("fatherName", "gameFrag");
 					it.putExtras(bundle);
+					download(gameImagePath);
 					//it.putExtra("fatherName", "gameFrag");	
-
-					//LoadImageActivity img = new LoadImageActivity(gameImagePath);
-					
-					String imgName[];
-					imgName = new String[6];
-					int num = 0;
-
-					imgName[0] = Integer.toString(R.id.iv1);
-					imgName[1] = Integer.toString(R.id.iv2);
-					imgName[2] = Integer.toString(R.id.iv3);
-					imgName[3] = Integer.toString(R.id.iv4);
-					imgName[4] = Integer.toString(R.id.iv5);
-					imgName[5] = Integer.toString(R.id.iv6);
-					
-					for(int i=0;i<6;i++)
-					{
-						if(imgName[i].equals(gameImagePath))//相等为true
-						{
-							num = i+1;
-							break;
-						}
-					}
-					int icon = 0;
-					if(num == 1)
-					{
-					    icon = R.drawable.icon1;
-					}
-					if(num == 2)
-					{
-					    icon = R.drawable.icon2;
-					}
-					if(num == 3)
-					{
-					    icon = R.drawable.icon3;
-					}
-					if(num == 4)
-					{
-					    icon = R.drawable.icon4;
-					}
-					if(num == 5)
-					{
-					    icon = R.drawable.icon5;
-					}
-					if(num == 6)
-					{
-					    icon = R.drawable.icon6;
-					}
-					
-					String PnameImg = imgName[num-1];
+					/*Bitmap img = BitmapFactory.decodeFile("/mnt/sdcard/gameimage/"+gameImagePath+".jpg");		
+					saveMyBitmapxxh("offical",img);//用于定制进读取*/
 					
 					String newimg[];
 					newimg = new String[1];
-					newimg[0] = PnameImg;//str
-					File destDir = new File("/mnt/sdcard/gameimage/newimage.txt");
-					  if (!destDir.exists()) {
-					   destDir.mkdirs();
-					  }
-
-					com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
-					Bitmap img = BitmapFactory.decodeResource(mContext.getResources(), icon);
-					
-					//saveMyBitmapxxh(nameImg,img);
-					//saveMyBitmapxxh(PnameImg,img);//用于定制进读取
-					saveMyBitmapxxh("offical",img);//用于定制进读取
-
-					//Bitmap img = BitmapFactory.decodeFile("/mnt/sdcard/gameimage/2131427498.jpg");
-					//saveMyBitmapxxh("offical",img);//用于定制进读取
 					String gameNandu = tempGame.getSource();//得到游戏的难度
 					File destDirNanDu = new File("/mnt/sdcard/gameimage/gamenandu.txt");
 					  if (!destDirNanDu.exists()) {
@@ -218,6 +163,83 @@ public class GamesGridAdapter3 extends GamesGridAdapterBase {
 
 		return convertView;
 	}
+	
+	 ProgressDialog dialog =null;
+     
+	//test1
+		/**
+		 * @Description: 文件下载
+		 * @param  
+		 * @return void
+		 * @throws
+		 */
+		private void download(String downloadName){
+			if(downloadName.equals("")){
+				showLog("请指定下载文件名");
+				return;
+			}
+			dialog = new ProgressDialog(mContext);
+			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);                 
+			dialog.setTitle("下载中...");
+			dialog.setIndeterminate(false);               
+			dialog.setCancelable(true);       
+			dialog.setCanceledOnTouchOutside(false);  
+			dialog.show();
+			BmobProFile.getInstance(mContext).download(downloadName, new DownloadListener() {
 
+				@Override
+				public void onSuccess(String fullPath) {
+					// TODO Auto-generated method stub
+					showLog("MainActivity -download-->onSuccess :"+fullPath);
+					dialog.dismiss();
+					showToast("下载成功："+fullPath);
+					Bitmap img = BitmapFactory.decodeFile(fullPath);		
+					saveMyBitmapxxh("offical",img);
+				}
 
+				@Override
+				public void onProgress(String localPath, int percent) {
+					// TODO Auto-generated method stub
+					showLog("MainActivity -download-->onProgress :"+percent);
+					dialog.setProgress(percent);
+				}
+
+				@Override
+				public void onError(int statuscode, String errormsg) {
+					// TODO Auto-generated method stub
+					showLog("MainActivity -download-->onError :"+statuscode +"--"+errormsg);
+					dialog.dismiss();
+					showToast("下载出错："+errormsg);
+				}
+			});
+		}
+
+		
+		Toast mToast;
+
+		public void showToast(String text) {
+			if (!TextUtils.isEmpty(text)) {
+				if (mToast == null) {
+					mToast = Toast.makeText(mContext.getApplicationContext(), text,
+							Toast.LENGTH_SHORT);
+				} else {
+					mToast.setText(text);
+				}
+				mToast.show();
+			}
+		}
+		
+		public void showToast(int resId) {
+			if (mToast == null) {
+				mToast = Toast.makeText(mContext.getApplicationContext(), resId,
+						Toast.LENGTH_SHORT);
+			} else {
+				mToast.setText(resId);
+			}
+			mToast.show();
+		}
+		
+		public static void showLog(String msg) {
+			Log.i("BmobPro", msg);
+		}
 }
