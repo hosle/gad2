@@ -147,8 +147,9 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		targetUser =(BmobChatUser) userAdapter.getItem(position);
 		targetId=targetUser.getObjectId();
 		
+		
 		//…Ë÷√∑¢ÀÕµƒ√¸¡Ó
-		commandString = "#"+Config.imageId;
+		commandString = "#g"+gameManager.getCurrentGame().getSource()+"#p"+gameManager.getCurrentGame().getPreference();
 		
 		BmobMsg commandBmobMsg=BmobMsg.createTextSendMsg(this, targetId, commandString);
 		manager.sendTextMessage(targetUser, commandBmobMsg);

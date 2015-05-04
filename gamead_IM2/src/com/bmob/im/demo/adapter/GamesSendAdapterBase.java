@@ -23,7 +23,7 @@ public class GamesSendAdapterBase extends BaseAdapter {
 
 	protected int length=0;
 	protected List<Game> gamelist;
-	protected String gameId;
+	protected String gameMsg;
 	
 	public GamesSendAdapterBase() {
 		// TODO Auto-generated constructor stub
@@ -85,9 +85,10 @@ public class GamesSendAdapterBase extends BaseAdapter {
 					Game tempgame=gamelist.get(vCurrentIndex);
 					GameManager.getInstance(mContext.getBaseContext()).setSelectGame(tempgame);
 					
-					gameId = tempgame.getGameId();//得到定制的图片的名字
+					//设置发送的命令
+					gameMsg = "#g"+tempgame.getSource()+"#p"+tempgame.getPreference();//要发送的游戏编码，难度+图片
 					
-					toast(gameId);
+					//toast(gameId);
 					gobacktoChatPage();
 
 				}
@@ -103,7 +104,7 @@ public class GamesSendAdapterBase extends BaseAdapter {
 		if(temp!=null){
 			Intent intent = new Intent();
 			
-			intent.putExtra("gameId", gameId);
+			intent.putExtra("gameId", gameMsg);
 			
 			mContext.setResult(android.app.Activity.RESULT_OK, intent);
 			mContext.finish();

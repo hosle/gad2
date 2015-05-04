@@ -1,13 +1,21 @@
 package com.bmob.im.demo.adapter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
@@ -18,20 +26,26 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import cn.bmob.im.BmobDownloadManager;
 import cn.bmob.im.BmobUserManager;
+import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.im.bean.BmobMsg;
 import cn.bmob.im.config.BmobConfig;
 import cn.bmob.im.inteface.DownloadListener;
 
+import com.bmob.BmobProFile;
+import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.adapter.base.BaseListAdapter;
 import com.bmob.im.demo.adapter.base.ViewHolder;
 import com.bmob.im.demo.ui.ImageBrowserActivity;
 import com.bmob.im.demo.ui.LocationActivity;
 import com.bmob.im.demo.ui.SetMyInfoActivity;
+import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.util.FaceTextUtils;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.bmob.im.demo.util.TimeUtil;
+import com.game.operator.GameManager;
 import com.game.pintu.NewGame_received;
+import com.game.xxh.AutoImageMainActivityXXH;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -39,6 +53,7 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.userim.util.SerializableBCU;
 
 
 /** 聊天适配器
@@ -64,6 +79,8 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 	private final int TYPE_RECEIVER_VOICE = 7;
 	
 	String currentObjectId = "";
+	
+	ProgressDialog dialog =null;
 
 	DisplayImageOptions options;
 	
@@ -238,22 +255,42 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					if (text.matches("^#[1-9]{1}#(\\d){10}")) {
+					if (text.matches("^#g.*")) {
 					Log.i("test", "text  :  "+text);
-						
+					
+					String vNandu=text.substring(text.lastIndexOf("#g")+2, text.lastIndexOf("#p"));//取得难度值
+					String vGameImagePath = text.substring(text.lastIndexOf("#p")+2);//得到定制的图片的名字
+					
+					Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
+				    
+					Intent it= new Intent(mContext, AutoImageMainActivityXXH.class);
+					//传递list对象
+					
+					 //SerializableBCU myMap =new SerializableMap();
+					List<BmobChatUser> bcu=CollectionUtils.map2list(users);
+					final SerializableBCU myList =new SerializableBCU();
+					myList.setUsr(bcu);
+					
+					
+					Bundle bundle =new Bundle();
+					bundle.putSerializable("userlist", myList);
+					//bundle.putString("fatherName", "gameFrag");
+					it.putExtras(bundle);
+					//ShowToast(vNandu+"+"+vGameImagePath);
+					download(vNandu,vGameImagePath,it);
 						//取得图片id及难度值
-						//int vNandu=Integer.parseInt(text.substring(1, 1));
+						//
 						//int vId=Integer.parseInt(text.substring(3));
 						
-						String vNandu=text.substring(1, 1);
-						String vId=text.substring(3);
+						//String vNandu=text.substring(1, 1);
+						//String vId=text.substring(3);
 						
 						//Log.i("test", "nandu  :  "+vNandu);
 						//Log.i("test", "picid  :  "+vId);
-					Intent intent =new Intent(mContext, NewGame_received.class);
+					/*Intent intent =new Intent(mContext, NewGame_received.class);
 					intent.putExtra("nandu", vNandu);
 					intent.putExtra("picid", vId);
-					mContext.startActivity(intent);
+					mContext.startActivity(intent);*/
 					}
 				}
 			});
@@ -372,6 +409,94 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 			break;
 		}
 		return convertView;
+	}
+	
+	/**
+	 * 下载图片，启动游戏
+	 * @param downloadName
+	 * @param it
+	 */
+	private void download(final String nandu, String downloadName,final Intent it){
+		
+		//currentGame=GameManager.getInstance(mContext).getCurrentGame();
+		if(downloadName.equals("")){
+			ShowToast("请指定下载文件名");
+			return;
+		}
+		dialog = new ProgressDialog(mContext);
+		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);                 
+		dialog.setTitle("下载中...");
+		dialog.setIndeterminate(false);               
+		dialog.setCancelable(true);       
+		dialog.setCanceledOnTouchOutside(false);  
+		dialog.show();
+		BmobProFile.getInstance(mContext).download(downloadName, new com.bmob.btp.callback.DownloadListener() {
+			
+			@Override
+			public void onError(int statuscode, String errormsg) {
+				// TODO Auto-generated method stub
+				ShowLog("MainActivity -download-->onError :"+statuscode +"--"+errormsg);
+				dialog.dismiss();
+				ShowToast("下载出错："+errormsg);
+			}
+			
+			@Override
+			public void onSuccess(String fullPath) {
+				// TODO Auto-generated method stub
+				ShowLog("MainActivity -download-->onSuccess :"+fullPath);
+				dialog.dismiss();
+				//showToast("下载成功："+fullPath);
+				Bitmap img = BitmapFactory.decodeFile(fullPath);		
+				saveMyBitmapxxh("offical",img);
+				
+				String newimg[];
+				newimg = new String[1];
+				String gameNandu = nandu;//得到游戏的难度
+				File destDirNanDu = new File("/mnt/sdcard/gameimage/gamenandu.txt");
+				  if (!destDirNanDu.exists()) {
+					  destDirNanDu.mkdirs();
+				}
+				  
+				newimg[0] = gameNandu;
+				//com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
+				com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
+				
+				mContext.startActivity(it);
+			}
+			
+			@Override
+			public void onProgress(String arg0, int percent) {
+				// TODO Auto-generated method stub
+				ShowLog("MainActivity -download-->onProgress :"+percent);
+				dialog.setProgress(percent);
+			}
+		});
+	}
+	private void saveMyBitmapxxh(String bitName,Bitmap mBitmap)
+	{
+		File f = new File("/mnt/sdcard/gameimage/" + bitName + ".jpg");
+	    try {
+		   f.createNewFile();
+		}catch (IOException e) {
+		   // TODO Auto-generated catch block
+		}
+		FileOutputStream fOut = null;
+		try {
+		   fOut = new FileOutputStream(f);
+		} catch (FileNotFoundException e) {
+		   e.printStackTrace();
+		}
+		mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+		try {
+		    fOut.flush();
+		} catch (IOException e) {
+		e.printStackTrace();
+		}
+	    try {
+		   fOut.close();
+		} catch (IOException e) {
+		   e.printStackTrace();
+		}
 	}
 	
 	/** 获取图片的地址--

@@ -901,7 +901,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	 */
 	private void sendGameMessage(String gameString){
 		// 组装BmobMessage对象
-		BmobMsg message = BmobMsg.createTextSendMsg(this, targetId, "我发送了一条游戏："+gameString);
+		BmobMsg message = BmobMsg.createTextSendMsg(this, targetId, gameString);
 		// 默认发送完成，将数据保存到本地消息表和最近会话表中
 		manager.sendTextMessage(targetUser, message);
 		// 刷新界面
@@ -913,6 +913,8 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 		}else {
 			ShowToast("选择不了的游戏");
 		}
+		
+		
 		
 	}
 	/**
