@@ -70,7 +70,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 					upload();
 					Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 					startActivity(intent);
-					finish();
+					//finish();
 				}
 			});
 		imgView[1].setOnClickListener(new OnClickListener() {
@@ -85,7 +85,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				upload();
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
-				finish();
+				//finish();
 			}
 		});
 		imgView[2].setOnClickListener(new OnClickListener() {
@@ -100,7 +100,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				upload();
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
-				finish();
+				//finish();
 			}
 		});
 		imgView[3].setOnClickListener(new OnClickListener() {
@@ -115,7 +115,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				upload();
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
-				finish();
+				//finish();
 			}
 		});
 		imgView[4].setOnClickListener(new OnClickListener() {
@@ -130,7 +130,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				upload();
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
-				finish();
+				//finish();
 			}
 		});
 		imgView[5].setOnClickListener(new OnClickListener() {
@@ -145,7 +145,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				upload();
 				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
 				startActivity(intent);
-				finish();
+				//finish();
 			}
 		});
 
@@ -241,7 +241,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 	        				//转换Activity!
 	        				Intent intent_game = new Intent(SelectImage.this, MainActivityXXH.class);
 	        				startActivity(intent_game);
-	        				finish();
+	        				//finish();
 	        				
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
@@ -408,7 +408,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				newimg = new String[1];
 				com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
 				final String NanDu = newimg[0];
-				
+				//showToast("Nandu:"+NanDu);
 				gamemanager.saveMyGame(fileName,NanDu);//上传自定义游戏
 			}
 

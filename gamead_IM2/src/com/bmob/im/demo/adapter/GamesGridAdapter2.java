@@ -145,12 +145,12 @@ public class GamesGridAdapter2 extends GamesGridAdapterBase {
 			bundle.putSerializable("userlist", myList);
 			//bundle.putString("fatherName", "gameFrag");
 			it.putExtras(bundle);
-			download(gameImagePath);
+			download(gameImagePath,it);
 			//it.putExtra("fatherName", "gameFrag");	
 			/*Bitmap img = BitmapFactory.decodeFile("/mnt/sdcard/gameimage/"+gameImagePath+".jpg");		
 			saveMyBitmapxxh("offical",img);//用于定制进读取*/
 			
-			String newimg[];
+			/*String newimg[];
 			newimg = new String[1];
 			String gameNandu = tempGame.getSource();//得到游戏的难度
 			File destDirNanDu = new File("/mnt/sdcard/gameimage/gamenandu.txt");
@@ -162,7 +162,7 @@ public class GamesGridAdapter2 extends GamesGridAdapterBase {
 			//com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
 			com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
 			
-			mContext.startActivity(it);
+			mContext.startActivity(it);*/
 		}
 		
 	}

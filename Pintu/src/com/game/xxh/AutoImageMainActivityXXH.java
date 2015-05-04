@@ -29,6 +29,7 @@ public class AutoImageMainActivityXXH extends Activity  {
 	
 	private ImageButton sendButton, personalButton;
 	AutoGamePintuLayout mGameView;
+	private Game currentGame;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class AutoImageMainActivityXXH extends Activity  {
 		handler.removeCallbacks(runnable);
 		handler.postDelayed(runnable,50); 
 		
-		//Game tempGame=GameManager.getInstance(this).getCurrentGame();
+		currentGame=GameManager.getInstance(this).getCurrentGame();
 		//tempGame.getPreference();
 		
 		mGameView = (AutoGamePintuLayout) findViewById(R.id.id_gameview_a);
@@ -62,11 +63,16 @@ public class AutoImageMainActivityXXH extends Activity  {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				//Intent intent = new Intent(AutoImageMainActivityXXH.this, ContactActivity.class);
-				//startActivity(intent);
-				Toast t = Toast.makeText(getApplicationContext(),"此游戏来自官方，无须分享！", Toast.LENGTH_LONG); 
-	        	t.setGravity(Gravity.CENTER, 0, 0); 
-	        	t.show(); 
+				
+				if (currentGame.getGameOwnerUser().equals(0)) {
+					Toast t = Toast.makeText(getApplicationContext(),"此游戏来自官方，无须分享！", Toast.LENGTH_LONG); 
+		        	t.setGravity(Gravity.CENTER, 0, 0); 
+		        	t.show(); 
+				}else {
+					Intent intent = new Intent(AutoImageMainActivityXXH.this, ContactActivity.class);
+					startActivity(intent);
+				}
+				
 			}
 		});
 

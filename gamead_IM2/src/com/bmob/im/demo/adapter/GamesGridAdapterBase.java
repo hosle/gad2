@@ -49,7 +49,7 @@ public class GamesGridAdapterBase extends BaseAdapter {
 	protected Integer[] mThumbID ={R.drawable.btn_game1_grid_selector,R.drawable.btn_game2_grid_selector,R.drawable.btn_game3_grid_selector,R.drawable.btn_game4_grid_selector};
 
 	protected List<Game> gamelist;
-	
+	protected Game currentGame;
 
 	protected int length=0;
 	public GamesGridAdapterBase(Context mContext) {
@@ -129,7 +129,9 @@ public class GamesGridAdapterBase extends BaseAdapter {
 		 * @return void
 		 * @throws
 		 */
-		public void download(String downloadName){
+		public void download(String downloadName,final Intent it){
+			
+			currentGame=GameManager.getInstance(mContext).getCurrentGame();
 			if(downloadName.equals("")){
 				showLog("请指定下载文件名");
 				return;
@@ -151,6 +153,20 @@ public class GamesGridAdapterBase extends BaseAdapter {
 					//showToast("下载成功："+fullPath);
 					Bitmap img = BitmapFactory.decodeFile(fullPath);		
 					saveMyBitmapxxh("offical",img);
+					
+					String newimg[];
+					newimg = new String[1];
+					String gameNandu = currentGame.getSource();//得到游戏的难度
+					File destDirNanDu = new File("/mnt/sdcard/gameimage/gamenandu.txt");
+					  if (!destDirNanDu.exists()) {
+						  destDirNanDu.mkdirs();
+					}
+					  
+					newimg[0] = gameNandu;
+					//com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
+					com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
+					
+					mContext.startActivity(it);
 				}
 
 				@Override

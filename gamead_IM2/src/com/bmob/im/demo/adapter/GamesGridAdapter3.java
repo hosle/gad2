@@ -133,10 +133,11 @@ public class GamesGridAdapter3 extends GamesGridAdapterBase {
 			//存储当前的游戏game类
 			GameManager.getInstance(mContext).setCurrentGame(gamelist.get(vCurrentIndex));
 			//获取当前的游戏game类
-			Game tempGame=GameManager.getInstance(mContext).getCurrentGame();
+			currentGame=GameManager.getInstance(mContext).getCurrentGame();
 			
-			String gameImagePath = tempGame.getPreference();//得到定制的图片的名字
-			String name2=tempGame.getGameId();
+			
+			String gameImagePath = currentGame.getPreference();//得到定制的图片的名字
+			String name2=currentGame.getGameId();
 			//toast(gameImagePath);
 			
 			Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
@@ -154,12 +155,12 @@ public class GamesGridAdapter3 extends GamesGridAdapterBase {
 			bundle.putSerializable("userlist", myList);
 			//bundle.putString("fatherName", "gameFrag");
 			it.putExtras(bundle);
-			download(gameImagePath);
+			download(gameImagePath,it);
 			//it.putExtra("fatherName", "gameFrag");	
 			/*Bitmap img = BitmapFactory.decodeFile("/mnt/sdcard/gameimage/"+gameImagePath+".jpg");		
 			saveMyBitmapxxh("offical",img);//用于定制进读取*/
 			
-			String newimg[];
+			/*String newimg[];
 			newimg = new String[1];
 			String gameNandu = tempGame.getSource();//得到游戏的难度
 			File destDirNanDu = new File("/mnt/sdcard/gameimage/gamenandu.txt");
@@ -171,7 +172,7 @@ public class GamesGridAdapter3 extends GamesGridAdapterBase {
 			//com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/newimage.txt",newimg);
 			com.game.pintu.predict.WriteDate("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
 			
-			mContext.startActivity(it);
+			mContext.startActivity(it);*/
 		}
 		
 	}
