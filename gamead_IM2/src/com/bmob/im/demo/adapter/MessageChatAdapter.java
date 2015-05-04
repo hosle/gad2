@@ -252,12 +252,12 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 						.toSpannableString(mContext, text);
 				tv_message.setText(spannableString);
 				
-				String typeString=text.substring(text.lastIndexOf("#g")+2, text.lastIndexOf("#p"));//取得难度值
+				String typeString=text.substring(text.lastIndexOf("#g")+2, text.lastIndexOf("#p")-1);//取得难度值
 				switch (typeString) {
 				case "innerPintu":
 					tv_message.setOnClickListener(new myOnClickListener1(text));
 					break;
-				case "h5":
+				case "h":
 					tv_message.setOnClickListener(new H5OnClickListener(text));
 					break;
 				
