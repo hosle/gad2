@@ -232,7 +232,7 @@ public class GamesGridAdapterBase extends BaseAdapter {
 				
 				//String gameImagePath = tempGame.getPreference();//得到定制的图片的名字
 				String name2=tempGame.getPreference();
-				toast(name2);
+				//toast(name2);
 				
 				Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
 			    

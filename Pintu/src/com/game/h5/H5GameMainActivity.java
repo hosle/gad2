@@ -29,6 +29,7 @@ public class H5GameMainActivity extends Activity  {
 	
 	private ImageButton sendButton, personalButton;
 	private WebView webViewGame;
+	private Bundle bundle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class H5GameMainActivity extends Activity  {
 		
 		setContentView(R.layout.activity_main_h5);
 		
-		Bundle bundle=getIntent().getExtras();
+		bundle=getIntent().getExtras();
 		SerializableBCU serializableBCU=(SerializableBCU)bundle.get("userlist");
 			
 		Config.mbcuser=serializableBCU.getUsr();
@@ -47,6 +48,7 @@ public class H5GameMainActivity extends Activity  {
 		personalButton = (ImageButton)findViewById(R.id.btn_personial_h);
 		webViewGame=(WebView)findViewById(R.id.webview_h5game);
 
+		
 		initWebView();
 		
 		time = (TextView) findViewById(R.id.time_h);
@@ -103,7 +105,19 @@ public class H5GameMainActivity extends Activity  {
     private void initWebView(){
     	// 初始化web界面
     	Game tempGame=GameManager.getInstance(this).getCurrentGame();
-    	String webUrlString=tempGame.getPreference();
+    	String webUrlString="";
+    	
+    	if (bundle.getString("gameUrl")==null) {
+    		//toast("从preferences得到");
+    		webUrlString=tempGame.getPreference();
+		}else{
+			//toast("从传参得到");
+			webUrlString=bundle.getString("gameUrl");
+			
+		}
+			
+    	toast(webUrlString);
+    	
     	WebSettings webSettings = webViewGame.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);//用缓存用缓存,没有用网络
@@ -127,6 +141,9 @@ public class H5GameMainActivity extends Activity  {
     	}
     
 
+    public void toast(String t){
+		Toast.makeText(this, t, 200).show();
+	}
 
 
 

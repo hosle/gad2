@@ -43,6 +43,8 @@ import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.util.FaceTextUtils;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.bmob.im.demo.util.TimeUtil;
+import com.game.Game;
+import com.game.h5.H5GameMainActivity;
 import com.game.operator.GameManager;
 import com.game.pintu.NewGame_received;
 import com.game.xxh.AutoImageMainActivityXXH;
@@ -250,50 +252,17 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 						.toSpannableString(mContext, text);
 				tv_message.setText(spannableString);
 				
-					tv_message.setOnClickListener(new OnClickListener() {
+				String typeString=text.substring(text.lastIndexOf("#g")+2, text.lastIndexOf("#p"));//取得难度值
+				switch (typeString) {
+				case "innerPintu":
+					tv_message.setOnClickListener(new myOnClickListener1(text));
+					break;
+				case "h5":
+					tv_message.setOnClickListener(new H5OnClickListener(text));
+					break;
 				
-				@Override
-				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					if (text.matches("^#g.*")) {
-					Log.i("test", "text  :  "+text);
-					
-					String vNandu=text.substring(text.lastIndexOf("#g")+2, text.lastIndexOf("#p"));//取得难度值
-					String vGameImagePath = text.substring(text.lastIndexOf("#p")+2);//得到定制的图片的名字
-					
-					Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
-				    
-					Intent it= new Intent(mContext, AutoImageMainActivityXXH.class);
-					//传递list对象
-					
-					 //SerializableBCU myMap =new SerializableMap();
-					List<BmobChatUser> bcu=CollectionUtils.map2list(users);
-					final SerializableBCU myList =new SerializableBCU();
-					myList.setUsr(bcu);
-					
-					
-					Bundle bundle =new Bundle();
-					bundle.putSerializable("userlist", myList);
-					//bundle.putString("fatherName", "gameFrag");
-					it.putExtras(bundle);
-					//ShowToast(vNandu+"+"+vGameImagePath);
-					download(vNandu,vGameImagePath,it);
-						//取得图片id及难度值
-						//
-						//int vId=Integer.parseInt(text.substring(3));
-						
-						//String vNandu=text.substring(1, 1);
-						//String vId=text.substring(3);
-						
-						//Log.i("test", "nandu  :  "+vNandu);
-						//Log.i("test", "picid  :  "+vId);
-					/*Intent intent =new Intent(mContext, NewGame_received.class);
-					intent.putExtra("nandu", vNandu);
-					intent.putExtra("picid", vId);
-					mContext.startActivity(intent);*/
-					}
 				}
-			});
+				
 
 			} catch (Exception e) {
 			}
@@ -410,7 +379,84 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 		}
 		return convertView;
 	}
+
+	private class myOnClickListener1 implements OnClickListener{
+
+		private String text;
+		public myOnClickListener1(String txt) {
+			// TODO Auto-generated constructor stub
+			text=txt;
+		}
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			if (text.matches("^#g.*")) {
+				Log.i("test", "text  :  "+text);
+				
+				String vNandu=text.substring(text.lastIndexOf("#g")+2, text.lastIndexOf("#p"));//取得难度值
+				String vGameImagePath = text.substring(text.lastIndexOf("#p")+2);//得到定制的图片的名字
+				
+				Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
+			    
+				Intent it= new Intent(mContext, AutoImageMainActivityXXH.class);
+				//传递list对象
+				
+				 //SerializableBCU myMap =new SerializableMap();
+				List<BmobChatUser> bcu=CollectionUtils.map2list(users);
+				final SerializableBCU myList =new SerializableBCU();
+				myList.setUsr(bcu);
+				
+				
+				Bundle bundle =new Bundle();
+				bundle.putSerializable("userlist", myList);
+				//bundle.putString("fatherName", "gameFrag");
+				it.putExtras(bundle);
+				//ShowToast(vNandu+"+"+vGameImagePath);
+				download(vNandu,vGameImagePath,it);
+				
+		}
+	}
+	}
 	
+	
+	private class H5OnClickListener implements OnClickListener{
+
+		private String text;
+		public H5OnClickListener(String text){
+			this.text=text;
+		}
+		
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			//存储当前的游戏game类
+			//GameManager.getInstance(mContext).setCurrentGame(gamelist.get(vCurrentIndex));
+			//获取当前的游戏game类
+			//Game tempGame=GameManager.getInstance(mContext).getCurrentGame();
+			String vGameImagePath = text.substring(text.lastIndexOf("#p")+2);//得到定制的图片的名字
+			
+			Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
+		    
+			Intent it= new Intent(mContext, H5GameMainActivity.class);
+			//传递list对象
+			
+			
+			List<BmobChatUser> bcu=CollectionUtils.map2list(users);
+			final SerializableBCU myList =new SerializableBCU();
+			myList.setUsr(bcu);
+			
+			
+			Bundle bundle =new Bundle();
+			bundle.putSerializable("userlist", myList);
+			bundle.putString("gameUrl", vGameImagePath);
+			
+			it.putExtras(bundle);
+				
+
+			mContext.startActivity(it);
+		}
+		
+	}
 	/**
 	 * 下载图片，启动游戏
 	 * @param downloadName
@@ -611,5 +657,6 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 			}
 		}
 	}
+	
 	
 }
