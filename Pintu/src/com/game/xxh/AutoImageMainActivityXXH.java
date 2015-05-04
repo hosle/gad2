@@ -1,6 +1,9 @@
 package com.game.xxh;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.game.Game;
 import com.game.config.Config;
 import com.game.operator.GameManager;
@@ -30,7 +33,8 @@ public class AutoImageMainActivityXXH extends Activity  {
 	private ImageButton sendButton, personalButton;
 	AutoGamePintuLayout mGameView;
 	private Game currentGame;
-
+	private final String[] GFgameID={"00001","00002","10001","00003"};
+	private List<String> GFgameIDList;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO 自动生成的方法存根
@@ -55,6 +59,7 @@ public class AutoImageMainActivityXXH extends Activity  {
 		
 		currentGame=GameManager.getInstance(this).getCurrentGame();
 		//tempGame.getPreference();
+		GFgameIDList=Arrays.asList(GFgameID);
 		
 		mGameView = (AutoGamePintuLayout) findViewById(R.id.id_gameview_a);
 		
@@ -64,11 +69,13 @@ public class AutoImageMainActivityXXH extends Activity  {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				
-				if (currentGame.getGameOwnerUser().equals(0)) {
-					Toast t = Toast.makeText(getApplicationContext(),"此游戏来自官方，无须分享！", Toast.LENGTH_LONG); 
-		        	t.setGravity(Gravity.CENTER, 0, 0); 
-		        	t.show(); 
+	        	toast(currentGame.getGameId());
+	        	
+				if (GFgameIDList.contains(currentGame.getGameId())) {
+					toast("此游戏来自官方，无须分享！");
+					
 				}else {
+					
 					Intent intent = new Intent(AutoImageMainActivityXXH.this, ContactActivity.class);
 					startActivity(intent);
 				}
@@ -106,7 +113,9 @@ public class AutoImageMainActivityXXH extends Activity  {
     	
     }
 
-
+    public void toast(String t){
+		Toast.makeText(this, t, 200).show();
+	}
 
 
 
