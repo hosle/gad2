@@ -13,6 +13,8 @@ import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -24,6 +26,8 @@ public class H5GameMainActivityPersonal extends Activity {
 	private ImageButton sendButton, personalButton;
 	private WebView webViewGame;
 	private String mGameURL;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,8 @@ public class H5GameMainActivityPersonal extends Activity {
 		personalButton = (ImageButton) findViewById(R.id.btn_personial_h);
 		webViewGame = (WebView) findViewById(R.id.webview_h5game);
 
+		
+		
 		initWebView();
 
 		personalButton.setEnabled(false);

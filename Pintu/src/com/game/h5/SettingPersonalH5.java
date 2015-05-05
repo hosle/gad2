@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,9 @@ public class SettingPersonalH5 extends Activity {
 	private final String[] mUrls={"http://mail.163.com/","http://mail.qq.com","http://m.baidu.com","http://www.bmob.cn","http://m.taobao.com","http://m.jd.com"};
 	private GameManager gamemanager;
 	
+	private EditText mEditText;
+	private Button mBtnUrl;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO 自动生成的方法存根
@@ -30,6 +34,9 @@ public class SettingPersonalH5 extends Activity {
 		this.setContentView(R.layout.activity_setting_personalgame);
 		
 		gamemanager=GameManager.getInstance(this);
+		
+		mEditText=(EditText)findViewById(R.id.etxt_url);
+		mBtnUrl=(Button)findViewById(R.id.btn_url);
 		
 		imgView[0]=(TextView)this.findViewById(R.id.iv1_h5);
 		imgView[1]=(TextView)this.findViewById(R.id.iv2_h5);
@@ -42,6 +49,8 @@ public class SettingPersonalH5 extends Activity {
 			imgView[i].setOnClickListener(new myOnClickListener(i));
 			
 		}
+		mBtnUrl.setOnClickListener(new btnOnClickListener());
+		
 		
 	}
 	
@@ -89,6 +98,39 @@ public class SettingPersonalH5 extends Activity {
 			finish();
 		}
 		
+	}
+	
+	private class btnOnClickListener implements OnClickListener{
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			//做网址正则表达式判断
+			String url=mEditText.getText().toString();
+			if (url!="") {
+				gamemanager.saveMyGame(getFullUrl(url),"h5");//上传自定义游戏
+				
+				Intent intent = new Intent(SettingPersonalH5.this, H5GameMainActivityPersonal.class);
+				intent.putExtra("gameURL", getFullUrl(url));
+				startActivity(intent);
+				finish();
+			}else {
+				showToast("请输入游戏地址或选择上面的游戏项");
+			}
+			
+		}
+		
+	}
+	
+	private String getFullUrl(String str){
+		String result=null;
+		if (str.matches("^http://.*")||str.matches("^https://.*")) {
+			result=str;
+		}else {
+			result="http://"+str;
+		}
+		
+		return result;
 	}
 	
 
