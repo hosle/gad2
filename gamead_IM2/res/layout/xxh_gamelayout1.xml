@@ -40,7 +40,7 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <com.bmob.im.demo.view.ClearEditText
+    <com.binfen.im.gamead.view.ClearEditText
         android:id="@+id/et_msg_search"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/base_action_bar_height"

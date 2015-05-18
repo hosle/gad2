@@ -16,13 +16,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.bmob.im.demo.view.myExpandableListView
+        <com.binfen.im.gamead.view.myExpandableListView
             android:id="@+id/expendlist"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:groupIndicator="@null"
             >
-        </com.bmob.im.demo.view.myExpandableListView>
+        </com.binfen.im.gamead.view.myExpandableListView>
     </RelativeLayout>
 
 </LinearLayout>

@@ -147,6 +147,14 @@
         android:text="广告条"
         android:textSize="30sp" />
         
+        <Button 
+            android:id="@+id/btn_ad_request"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:text="请求"
+            
+            />
+        
       
     </LinearLayout>
 
