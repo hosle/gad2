@@ -78,7 +78,10 @@ public class H5GameMainActivity extends Activity  {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(H5GameMainActivity.this, SettingPersonalH5.class);
+				/*Intent intent = new Intent(H5GameMainActivity.this, SettingPersonalH5.class);
+				startActivity(intent);
+				finish();*/
+				Intent intent = new Intent(H5GameMainActivity.this, HtmlActivity.class);
 				startActivity(intent);
 				finish();
 			}

@@ -112,8 +112,12 @@ public class AutoImageMainActivityXXH extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(AutoImageMainActivityXXH.this,
+				/*Intent intent = new Intent(AutoImageMainActivityXXH.this,
 						SelectImage.class);
+				startActivity(intent);
+				finish();*/
+				Intent intent = new Intent(AutoImageMainActivityXXH.this,
+						ListActivity.class);
 				startActivity(intent);
 				finish();
 			}
