@@ -81,7 +81,7 @@ public class H5GameMainActivity extends Activity  {
 				/*Intent intent = new Intent(H5GameMainActivity.this, SettingPersonalH5.class);
 				startActivity(intent);
 				finish();*/
-				Intent intent = new Intent(H5GameMainActivity.this, HtmlActivity.class);
+				Intent intent = new Intent(H5GameMainActivity.this, PersonalH5GameActivity.class);
 				startActivity(intent);
 				finish();
 			}

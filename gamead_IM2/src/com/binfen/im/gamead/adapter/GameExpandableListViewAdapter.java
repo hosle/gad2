@@ -17,6 +17,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class GameExpandableListViewAdapter extends BaseExpandableListAdapter {
@@ -24,7 +25,7 @@ public class GameExpandableListViewAdapter extends BaseExpandableListAdapter {
 	private SelectGameToSendActivity mContext;
 	private List<String> group_list;
 	//private List<Integer> itemList;
-	private BaseAdapter[] gridAdapters;
+	private BaseAdapter[] listAdapters;
 	
 	
 	public GameExpandableListViewAdapter(SelectGameToSendActivity mContext) {
@@ -35,10 +36,10 @@ public class GameExpandableListViewAdapter extends BaseExpandableListAdapter {
 		group_list.add("DIY");
 		group_list.add(" ’µΩ/ ’≤ÿ");
 		
-		GamesSendAdapter1 gamesGridAdapter1=new GamesSendAdapter1(mContext);
-		GamesSendAdapter2 gamesGridAdapter2=new GamesSendAdapter2(mContext);
-		GamesSendAdapter3 gamesGridAdapter3=new GamesSendAdapter3(mContext);
-		gridAdapters=new BaseAdapter[]{gamesGridAdapter1,gamesGridAdapter2,gamesGridAdapter3};
+		GamesSendAdapter1 gamesSendAdapter1=new GamesSendAdapter1(mContext);
+		GamesSendAdapter2 gamesSendAdapter2=new GamesSendAdapter2(mContext);
+		GamesSendAdapter3 gamesSendAdapter3=new GamesSendAdapter3(mContext);
+		listAdapters=new BaseAdapter[]{gamesSendAdapter1,gamesSendAdapter2,gamesSendAdapter3};
 		
 		
 		  
@@ -47,7 +48,7 @@ public class GameExpandableListViewAdapter extends BaseExpandableListAdapter {
 	@Override
 	public Object getChild(int arg0, int arg1) {
 		// TODO Auto-generated method stub
-		return gridAdapters[arg0];
+		return listAdapters[arg0];
 	}
 
 	@Override
@@ -66,15 +67,15 @@ public class GameExpandableListViewAdapter extends BaseExpandableListAdapter {
 		    convertView = (View) LayoutInflater.from(mContext).inflate(
 		      R.layout.item_select_game_send, null);
 		    itemHolder = new ItemHolder();
-		    itemHolder.mgridView = (GridView) convertView.findViewById(R.id.gridgame_expanded);
-		    
+		    //itemHolder.mgridView = (GridView) convertView.findViewById(R.id.gridgame_expanded);
+		    itemHolder.mListView=(ListView)convertView.findViewById(R.id.listgame_expanded);
 		    convertView.setTag(itemHolder);
 		   } else {
 		    itemHolder = (ItemHolder) convertView.getTag();
 		   }
 			
-		   itemHolder.mgridView.setAdapter(gridAdapters[groupPosition]);
-		   
+		   //itemHolder.mgridView.setAdapter(gridAdapters[groupPosition]);
+		   itemHolder.mListView.setAdapter(listAdapters[groupPosition]);
 		   //itemHolder.mgridView.setv
 		   return convertView;
 	}
@@ -146,9 +147,10 @@ public class GameExpandableListViewAdapter extends BaseExpandableListAdapter {
 	}
 	
 	private class ItemHolder{
-		private GridView mgridView;
-		
+		//private GridView mgridView;
+		private ListView mListView;
 	}
+	
 	
 
 }

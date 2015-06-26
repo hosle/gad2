@@ -65,5 +65,8 @@
     <string name="title_activity_select_game_to_send">SelectGameToSendActivity</string>
     <string name="title_activity_maintest">MainActivity</string>
     <string name="title_activity_select_game_to_send2">SelectGameToSend2Activity</string>
+    
+    <string name="hintgamecode">直接输入游戏码</string>
+    <string name="btngamecode">进入游戏</string>
 
 </resources>

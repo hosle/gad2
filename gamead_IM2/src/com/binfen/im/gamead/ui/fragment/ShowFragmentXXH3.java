@@ -2,6 +2,7 @@ package com.binfen.im.gamead.ui.fragment;
 
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,11 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
-import com.binfen.im.gamead.adapter.GamesGridAdapter2;
-import com.binfen.im.gamead.adapter.GamesGridAdapter3;
+import com.binfen.im.gamead.adapter.GamesListAdapter2;
+import com.binfen.im.gamead.adapter.GamesListAdapter3;
 import com.binfen.im.gamead.ui.FragmentBase;
 import com.binfen.im.gamead.R;
 
@@ -21,6 +25,8 @@ public class ShowFragmentXXH3 extends FragmentBase {
 
 	ImageButton imgbnt2;
 	ImageButton imgbnt1;
+	private Button mBtnGameCode;
+	private EditText mEdtGameCode;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,9 +82,35 @@ public class ShowFragmentXXH3 extends FragmentBase {
 	
 	private void initView(){
 		initTopBarForOnlyTitle("游戏");
-		GridView mGridView=(GridView)findViewById(R.id.gridgame);
-		mGridView.setAdapter(new GamesGridAdapter3(getActivity()));
+		ListView mListView=(ListView)findViewById(R.id.listgame);
+		//GridView mGridView=(GridView)findViewById(R.id.gridgame);
+		mListView.setAdapter(new GamesListAdapter3(getActivity()));
+		//mGridView.setAdapter(new GamesGridAdapter3(getActivity()));
 		
+		//通过游戏码直接进入游戏
+				mBtnGameCode=(Button)findViewById(R.id.btn_gamecode);
+				mEdtGameCode=(EditText)findViewById(R.id.edt_gamecode);
+				
+				mBtnGameCode.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						// TODO Auto-generated method stub
+						String targetString=mEdtGameCode.getText().toString().trim();
+						String typeString=targetString.substring(targetString.lastIndexOf("#g")+2, targetString.lastIndexOf("#p")-1);//取得难度值
+						switch (typeString) {
+						case "innerPintu":
+							new GameCodeOnClick((Context)getActivity(),targetString).startGame();
+							//tv_message.setOnClickListener(new myOnClickListener1(text));
+							break;
+						case "h":
+							new GameCodeH5OnClick((Context)getActivity(),targetString).startGame();
+							//tv_message.setOnClickListener(new H5OnClickListener(text));
+							break;
+						
+						}
+					}
+				});
 	}
 	
 }

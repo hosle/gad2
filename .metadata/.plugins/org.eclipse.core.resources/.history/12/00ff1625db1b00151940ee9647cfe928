@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gridItemGame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:gravity="left"
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/ImgGrid"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+         >
+    </ImageView>
+    <TextView 
+        android:id="@+id/txt_gameDescription"
+        android:layout_toRightOf="@+id/ImgGrid"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="说明"
+        />
+
+</RelativeLayout>

@@ -117,7 +117,7 @@ public class AutoImageMainActivityXXH extends Activity {
 				startActivity(intent);
 				finish();*/
 				Intent intent = new Intent(AutoImageMainActivityXXH.this,
-						ListActivity.class);
+						PersonalGameActivity.class);
 				startActivity(intent);
 				finish();
 			}

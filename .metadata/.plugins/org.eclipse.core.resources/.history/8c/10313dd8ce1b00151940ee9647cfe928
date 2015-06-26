@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="@color/base_bg"
+    >
+
+    <include
+        android:id="@+id/common_actionbar"
+        layout="@layout/include_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
+        android:layout_below="@+id/common_actionbar"
+        android:orientation="vertical" >
+
+       <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/xxh_game_dir" >
+
+           <TextView
+               android:id="@+id/official_game"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_centerVertical="true"
+               android:text="官方"
+               android:textAppearance="?android:attr/textAppearanceLarge" />
+
+           <ImageButton
+               android:id="@+id/xxh_imagebnt1"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentBottom="true"
+               android:layout_alignParentRight="true"
+               android:layout_alignTop="@+id/official_game"
+               android:background="@drawable/xxh_game_bkimgbnt"
+               android:src="@drawable/xxh_game_ar" />
+   
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp" 
+            android:background="@drawable/xxh_game_dir" >
+           
+            <TextView
+               android:id="@+id/receive_game"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_centerVertical="true"
+               android:text="DIY"
+               android:textAppearance="?android:attr/textAppearanceLarge" />
+
+           <ImageButton
+               android:id="@+id/xxh_imagebnt2"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_alignTop="@+id/receive_game"
+               android:background="@drawable/xxh_game_bkimgbnt"
+               android:src="@drawable/xxh_game_ar" />
+     
+        </RelativeLayout>
+       </LinearLayout>
+       <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/common_actionbar"
+            
+            android:orientation="vertical"
+           >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:background="@drawable/xxh_game_dir" >
+           <TextView
+               android:id="@+id/save_game"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentStart="true"
+               android:layout_alignParentLeft="true"
+               android:layout_centerVertical="true"
+               android:text="收到/收藏"
+               android:textAppearance="?android:attr/textAppearanceLarge" />
+
+           <ImageButton
+               android:id="@+id/xxh_imagebnt3"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_alignParentEnd="true"
+               android:layout_alignTop="@+id/save_game"
+               android:background="@drawable/xxh_game_bkimgbnt"
+               android:src="@drawable/xxh_game_ad" />
+ 
+        </RelativeLayout>
+          <ListView 
+        android:id="@+id/listgame"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        
+        ></ListView>
+
+    </LinearLayout>
+
+   <!--  <com.binfen.im.gamead.view.ClearEditText
+        android:id="@+id/et_msg_search"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/base_action_bar_height"
+        android:layout_margin="10dp"
+        android:background="@drawable/base_edit_input"
+        android:drawableLeft="@drawable/icon_msg_search"
+        android:drawablePadding="10dp"
+        android:hint="@string/message_search_hint"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:visibility="gone"
+        android:singleLine="true" /> -->
+    
+    <!-- <GridView 
+        android:id="@+id/gridgame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="auto_fit"
+        android:columnWidth="90dp" 
+        android:verticalSpacing="5dp"
+        android:horizontalSpacing="5dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        ></GridView> -->
+
+</RelativeLayout>

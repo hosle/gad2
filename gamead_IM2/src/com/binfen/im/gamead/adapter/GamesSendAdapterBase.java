@@ -53,7 +53,7 @@ public class GamesSendAdapterBase extends BaseAdapter {
 		final int vCurrentIndex=arg0;
 		final ViewHolder holder;
 		if (convertView==null) {
-			convertView=View.inflate(mContext, R.layout.item_game_grid, null);
+			convertView=View.inflate(mContext, R.layout.item_game_list, null);
 			holder=new ViewHolder();
 			holder.mImageView=(ImageView) convertView
 					.findViewById(R.id.ImgGrid);
@@ -74,31 +74,36 @@ public class GamesSendAdapterBase extends BaseAdapter {
 				holder.mImageView.setImageResource(mThumbID[3]);
 				break;
 			}
-			
-			holder.mImageView.setOnClickListener(new OnClickListener() {
-				
-				 @Override
-				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					//存储选中的游戏game类
-					
-					Game tempgame=gamelist.get(vCurrentIndex);
-					GameManager.getInstance(mContext.getBaseContext()).setSelectGame(tempgame);
-					
-					//设置发送的命令
-					gameMsg = "#g"+tempgame.getSource()+"#p"+tempgame.getPreference();//要发送的游戏编码，难度+图片
-					
-					//toast(gameId);
-					gobacktoChatPage();
-
-				}
-				
-				
-			});
+			myOnClickListener mClickListener=new myOnClickListener(vCurrentIndex);
+			convertView.setOnClickListener(mClickListener);
+			//holder.mImageView.setOnClickListener(mClickListener);
 		}
 		return convertView;
 	}
 	
+	private class myOnClickListener implements OnClickListener{
+
+		private int mCurrentIndex;
+		public  myOnClickListener(int vCurrentIndex) {
+			// TODO Auto-generated constructor stub
+			mCurrentIndex=vCurrentIndex;
+		}
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			//存储选中的游戏game类
+			
+			Game tempgame=gamelist.get(mCurrentIndex);
+			GameManager.getInstance(mContext.getBaseContext()).setSelectGame(tempgame);
+			
+			//设置发送的命令
+			gameMsg = "#g"+tempgame.getSource()+"#p"+tempgame.getPreference();//要发送的游戏编码，难度+图片
+			
+			//toast(gameId);
+			gobacktoChatPage();
+		}
+		
+	}
 	private void gobacktoChatPage() {
 		Game temp=GameManager.getInstance(mContext).getSelectGame();
 		if(temp!=null){

@@ -1,0 +1,5 @@
+package com.binfen.im.gamead.ui.fragment;
+
+public class GameCodeOnClickListener {
+
+}
