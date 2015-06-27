@@ -41,12 +41,12 @@ public final class R {
 		public static final int v2_sortlistview_sidebar_background = 0x7f0200c7;
 	}
 	public static final class id {
-		public static final int alpha_userim = 0x7f0b00b3;
-		public static final int img_friend_avatar_userim = 0x7f0b00b4;
-		public static final int tv_friend_name_userim = 0x7f0b00b5;
+		public static final int alpha_userim = 0x7f0b00a1;
+		public static final int img_friend_avatar_userim = 0x7f0b00a2;
+		public static final int tv_friend_name_userim = 0x7f0b00a3;
 	}
 	public static final class layout {
-		public static final int item_user_friendpt = 0x7f030037;
+		public static final int item_user_friendpt = 0x7f030035;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f070000;

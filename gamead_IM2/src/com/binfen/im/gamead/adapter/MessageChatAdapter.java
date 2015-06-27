@@ -44,10 +44,10 @@ import com.binfen.im.gamead.util.TimeUtil;
 import com.bmob.BmobProFile;
 import com.binfen.im.gamead.R;
 import com.game.Game;
-import com.game.h5.H5GameMainActivity;
+import com.game.h5.H5GameMainActivity_0;
 import com.game.operator.GameManager;
 import com.game.pintu.NewGame_received;
-import com.game.xxh.AutoImageMainActivityXXH;
+import com.game.xxh.PintuMainActivity_0;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -398,7 +398,7 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 				
 				Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
 			    
-				Intent it= new Intent(mContext, AutoImageMainActivityXXH.class);
+				Intent it= new Intent(mContext, PintuMainActivity_0.class);
 				//传递list对象
 				
 				 //SerializableBCU myMap =new SerializableMap();
@@ -437,7 +437,7 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 			
 			Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
 		    
-			Intent it= new Intent(mContext, H5GameMainActivity.class);
+			Intent it= new Intent(mContext, H5GameMainActivity_0.class);
 			//传递list对象
 			
 			

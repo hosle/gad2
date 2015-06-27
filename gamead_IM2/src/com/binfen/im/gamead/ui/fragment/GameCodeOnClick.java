@@ -25,7 +25,7 @@ import cn.bmob.im.util.BmobLog;
 import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.util.CollectionUtils;
 import com.bmob.BmobProFile;
-import com.game.xxh.AutoImageMainActivityXXH;
+import com.game.xxh.PintuMainActivity_0;
 import com.userim.util.SerializableBCU;
 
 public class GameCodeOnClick {
@@ -51,7 +51,7 @@ public class GameCodeOnClick {
 			Map<String, BmobChatUser> users = CustomApplcation.getInstance()
 					.getContactList();
 
-			Intent it = new Intent(mContext, AutoImageMainActivityXXH.class);
+			Intent it = new Intent(mContext, PintuMainActivity_0.class);
 			// ´«µÝlist¶ÔÏó
 
 			// SerializableBCU myMap =new SerializableMap();

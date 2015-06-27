@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Map"/>
-<fullyQualifiedTypeName name="java.io.Serializable"/>
-<fullyQualifiedTypeName name="com.userim.User"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="com.userim.util.SerializableMap"/>
-<fullyQualifiedTypeName name="android.os.Bundle"/>
-<fullyQualifiedTypeName name="com.userim.util.SerializableBCU"/>
-<fullyQualifiedTypeName name="com.game.pintu.MainActivity"/>
-<fullyQualifiedTypeName name="android.app.ProgressDialog"/>
-<fullyQualifiedTypeName name="com.bmob.BmobProFile"/>
-<fullyQualifiedTypeName name="android.widget.Toast"/>
-<fullyQualifiedTypeName name="cn.bmob.im.inteface.UploadListener"/>
-<fullyQualifiedTypeName name="com.bmob.btp.callback.UploadListener"/>
-<fullyQualifiedTypeName name="com.game.pintu.SelectImage"/>
-<fullyQualifiedTypeName name="android.util.Log"/>
-<fullyQualifiedTypeName name="android.R.string"/>
-<fullyQualifiedTypeName name="android.widget.AdapterView.OnItemClickListener"/>
 <fullyQualifiedTypeName name="cn.bmob.im.bean.BmobChatUser"/>
 <fullyQualifiedTypeName name="cn.bmob.im.bean.BmobMsg"/>
 <fullyQualifiedTypeName name="javax.net.ssl.ManagerFactoryParameters"/>
@@ -33,7 +15,6 @@
 <fullyQualifiedTypeName name="javax.security.auth.PrivateCredentialPermission"/>
 <fullyQualifiedTypeName name="com.game.adapter.PersonalGame1SettingAdapter.ViewHolder"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
-<fullyQualifiedTypeName name="android.app.Activity"/>
 <fullyQualifiedTypeName name="android.preference.PreferenceManager.OnActivityResultListener"/>
 <fullyQualifiedTypeName name="com.game.adapter.PersonalGame1SettingAdapter"/>
 <fullyQualifiedTypeName name="android.database.Cursor"/>
@@ -48,7 +29,6 @@
 <fullyQualifiedTypeName name="com.game.pintu.R.layout"/>
 <fullyQualifiedTypeName name="com.game.adapter.PersonalGameH5SettingAdapter"/>
 <fullyQualifiedTypeName name="android.view.View"/>
-<fullyQualifiedTypeName name="com.game.pintu.R.id"/>
 <fullyQualifiedTypeName name="android.text.TextUtils"/>
 <fullyQualifiedTypeName name="com.binfen.im.gamead.adapter.myOnClickListener"/>
 <fullyQualifiedTypeName name="com.binfen.im.gamead.adapter.GamesSendAdapterBase.myOnClickListener"/>
@@ -58,6 +38,26 @@
 <fullyQualifiedTypeName name="com.binfen.im.gamead.R.dimen"/>
 <fullyQualifiedTypeName name="com.binfen.im.gamead.R.id"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="com.binfen.im.gamead.ui.fragment.GameCodeH5OnClick"/>
+<fullyQualifiedTypeName name="net.youmi.android.AdManager"/>
+<fullyQualifiedTypeName name="net.youmi.android.spot.SpotManager"/>
+<fullyQualifiedTypeName name="net.youmi.android.banner.AdSize"/>
+<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
+<fullyQualifiedTypeName name="com.game.pintu.R.id"/>
+<fullyQualifiedTypeName name="com.game.xxh.view.GamePintuLayout"/>
+<fullyQualifiedTypeName name="net.youmi.android.banner.AdViewListener"/>
+<fullyQualifiedTypeName name="android.view.Gravity"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="net.youmi.android.banner.AdView"/>
+<fullyQualifiedTypeName name="android.app.Activity"/>
+<fullyQualifiedTypeName name="com.game.adshow.showBannerAd"/>
+<fullyQualifiedTypeName name="com.game.Game"/>
+<fullyQualifiedTypeName name="com.game.h5.H5GameMainActivity_0"/>
+<fullyQualifiedTypeName name="com.game.xxh.PintuMainActivity_0"/>
+<fullyQualifiedTypeName name="android.widget.FrameLayout"/>
+<fullyQualifiedTypeName name="android.widget.FrameLayout.LayoutParams"/>
+<fullyQualifiedTypeName name="com.baidu.mobads.AdView"/>
+<fullyQualifiedTypeName name="android.os.Message"/>
+<fullyQualifiedTypeName name="com.game.util.HttpUtils"/>
+<fullyQualifiedTypeName name="android.os.Handler"/>
 </qualifiedTypeNameHistroy>

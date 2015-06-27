@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="dialog" key="selection"/>
+		<item value="permission.ACCESS_FINE_LOCATION" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="dialog"/>
-			<item value="ShowToast"/>
-			<item value="showlog"/>
-			<item value="mcontext"/>
-			<item value="myOnClickListener1"/>
-			<item value="ItemImage"/>
-			<item value="文本"/>
-			<item value="onitem"/>
+			<item value="permission.ACCESS_FINE_LOCATION"/>
+			<item value="permission.INSTALL_SHORTCUT"/>
+			<item value="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+			<item value="permission.GET_TASKS"/>
+			<item value="permission.WRITE_EXTERNAL_STORAGE"/>
+			<item value="permission.ACCESS_NETWORK_STATE"/>
+			<item value="permission.READ_PHONE_STATE"/>
+			<item value="permission.INTERNET"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -24,7 +24,7 @@
 		<item value="273" key="DIALOG_WIDTH"/>
 		<item value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑" key="DIALOG_FONT_NAME"/>
 		<item value="386" key="DIALOG_HEIGHT"/>
-		<item value="1523" key="DIALOG_X_ORIGIN"/>
-		<item value="522" key="DIALOG_Y_ORIGIN"/>
+		<item value="1461" key="DIALOG_X_ORIGIN"/>
+		<item value="362" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -1,0 +1,229 @@
+package com.game.xxh;
+
+import java.util.Arrays;
+import java.util.List;
+
+import net.youmi.android.AdManager;
+import net.youmi.android.banner.AdSize;
+import net.youmi.android.banner.AdView;
+import net.youmi.android.banner.AdViewListener;
+
+import com.game.Game;
+import com.game.adshow.showBannerAd;
+import com.game.config.Config;
+import com.game.operator.GameManager;
+import com.game.pintu.ContactActivity;
+import com.game.pintu.R;
+import com.game.util.HttpUtils;
+import com.game.xxh.view.GamePintuLayout;
+import com.userim.util.SerializableBCU;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class AutoImageMainActivityXXH extends Activity {
+
+	private TextView time;
+	private Handler handler = new Handler();
+
+	private ImageButton sendButton, personalButton;
+	private Button mButton;
+	GamePintuLayout mGameView;
+	private Game currentGame;
+	private final String[] GFgameID = { "00001", "00002", "10001", "00003" };
+	private List<String> GFgameIDList;
+	
+	private  Handler mhandler;
+	//广告
+	private AdView adView_youmi;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO 自动生成的方法存根
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_xxh_main);
+
+		Bundle bundle = getIntent().getExtras();
+		SerializableBCU serializableBCU = (SerializableBCU) bundle
+				.get("userlist");
+
+		Config.mbcuser = serializableBCU.getUsr();
+		// nandu = (TextView) findViewById(R.id.nandu);
+
+				
+		sendButton = (ImageButton) findViewById(R.id.btn_sendgame);
+		personalButton = (ImageButton) findViewById(R.id.btn_personial);
+
+
+		time = (TextView) findViewById(R.id.time);
+		Config.startTime = System.currentTimeMillis();
+		handler.removeCallbacks(runnable);
+		handler.postDelayed(runnable, 50);
+
+		currentGame = GameManager.getInstance(this).getCurrentGame();
+		// tempGame.getPreference();
+		GFgameIDList = Arrays.asList(GFgameID);
+
+		mGameView = (GamePintuLayout) findViewById(R.id.id_gameview);
+
+		mhandler=new Handler(){
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO Auto-generated method stub
+				if (msg.what==0x1233) {
+					String resultString=msg.obj.toString();
+					Log.i("test", "handler"+resultString);
+					toast(resultString);
+				}
+				
+			}
+		};
+		
+		sendButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+
+				toast(currentGame.getGameId());
+
+				if (GFgameIDList.contains(currentGame.getGameId())) {
+					toast("此游戏来自官方，无须分享！");
+
+				} else {
+
+					Intent intent = new Intent(AutoImageMainActivityXXH.this,
+							ContactActivity.class);
+					startActivity(intent);
+				}
+
+			}
+		});
+
+		// handler.removeCallbacks(runnable);
+		personalButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				/*Intent intent = new Intent(AutoImageMainActivityXXH.this,
+						SelectImage.class);
+				startActivity(intent);
+				finish();*/
+				Intent intent = new Intent(AutoImageMainActivityXXH.this,
+						PersonalGameActivity.class);
+				startActivity(intent);
+				finish();
+			}
+		});
+
+/*		mButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Log.i("test", "click");
+				new Thread(){
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						Message msg=new Message();
+						String result = HttpUtils.doGet("http://219.223.240.65:3000/bmob");
+						msg.what=0x1233;
+						msg.obj=result;
+						mhandler.sendMessage(msg);
+					}
+				}.start();
+				
+
+				if (result!=null) {
+					toast(result);
+				}else {
+					toast("result 为空");
+				}
+				//toast(result);
+				//mHttpUtils.execute("http://219.223.240.65:3000/bmob");
+
+			}
+		});*/
+		
+		//添加有米广告
+		//showBanner();
+		new showBannerAd(this).showBanner();
+
+	}
+	private void showBanner() {
+
+		// 广告条接口调用（适用于应用）
+		// 将广告条adView添加到需要展示的layout控件中
+		// LinearLayout adLayout = (LinearLayout) findViewById(R.id.adLayout);
+		// AdView adView = new AdView(this, AdSize.FIT_SCREEN);
+		// adLayout.addView(adView);
+
+		// 广告条接口调用（适用于游戏）
+
+		// 实例化LayoutParams(重要)
+		FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
+				FrameLayout.LayoutParams.WRAP_CONTENT);
+		// 设置广告条的悬浮位置
+		layoutParams.gravity = Gravity.BOTTOM | Gravity.RIGHT; // 这里示例为右下角
+		// 实例化广告条
+		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
+		// 调用Activity的addContentView函数
+
+		// 监听广告条接口
+		adView.setAdListener(new AdViewListener() {
+
+			@Override
+			public void onSwitchedAd(AdView arg0) {
+				Log.i("YoumiAdDemo", "广告条切换");
+			}
+
+			@Override
+			public void onReceivedAd(AdView arg0) {
+				Log.i("YoumiAdDemo", "请求广告成功");
+
+			}
+
+			@Override
+			public void onFailedToReceivedAd(AdView arg0) {
+				Log.i("YoumiAdDemo", "请求广告失败");
+			}
+		});
+		this.addContentView(adView, layoutParams);
+	}
+
+	private Runnable runnable = new Runnable() {
+		public void run() {
+			update();
+			handler.postDelayed(this, 50);
+
+		}
+	};
+
+	private void update() {
+
+		Config.time = (int) ((System.currentTimeMillis() - Config.startTime) / 1000);
+		time.setText("时间:" + Config.time);
+
+	}
+
+	public void toast(String t) {
+		Toast.makeText(this, t, 200).show();
+	}
+
+}

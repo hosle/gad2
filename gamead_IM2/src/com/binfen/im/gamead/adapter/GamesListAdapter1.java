@@ -14,7 +14,7 @@ import com.binfen.im.gamead.util.CollectionUtils;
 import com.binfen.im.gamead.R;
 import com.game.Game;
 import com.game.operator.GameManager;
-import com.game.xxh.AutoImageMainActivityXXH;
+import com.game.xxh.PintuMainActivity_0;
 import com.userim.util.SerializableBCU;
 
 import android.annotation.SuppressLint;
@@ -130,7 +130,7 @@ public class GamesListAdapter1 extends GamesListAdapterBase {
 			
 			Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
 		    
-			Intent it= new Intent(mContext, AutoImageMainActivityXXH.class);
+			Intent it= new Intent(mContext, PintuMainActivity_0.class);
 			//´«µÝlist¶ÔÏó
 			
 			 //SerializableBCU myMap =new SerializableMap();

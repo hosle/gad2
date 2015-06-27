@@ -31,7 +31,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
 import com.game.config.Config;
-import com.game.xxh.MainActivityXXH;
+import com.game.xxh.PintuMainActivity_customized;
 import com.game.operator.*;
 
 
@@ -68,7 +68,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 					
 					//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 					upload();
-					Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
+					Intent intent = new Intent(SelectImage.this, PintuMainActivity_customized.class);
 					startActivity(intent);
 					//finish();
 				}
@@ -83,7 +83,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				
 				//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 				upload();
-				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
+				Intent intent = new Intent(SelectImage.this, PintuMainActivity_customized.class);
 				startActivity(intent);
 				//finish();
 			}
@@ -98,7 +98,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				
 				//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 				upload();
-				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
+				Intent intent = new Intent(SelectImage.this, PintuMainActivity_customized.class);
 				startActivity(intent);
 				//finish();
 			}
@@ -113,7 +113,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				
 				//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 				upload();
-				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
+				Intent intent = new Intent(SelectImage.this, PintuMainActivity_customized.class);
 				startActivity(intent);
 				//finish();
 			}
@@ -128,7 +128,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				
 				//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 				upload();
-				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
+				Intent intent = new Intent(SelectImage.this, PintuMainActivity_customized.class);
 				startActivity(intent);
 				//finish();
 			}
@@ -143,7 +143,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 				
 				//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
 				upload();
-				Intent intent = new Intent(SelectImage.this, MainActivityXXH.class);
+				Intent intent = new Intent(SelectImage.this, PintuMainActivity_customized.class);
 				startActivity(intent);
 				//finish();
 			}
@@ -239,7 +239,7 @@ public class SelectImage extends Activity implements OnCheckedChangeListener {
 	        				
 	        				
 	        				//转换Activity!
-	        				Intent intent_game = new Intent(SelectImage.this, MainActivityXXH.class);
+	        				Intent intent_game = new Intent(SelectImage.this, PintuMainActivity_customized.class);
 	        				startActivity(intent_game);
 	        				//finish();
 	        				

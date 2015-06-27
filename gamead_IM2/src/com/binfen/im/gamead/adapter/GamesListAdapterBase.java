@@ -15,9 +15,8 @@ import com.bmob.BmobProFile;
 import com.bmob.btp.callback.DownloadListener;
 import com.binfen.im.gamead.R;
 import com.game.Game;
-import com.game.h5.H5GameMainActivity;
+import com.game.h5.H5GameMainActivity_0;
 import com.game.operator.GameManager;
-import com.game.xxh.AutoImageMainActivityXXH;
 import com.userim.util.SerializableBCU;
 
 import android.annotation.SuppressLint;
@@ -240,7 +239,7 @@ public class GamesListAdapterBase extends BaseAdapter {
 				
 				Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
 			    
-				Intent it= new Intent(mContext, H5GameMainActivity.class);
+				Intent it= new Intent(mContext, H5GameMainActivity_0.class);
 				//´«µÝlist¶ÔÏó
 				
 				

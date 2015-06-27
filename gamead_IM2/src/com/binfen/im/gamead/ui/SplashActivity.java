@@ -1,5 +1,7 @@
 package com.binfen.im.gamead.ui;
 
+import net.youmi.android.AdManager;
+import net.youmi.android.spot.SpotManager;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -46,6 +48,11 @@ public class SplashActivity extends BaseActivity {
 		//BmobIM SDK初始化--只需要这一段代码即可完成初始化
 		//请到Bmob官网(http://www.bmob.cn/)申请ApplicationId,具体地址:http://docs.bmob.cn/android/faststart/index.html?menukey=fast_start&key=start_android
 		BmobChat.getInstance(this).init(Config.applicationId);
+		
+		//初始化有米广告ad
+		AdManager.getInstance(this).init("f9cf7b157d4af7ef", " bd70a7efbff3f977", false);
+		//预加载广告数据
+		
 		// 开启定位
 		initLocClient();
 		// 注册地图 SDK 广播监听者

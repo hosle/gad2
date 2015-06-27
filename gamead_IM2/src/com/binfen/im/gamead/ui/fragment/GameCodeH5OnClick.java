@@ -17,7 +17,7 @@ import cn.bmob.im.util.BmobLog;
 
 import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.util.CollectionUtils;
-import com.game.h5.H5GameMainActivity;
+import com.game.h5.H5GameMainActivity_0;
 import com.userim.util.SerializableBCU;
 
 public class GameCodeH5OnClick  {
@@ -38,7 +38,7 @@ public class GameCodeH5OnClick  {
 		Map<String, BmobChatUser> users = CustomApplcation.getInstance()
 				.getContactList();
 
-		Intent it = new Intent(mContext, H5GameMainActivity.class);
+		Intent it = new Intent(mContext, H5GameMainActivity_0.class);
 		// ´«µÝlist¶ÔÏó
 
 		List<BmobChatUser> bcu = CollectionUtils.map2list(users);
