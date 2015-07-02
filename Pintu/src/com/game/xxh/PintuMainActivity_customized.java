@@ -46,7 +46,7 @@ public class PintuMainActivity_customized extends Activity  {
 	//广告
 	private AdView adView_youmi;
 	
-	private JifenManager jifenManager=JifenManager.getInstance(this);
+	//private AdJifenManager adJifenManager;
 	
 	//private BmobUserManager userManager = BmobUserManager.getInstance(this);
 	
@@ -79,6 +79,8 @@ public class PintuMainActivity_customized extends Activity  {
 
 		mGameView = (GamePintuLayout) findViewById(R.id.id_gameview);
 		
+		//adJifenManager=AdJifenManager.getInstance(this);
+		
 		sendButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -101,7 +103,7 @@ public class PintuMainActivity_customized extends Activity  {
 	        	t.show(); 
 			}
 		});
-		//添加有米广告
+		//添加广告
 		new showBannerAd(this).showBanner();
 	}
 	
@@ -125,49 +127,17 @@ public class PintuMainActivity_customized extends Activity  {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
     	// TODO Auto-generated method stub
     	if (keyCode==KeyEvent.KEYCODE_BACK) {
-			showDialogJifen();
+    		
+    		new Quit_PostRecord(this).showDialogQuit();
+			//adJifenManager.showDialogQuit();
 			//Config.pauseTime=Config.time;
 			//handler.removeCallbacks(runnable);
 			return true;
 		}
     	else
     	{
-    		//runnable.run();
-    		//handler.notify();
     		return super.onKeyDown(keyCode, event);
     	}
     }
     
-    private void showDialogJifen(){
-    	Builder mDialog=new AlertDialog.Builder(this);
-    	final int score=Config.time;
-    	mDialog.setTitle("你的积分");
-    	mDialog.setMessage("确定退出吗？你当前积分是:"+score);
-    	mDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				// TODO Auto-generated method stub
-				
-				jifenManager.saveGameJifen(score);//上传积分
-				finish();
-			}
-		});
-    	
-    	mDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				// TODO Auto-generated method stub
-				arg0.cancel();
-			}
-		});
-    	
-    	mDialog.show();
-    }
-    
-  
-
-
-
 }

@@ -2,6 +2,8 @@ package com.game.h5;
 
 import com.game.adshow.showBannerAd;
 import com.game.config.Config;
+import com.game.operator.AdJifenManager;
+import com.game.operator.Quit_PostRecord;
 import com.game.pintu.ContactActivity;
 import com.game.pintu.R;
 
@@ -9,6 +11,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
@@ -28,7 +31,7 @@ public class H5GameMainActivity_customized extends Activity {
 	private WebView webViewGame;
 	private String mGameURL;
 	
-	
+	//private AdJifenManager adJifenManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +43,12 @@ public class H5GameMainActivity_customized extends Activity {
 		mGameURL = it.getStringExtra("gameURL");
 		// nandu = (TextView) findViewById(R.id.nandu);
 
+		//adJifenManager=AdJifenManager.getInstance(this);
+		
 		sendButton = (ImageButton) findViewById(R.id.btn_sendgame_h);
 		personalButton = (ImageButton) findViewById(R.id.btn_personial_h);
 		webViewGame = (WebView) findViewById(R.id.webview_h5game);
 
-		
-		
 		initWebView();
 
 		personalButton.setEnabled(false);
@@ -66,12 +69,13 @@ public class H5GameMainActivity_customized extends Activity {
 			}
 		});
 
-		//添加广告banner
+		// 添加广告banner
 		new showBannerAd(this).showBanner();
-				
+
 		// handler.removeCallbacks(runnable);
 
 	}
+	
 
 	private Runnable runnable = new Runnable() {
 		public void run() {
@@ -87,6 +91,25 @@ public class H5GameMainActivity_customized extends Activity {
 		time.setText("时间:" + Config.time);
 
 	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+			//adJifenManager.showDialogQuit();
+			//Quit
+			new Quit_PostRecord(this).showDialogQuit();
+			 Config.pauseTime=Config.time;
+			 handler.removeCallbacks(runnable);
+			 //finish();
+			return true;
+		} else {
+			return super.onKeyDown(keyCode, event);
+		}
+	}
+
+	
 
 	private void initWebView() {
 		// 初始化web界面

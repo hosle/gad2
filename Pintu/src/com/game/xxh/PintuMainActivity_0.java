@@ -11,7 +11,9 @@ import net.youmi.android.banner.AdViewListener;
 import com.game.Game;
 import com.game.adshow.showBannerAd;
 import com.game.config.Config;
+import com.game.operator.AdJifenManager;
 import com.game.operator.GameManager;
+import com.game.operator.Quit_PostRecord;
 import com.game.pintu.ContactActivity;
 import com.game.pintu.R;
 import com.game.util.HttpUtils;
@@ -19,12 +21,16 @@ import com.game.xxh.view.GamePintuLayout;
 import com.userim.util.SerializableBCU;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -47,6 +53,8 @@ public class PintuMainActivity_0 extends Activity {
 	private List<String> GFgameIDList;
 	
 	private  Handler mhandler;
+	
+	//private AdJifenManager adJifenManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +70,7 @@ public class PintuMainActivity_0 extends Activity {
 		Config.mbcuser = serializableBCU.getUsr();
 		// nandu = (TextView) findViewById(R.id.nandu);
 
+		//adJifenManager=AdJifenManager.getInstance(this);
 				
 		sendButton = (ImageButton) findViewById(R.id.btn_sendgame);
 		personalButton = (ImageButton) findViewById(R.id.btn_personial);
@@ -179,6 +188,23 @@ public class PintuMainActivity_0 extends Activity {
 		time.setText("Ê±¼ä:" + Config.time);
 
 	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode==KeyEvent.KEYCODE_BACK) {
+			//adJifenManager.showDialogQuit();
+			new Quit_PostRecord(this).showDialogQuit();
+			//showDialogJifen();
+			return true;
+		}
+    	else
+    	{
+    		return super.onKeyDown(keyCode, event);
+    	}
+	}
+	
+	
 
 	public void toast(String t) {
 		Toast.makeText(this, t, 200).show();

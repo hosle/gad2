@@ -32,7 +32,7 @@ public class ImageSplitter
 				ImagePiece imagePiece = new ImagePiece();
 				imagePiece.index = j + i * piece;
 				
-				Log.e("TAG", "imagePiece.index" + (j + i * piece));
+				Log.i("TAG", "imagePiece.index" + (j + i * piece));
 				
 				int xValue = j * pieceWidth;
 				int yValue = i * pieceWidth;

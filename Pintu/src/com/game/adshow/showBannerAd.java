@@ -1,6 +1,31 @@
 package com.game.adshow;
 
-import com.game.util.HttpUtils;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cn.bmob.im.BmobUserManager;
+
+import com.game.operator.AdJifenManager;
+import com.qq.e.ads.AdListener;
+import com.qq.e.ads.AdRequest;
+import com.userim.User;
 
 import net.youmi.android.banner.AdSize;
 import net.youmi.android.banner.AdView;
@@ -19,16 +44,28 @@ public class showBannerAd {
 	private Context mContext;
 	private Activity mActivity;
 	private FrameLayout.LayoutParams layoutParams;
-	private int flag=1;
-	private  Handler mhandler;
+	private String flagString="";
+	private Thread mThread_applyAd;
+	//private Thread mThread_postrecord;
+	private  Handler mhandler_applyAd;
+	//private Handler mHandler_postrecord;
+	
+	private BmobUserManager userManager ;
+	private User mUser;
+	
+	
 	
 	public showBannerAd(Context vContext) {
 		// TODO Auto-generated constructor stub
 		mContext=vContext;
 		mActivity=(Activity)vContext;
 		
+		userManager=BmobUserManager.getInstance(mContext);
+		mUser =  userManager.getCurrentUser(User.class);
+		
 		init();
 	}
+	
 	private void init(){
 		// 实例化LayoutParams(重要)
 		layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -36,55 +73,108 @@ public class showBannerAd {
 		// 设置广告条的悬浮位置
 		layoutParams.gravity = Gravity.BOTTOM | Gravity.RIGHT; // 这里示例为右下角
 		
-		mhandler=new Handler(){
+		mhandler_applyAd=new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
 				// TODO Auto-generated method stub
-				if (msg.what==0x1233) {
-					String resultString=msg.obj.toString();
-					Log.i("test", "handler"+resultString);
-					toast(resultString);
+				if (msg.what==200) {
+					try {
+						String resultString=msg.obj.toString();
+						
+						JSONObject jObj=new JSONObject(resultString);
+						
+						//获得广告商名称
+						flagString=jObj.getString("info");
+						AdJifenManager.getInstance(mContext).setAdName(flagString);
+						Log.i("test", "handler"+resultString);
+						toast(flagString);
+						
+						//获得申请时间，并存在adJifenManager里面
+						String vApplytime=jObj.getString("applytime");
+						AdJifenManager.getInstance(mContext).setApplyTime_adBanner(vApplytime);
+						//toast(vApplytime.toString());
+						
+						
+						//根据结果展示banner
+						switch (AD.toAD(flagString.toUpperCase())) {
+						case YOUMI:
+							showBanner_youmi(layoutParams);
+							break;
+						case BAIDU:
+							showBanner_baidu(layoutParams);
+							break;
+						case GDT:
+							showBanner_gdt(layoutParams);
+							break;
+						default:
+							break;
+						}
+						
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					this.removeCallbacks(mThread_applyAd);
+					//mThread_applyAd.destroy();
+				}
+			}
+		};
+		
+		
+	}
+	public void showBanner(){
+		
+		getDataFromBackend("http://219.223.240.65:3000/search?uid="+mUser.getObjectId());
+		
+	}
+	
+	//枚举每个广告商
+	private enum AD{
+		BAIDU,GDT,YOUMI,NOVALUE;
+		
+		public static AD toAD(String str) {
+			try {
+				return valueOf(str);
+			} catch (Exception e) {
+				// TODO: handle exception
+				return NOVALUE;
+			}
+		}
+	}
+	private void getDataFromBackend(final String urlString) {
+		mThread_applyAd=new Thread(){
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Message msg= mhandler_applyAd.obtainMessage();
+				String result="";
+				HttpGet httpGet=new HttpGet(urlString);
+				HttpResponse response;
+				try {
+					response = new DefaultHttpClient().execute(httpGet);
+					int statusCode = response.getStatusLine().getStatusCode();
+					if (statusCode==200) {
+						HttpEntity entity=response.getEntity();
+						result=EntityUtils.toString(entity, HTTP.UTF_8);
+					}
+					msg.what=statusCode;
+					msg.obj=result;
+					mhandler_applyAd.sendMessage(msg);
+					
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				
 			}
 		};
-	}
-	public void showBanner(){
+		mThread_applyAd.start();
 		
-		chooseFromBackend();
 		
-		switch (flag) {
-		case 0:
-			showBanner_youmi(layoutParams);
-			break;
-		case 1:
-			showBanner_baidu(layoutParams);
-			break;
-
-		default:
-			break;
-		}
-		
-	}
-	private void chooseFromBackend(){
-		new Thread(){
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				Message msg=new Message();
-				String result = HttpUtils.doGet("http://113.10.157.125:3000/search");
-				msg.what=0x1233;
-				msg.obj=result;
-				mhandler.sendMessage(msg);
-			}
-		}.start();
-		
-
-		/*if (result!=null) {
-			toast(result);
-		}else {
-			toast("result 为空");
-		}*/
 	}
 	
 	public void showBanner_youmi(FrameLayout.LayoutParams vlayoutParams) {
@@ -105,6 +195,8 @@ public class showBannerAd {
 			@Override
 			public void onReceivedAd(AdView arg0) {
 				Log.i("YoumiAdDemo", "请求广告成功");
+				
+				
 
 			}
 
@@ -119,6 +211,53 @@ public class showBannerAd {
 	private void showBanner_baidu(FrameLayout.LayoutParams vlayoutParams){
 		com.baidu.mobads.AdView adViewbai=new com.baidu.mobads.AdView(mContext);
 		mActivity.addContentView(adViewbai, vlayoutParams);
+	}
+	
+	private void showBanner_gdt(FrameLayout.LayoutParams vlayoutParams){
+		com.qq.e.ads.AdView adViewgdt= new com.qq.e.ads.AdView((Activity) mContext, com.qq.e.ads.AdSize.BANNER, "1104671462", "6040005399072658");
+		AdRequest adr=new AdRequest();
+		adViewgdt.fetchAd(adr);
+		adViewgdt.setAdListener(new AdListener() {
+			
+			@Override
+			public void onNoAd(int arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onNoAd() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onBannerClosed() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAdReceiv() {
+				// TODO Auto-generated method stub
+				//postDataToBackend("http://219.223.240.65:3000/addRecord");
+				
+			}
+			
+			@Override
+			public void onAdExposure() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAdClicked() {
+				// TODO Auto-generated method stub
+				
+				
+			}
+		});
+		mActivity.addContentView(adViewgdt, vlayoutParams);
 	}
 	
 	public void toast(String t) {

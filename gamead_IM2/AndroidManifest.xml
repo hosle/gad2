@@ -264,6 +264,12 @@
    		 <!-- baidu广告 -->
    		 <meta-data android:name="BaiduMobAd_APP_ID" android:value="c761ff53"/>
    		 <meta-data android:name="BaiduMobAd_APP_SEC" android:value="c761ff53"/>
+   		 
+   		 <!-- 广点通广告 -->
+   		 <service android:name="com.qq.e.comm.DownloadService" 
+    			  android:exported="false" />
+		 <activity android:name="com.qq.e.ads.AdActivity" 
+    			   android:theme="@android:style/Theme.Translucent" />
     </application>
 
 </manifest>
