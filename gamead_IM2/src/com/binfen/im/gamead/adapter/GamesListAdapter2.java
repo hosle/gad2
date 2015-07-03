@@ -6,6 +6,7 @@ import java.util.Map;
 
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.DeleteListener;
 import cn.bmob.v3.listener.FindListener;
 
 import com.binfen.im.gamead.CustomApplcation;
@@ -14,6 +15,7 @@ import com.binfen.im.gamead.util.CollectionUtils;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.DownloadListener;
 import com.binfen.im.gamead.R;
+import com.game.Forward;
 import com.game.Game;
 import com.game.operator.GameManager;
 import com.game.xxh.PintuMainActivity_0;
@@ -21,8 +23,11 @@ import com.userim.User;
 import com.userim.util.SerializableBCU;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,6 +35,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -48,6 +54,10 @@ public class GamesListAdapter2 extends GamesListAdapterBase {
 		super(mContext);
 		//this.mContext = mContext;
 		//查询所有我定制的数据，返回表
+		loadGamelist();
+		
+	}
+	private void loadGamelist() {
 		BmobQuery<Game> query=new BmobQuery<Game>();
 		query.addWhereEqualTo("gameOwnerUser", User.getCurrentUser(mContext));
 		query.findObjects(mContext, new FindListener<Game>() {
@@ -106,6 +116,61 @@ public class GamesListAdapter2 extends GamesListAdapterBase {
 			//holder.mImageView.setOnClickListener(myOnClickListener);
 			convertView.setOnClickListener(myOnClickListener);
 		
+			//长按删除当前的游戏
+			convertView.setOnLongClickListener(new OnLongClickListener() {
+				
+				@Override
+				public boolean onLongClick(View arg0) {
+					// TODO Auto-generated method stub
+					Builder mDialog = new AlertDialog.Builder(mContext);
+					// final int score=Config.time;
+					mDialog.setTitle("退出");
+					mDialog.setMessage("确定删除吗？");
+					mDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							// TODO Auto-generated method stub
+
+							//删除当前游戏
+							Game delGame=gamelist.get(vCurrentIndex);
+							//先删除转发记录，再删除game本身
+							delGameForward(delGame);
+							
+							delGame.delete(mContext, new DeleteListener() {
+								
+								@Override
+								public void onSuccess() {
+									// TODO Auto-generated method stub
+									toast("删除成功");
+									loadGamelist();
+									
+								}
+								
+								@Override
+								public void onFailure(int code, String msg) {
+									// TODO Auto-generated method stub
+									toast("删除失败"+code+":"+msg);
+								}
+							});
+							}
+
+					});
+
+					mDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							// TODO Auto-generated method stub
+							arg0.cancel();
+							
+						}
+					});
+
+					mDialog.show();
+					return true;
+				}
+			});
 
 		}
 
@@ -168,6 +233,45 @@ public class GamesListAdapter2 extends GamesListAdapterBase {
 			mContext.startActivity(it);*/
 		}
 		
+	}
+	
+	/**
+	 * 删除所有的游戏发送数据
+	 */
+	private void delGameForward(Game delGame){
+		BmobQuery<Forward> query=new BmobQuery<Forward>();
+		query.addWhereEqualTo("gameforward", delGame);
+		query.findObjects(mContext, new FindListener<Forward>() {
+
+			@Override
+			public void onError(int arg0, String arg1) {
+				// TODO Auto-generated method stub
+				toast("查询失败:"+arg1);
+			}
+
+			@Override
+			public void onSuccess(List<Forward> item) {
+				// TODO Auto-generated method stub
+				//length=arg0.size();
+				//toast("查询成功：共"+arg0.size()+"条数据。");
+				for (int i = 0; i < item.size(); i++) {
+					item.get(i).delete(mContext,new DeleteListener() {
+						
+						@Override
+						public void onSuccess() {
+							// TODO Auto-generated method stub
+							toast("删除转发记录成功");
+						}
+						@Override
+						public void onFailure(int code, String msg) {
+							// TODO Auto-generated method stub
+							toast("删除转发记录失败"+code+":"+msg);
+						}
+					});
+				}
+				//notifyDataSetChanged();
+			}
+		});		
 	}
 	
 }

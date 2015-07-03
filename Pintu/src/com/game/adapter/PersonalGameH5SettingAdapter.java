@@ -72,6 +72,8 @@ public class PersonalGameH5SettingAdapter extends BaseAdapter {
 				break;
 			}
 		}
+		
+		
 		return convertView;
 	}
 	

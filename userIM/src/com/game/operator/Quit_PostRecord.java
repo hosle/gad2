@@ -120,7 +120,6 @@ public class Quit_PostRecord {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 				try {
 					response = new DefaultHttpClient().execute(httpPost);
 					int statusCode = response.getStatusLine().getStatusCode();
@@ -130,11 +129,7 @@ public class Quit_PostRecord {
 						msg.what = statusCode;
 						msg.obj = result;
 						mHandler_postrecord.sendMessage(msg);
-
-						
-						
-
-					}
+						}
 
 				} catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
