@@ -14,6 +14,7 @@ public class GameJifen extends BmobObject {
 	private User player;//游戏玩家
 	private String gameId;//游戏编号
 	private float exRate;//兑换比率
+	private String ader;//获得积分的广告商名称
 	
 	
 	public int getJifen() {
@@ -39,6 +40,12 @@ public class GameJifen extends BmobObject {
 	}
 	public void setExRate(float exRate) {
 		this.exRate = exRate;
+	}
+	public String getAder() {
+		return ader;
+	}
+	public void setAder(String ader) {
+		this.ader = ader;
 	}
 	
 	

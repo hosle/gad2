@@ -30,13 +30,21 @@ import com.userim.User;
 import net.youmi.android.banner.AdSize;
 import net.youmi.android.banner.AdView;
 import net.youmi.android.banner.AdViewListener;
+import android.R;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class showBannerAd {
@@ -48,11 +56,17 @@ public class showBannerAd {
 	private Thread mThread_applyAd;
 	//private Thread mThread_postrecord;
 	private  Handler mhandler_applyAd;
+	private Handler mHandler_applyclick;
+	private Handler mHandler_delrec;
 	//private Handler mHandler_postrecord;
 	
 	private BmobUserManager userManager ;
 	private User mUser;
 	
+	private FrameLayout fLayout;
+	private FrameLayout.LayoutParams coverViewParams;
+	
+	private String backendUrl;
 	
 	
 	public showBannerAd(Context vContext) {
@@ -63,13 +77,22 @@ public class showBannerAd {
 		userManager=BmobUserManager.getInstance(mContext);
 		mUser =  userManager.getCurrentUser(User.class);
 		
+		//获得后台地址
+		backendUrl=AdJifenManager.getInstance(mContext).getBackendURL();
+		
 		init();
 	}
 	
 	private void init(){
+		
+		fLayout=new FrameLayout(mContext);
+		coverViewParams=new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,200);
+		coverViewParams.gravity=Gravity.BOTTOM | Gravity.RIGHT;
+		
 		// 实例化LayoutParams(重要)
-		layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
+		layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
 				FrameLayout.LayoutParams.WRAP_CONTENT);
+		
 		// 设置广告条的悬浮位置
 		layoutParams.gravity = Gravity.BOTTOM | Gravity.RIGHT; // 这里示例为右下角
 		
@@ -99,16 +122,23 @@ public class showBannerAd {
 						switch (AD.toAD(flagString.toUpperCase())) {
 						case YOUMI:
 							showBanner_youmi(layoutParams);
+							
 							break;
 						case BAIDU:
 							showBanner_baidu(layoutParams);
+							
 							break;
 						case GDT:
 							showBanner_gdt(layoutParams);
+							
 							break;
 						default:
 							break;
 						}
+						
+						addCoverView(coverViewParams);
+						
+						mActivity.addContentView(fLayout, layoutParams);
 						
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
@@ -120,13 +150,53 @@ public class showBannerAd {
 			}
 		};
 		
+		mHandler_applyclick=new Handler(){
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO Auto-generated method stub
+				if (msg.what==200) {
+					
+						String resultString=msg.obj.toString();
+						toast("是否达到点击次数："+resultString);
+						if (resultString.equals("true")) {
+							toast("再点一次试试");
+							View curAdView=(View)fLayout.findViewWithTag("currentAdView");
+							//把广告banner暴露出来
+							curAdView.bringToFront();
+						}
+					
+						this.removeCallbacks(mThread_applyAd);
+					
+				}
+			}
+		};
+		
+		mHandler_delrec=new Handler(){
+			
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO Auto-generated method stub
+				if (msg.what==200) {
+					
+					String resultString=msg.obj.toString();
+					toast(resultString);
+					
+				
+					this.removeCallbacks(mThread_applyAd);
+				
+			}
+			}
+		};
+		
 		
 	}
 	public void showBanner(){
 		
-		getDataFromBackend("http://219.223.240.65:3000/search?uid="+mUser.getObjectId());
+		getDataFromBackend(mhandler_applyAd,backendUrl+"search?uid="+mUser.getObjectId());
 		
 	}
+	
+	
 	
 	//枚举每个广告商
 	private enum AD{
@@ -141,13 +211,13 @@ public class showBannerAd {
 			}
 		}
 	}
-	private void getDataFromBackend(final String urlString) {
+	private void getDataFromBackend(final Handler vHandler,final String urlString) {
 		mThread_applyAd=new Thread(){
 			
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				Message msg= mhandler_applyAd.obtainMessage();
+				Message msg= vHandler.obtainMessage();
 				String result="";
 				HttpGet httpGet=new HttpGet(urlString);
 				HttpResponse response;
@@ -160,7 +230,7 @@ public class showBannerAd {
 					}
 					msg.what=statusCode;
 					msg.obj=result;
-					mhandler_applyAd.sendMessage(msg);
+					vHandler.sendMessage(msg);
 					
 				} catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
@@ -182,6 +252,7 @@ public class showBannerAd {
 		// 实例化广告条
 		AdView adView = new AdView(mContext, AdSize.FIT_SCREEN);
 		// 调用Activity的addContentView函数
+		adView.setTag("currentAdView");
 
 		
 		// 监听广告条接口
@@ -204,18 +275,101 @@ public class showBannerAd {
 			public void onFailedToReceivedAd(AdView arg0) {
 				Log.i("YoumiAdDemo", "请求广告失败");
 			}
+			
+			
 		});
-		mActivity.addContentView(adView, vlayoutParams);
+		fLayout.addView(adView,vlayoutParams);
+		//mActivity.addContentView(adView, vlayoutParams);
 	}
 	
 	private void showBanner_baidu(FrameLayout.LayoutParams vlayoutParams){
 		com.baidu.mobads.AdView adViewbai=new com.baidu.mobads.AdView(mContext);
-		mActivity.addContentView(adViewbai, vlayoutParams);
+		adViewbai.setTag("currentAdView");
+		adViewbai.setListener(new com.baidu.mobads.AdViewListener() {
+			
+			@Override
+			public void onVideoStart() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onVideoFinish() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onVideoError() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onVideoClickReplay() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onVideoClickClose() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onVideoClickAd() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAdSwitch() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAdShow(JSONObject arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAdReady(com.baidu.mobads.AdView arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAdFailed(String arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAdClick(JSONObject arg0) {
+				// TODO Auto-generated method stub
+				View coverView=(View)fLayout.findViewWithTag("CoverView");
+				coverView.bringToFront();
+				
+				//成功点击后，添加一次积分，并删除该用户该广告商的记录
+				commitJifen_delShowRecord();
+				
+				
+			}
+		});
+		
+		fLayout.addView(adViewbai,vlayoutParams);
+		
+		
+		//mActivity.addContentView(adViewbai, vlayoutParams);
 	}
 	
 	private void showBanner_gdt(FrameLayout.LayoutParams vlayoutParams){
 		com.qq.e.ads.AdView adViewgdt= new com.qq.e.ads.AdView((Activity) mContext, com.qq.e.ads.AdSize.BANNER, "1104671462", "6040005399072658");
 		AdRequest adr=new AdRequest();
+		adViewgdt.setTag("currentAdView");
 		adViewgdt.fetchAd(adr);
 		adViewgdt.setAdListener(new AdListener() {
 			
@@ -253,11 +407,54 @@ public class showBannerAd {
 			@Override
 			public void onAdClicked() {
 				// TODO Auto-generated method stub
+				View coverView=(View)fLayout.findViewWithTag("CoverView");
+				coverView.bringToFront();
 				
+				//成功点击后，添加一次积分，并删除该用户该广告商的记录
+				commitJifen_delShowRecord();
 				
 			}
 		});
-		mActivity.addContentView(adViewgdt, vlayoutParams);
+		fLayout.addView(adViewgdt,vlayoutParams);
+		//mActivity.addContentView(adViewgdt, vlayoutParams);
+	}
+	
+	/**
+	 * @param vlayoutParams
+	 * 在广告banner上加上一个view，用以判断是否满足点击要求
+	 */
+	private void addCoverView(FrameLayout.LayoutParams vlayoutParams) {
+		
+		final TextView txtTextView=new TextView(mContext);
+		txtTextView.setText("lalaalalal");
+		txtTextView.setTag("CoverView");
+		//txtTextView.setBackgroundColor(mContext.getResources().getColor(R.color.holo_orange_light));
+		txtTextView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+				//自动点击无效
+				//curAdView.performClick();
+				
+				getDataFromBackend(mHandler_applyclick,backendUrl+"applyclick?uid="+mUser.getObjectId()+"&ader="+flagString);
+				
+			}
+		});
+		fLayout.addView(txtTextView,vlayoutParams);
+		//mActivity.addContentView(txtTextView, vlayoutParams);
+	}
+	
+	/**
+	 * 成功点击后，添加一次积分，并删除该用户该广告商的记录
+	 */
+	private void commitJifen_delShowRecord(){
+		//上传积分
+		AdJifenManager.getInstance(mContext).saveGameJifen(flagString,1);
+		
+		//删除记录
+		getDataFromBackend(mHandler_delrec,backendUrl+"delRecord?uid="+mUser.getObjectId()+"&ader="+flagString);
 	}
 	
 	public void toast(String t) {

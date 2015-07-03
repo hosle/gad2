@@ -30,6 +30,7 @@ import com.binfen.im.gamead.ui.fragment.ShowFragmentXXH1;
 import com.binfen.im.gamead.ui.fragment.ShowFragmentXXH2;
 import com.binfen.im.gamead.ui.fragment.ShowFragmentXXH3;
 import com.binfen.im.gamead.R;
+import com.game.operator.AdJifenManager;
 
 /**
  * 登陆
@@ -65,6 +66,9 @@ public class MainActivity extends ActivityBase implements EventListener{
 		initTagMessageBroadCast();
 		initView();
 		initTab();
+		
+		//更新个人积分
+		AdJifenManager.getInstance(this).updateLocalJifen();
 		
 	}
 

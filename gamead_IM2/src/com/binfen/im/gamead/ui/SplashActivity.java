@@ -19,6 +19,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.config.Config;
 import com.binfen.im.gamead.R;
+import com.game.operator.AdJifenManager;
 
 /**
  * 引导页
@@ -52,6 +53,8 @@ public class SplashActivity extends BaseActivity {
 		//初始化有米广告ad
 		AdManager.getInstance(this).init("f9cf7b157d4af7ef", " bd70a7efbff3f977", false);
 		//预加载广告数据
+		
+		
 		
 		// 开启定位
 		initLocClient();

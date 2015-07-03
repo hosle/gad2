@@ -40,7 +40,7 @@ public class Quit_PostRecord {
 	private String adName;
 	private String applyTime_adBanner;
 
-	
+	private String backendURL;
 
 	private Handler mHandler_postrecord;
 
@@ -52,6 +52,9 @@ public class Quit_PostRecord {
 		
 		applyTime_adBanner = AdJifenManager.getInstance(mContext).getApplyTime_adBanner();
 		adName = AdJifenManager.getInstance(mContext).getAdName();
+		
+		//获得后台地址
+		backendURL=AdJifenManager.getInstance(mContext).getBackendURL();
 		
 		mHandler_postrecord = new Handler() {
 
@@ -157,7 +160,7 @@ public class Quit_PostRecord {
 
 				//toast("当前的:"+adName);
 				if (adName != null&&adName!=""&&adName!="null") {
-					postDataToBackend("http://219.223.240.65:3000/addRecord");
+					postDataToBackend(backendURL+"addRecord");
 
 				}
 				((Activity) mContext).finish();

@@ -21,8 +21,8 @@ public class GameManager {
 
 	private Context mContext;
 	private static GameManager instance;
-	private BmobUserManager userManager ;
-	private User mUser;
+	private static BmobUserManager userManager ;
+	private static User mUser;
 	
 	private Game currentGame;//当前的游戏，用SharedPreferences来存储
 	
@@ -36,13 +36,14 @@ public class GameManager {
 		// TODO Auto-generated constructor stub
 		mContext=context;
 		userManager=BmobUserManager.getInstance(context);
-		mUser =  userManager.getCurrentUser(User.class);
+		//mUser =  userManager.getCurrentUser(User.class);
 	}
 	
 	public static synchronized GameManager getInstance(Context vContext) {
 		if (instance==null) {
 			instance=new GameManager(vContext);
 		}
+		mUser =  userManager.getCurrentUser(User.class);
 		return instance;
 		
 	}

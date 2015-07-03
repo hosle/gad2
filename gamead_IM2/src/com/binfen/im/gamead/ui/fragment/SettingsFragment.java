@@ -1,5 +1,7 @@
 package com.binfen.im.gamead.ui.fragment;
 
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import cn.bmob.im.BmobUserManager;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 
 import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.ui.BlackListActivity;
@@ -20,6 +25,10 @@ import com.binfen.im.gamead.ui.LoginActivity;
 import com.binfen.im.gamead.ui.SetMyInfoActivity;
 import com.binfen.im.gamead.util.SharePreferenceUtil;
 import com.binfen.im.gamead.R;
+import com.game.jifen.GameJifen;
+import com.game.operator.AdJifenManager;
+import com.game.operator.GameManager;
+import com.userim.User;
 
 /**
  * 设置
@@ -33,7 +42,7 @@ import com.binfen.im.gamead.R;
 public class SettingsFragment extends FragmentBase implements OnClickListener{
 
 	Button btn_logout;
-	TextView tv_set_name;
+	TextView tv_set_name,txt_set_jifen;
 	RelativeLayout layout_info, rl_switch_notification, rl_switch_voice,
 			rl_switch_vibrate,layout_blacklist;
 
@@ -42,6 +51,8 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 	
 	View view1,view2;
 	SharePreferenceUtil mSharedUtil;
+	
+	
 	
 
 	@Override
@@ -90,6 +101,8 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 
 		tv_set_name = (TextView) findViewById(R.id.tv_set_name);
 		btn_logout = (Button) findViewById(R.id.btn_logout);
+		
+		txt_set_jifen=(TextView)findViewById(R.id.txt_set_jifen);
 
 		// 初始化
 		boolean isAllowNotify = mSharedUtil.isAllowPushNotify();
@@ -126,6 +139,9 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 	private void initData() {
 		tv_set_name.setText(BmobUserManager.getInstance(getActivity())
 				.getCurrentUser().getUsername());
+		
+		
+		txt_set_jifen.setText(AdJifenManager.getInstance(getActivity()).getCurJifen()+"");
 	}
 
 	@Override
@@ -198,4 +214,13 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 		}
 	}
 
+	/**
+	 * 自定义一个Toast方法
+	 * 
+	 * @param msg
+	 *            要输出的提示信息
+	 */
+	private void toast(String msg) {
+		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+	}
 }
