@@ -426,7 +426,7 @@ public class showBannerAd {
 	private void addCoverView(FrameLayout.LayoutParams vlayoutParams) {
 		
 		final TextView txtTextView=new TextView(mContext);
-		txtTextView.setText("lalaalalal");
+		//txtTextView.setText("lalaalalal");
 		txtTextView.setTag("CoverView");
 		//txtTextView.setBackgroundColor(mContext.getResources().getColor(R.color.holo_orange_light));
 		txtTextView.setOnClickListener(new OnClickListener() {

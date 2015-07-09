@@ -16,7 +16,7 @@ import android.widget.ProgressBar;
 
 import com.binfen.im.gamead.util.ImageLoadOptions;
 import com.binfen.im.gamead.view.CustomViewPager;
-import com.binfen.im.gamead.R;
+import com.bmob.im.demo.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;

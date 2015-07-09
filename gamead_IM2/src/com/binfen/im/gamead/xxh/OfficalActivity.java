@@ -6,7 +6,7 @@ import android.widget.ImageButton;
 import cn.bmob.im.inteface.EventListener;
 
 import com.binfen.im.gamead.ui.ActivityBase;
-import com.binfen.im.gamead.R;
+import com.bmob.im.demo.R;
 
 
 public abstract class OfficalActivity extends ActivityBase implements EventListener{

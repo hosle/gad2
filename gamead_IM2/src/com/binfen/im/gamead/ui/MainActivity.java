@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import cn.bmob.im.BmobChat;
 import cn.bmob.im.BmobChatManager;
 import cn.bmob.im.BmobNotifyManager;
 import cn.bmob.im.bean.BmobInvitation;
@@ -20,17 +20,13 @@ import cn.bmob.im.config.BmobConfig;
 import cn.bmob.im.db.BmobDB;
 import cn.bmob.im.inteface.EventListener;
 
-import com.binfen.im.gamead.CustomApplcation;
-import com.binfen.im.gamead.MyMessageReceiver;
 import com.binfen.im.gamead.ui.fragment.ContactFragment;
 import com.binfen.im.gamead.ui.fragment.GamesFragment;
 import com.binfen.im.gamead.ui.fragment.RecentFragment;
 import com.binfen.im.gamead.ui.fragment.SettingsFragment;
-import com.binfen.im.gamead.ui.fragment.ShowFragmentXXH1;
-import com.binfen.im.gamead.ui.fragment.ShowFragmentXXH2;
-import com.binfen.im.gamead.ui.fragment.ShowFragmentXXH3;
-import com.binfen.im.gamead.R;
-import com.game.operator.AdJifenManager;
+import com.bmob.im.demo.CustomApplcation;
+import com.bmob.im.demo.MyMessageReceiver;
+import com.bmob.im.demo.R;
 
 /**
  * 登陆
@@ -45,7 +41,6 @@ public class MainActivity extends ActivityBase implements EventListener{
 	private ContactFragment contactFragment;
 	private RecentFragment recentFragment;
 	private SettingsFragment settingFragment;
-	//private ShowFragmentXXH1  gamesFragment1;
 	private GamesFragment gamesFragment;
 	
 	private Fragment[] fragments;
@@ -60,7 +55,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		setContentView(R.layout.activity_main);
 		//开启定时检测服务（单位为秒）-在这里检测后台是否还有未读的消息，有的话就取出来
 		//如果你觉得检测服务比较耗流量和电量，你也可以去掉这句话-同时还有onDestory方法里面的stopPollService方法
-//		BmobChat.getInstance(this).startPollService(30);
+		BmobChat.getInstance(this).startPollService(30);
 		//开启广播接收器
 		initNewMessageBroadCast();
 		initTagMessageBroadCast();
@@ -68,7 +63,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		initTab();
 		
 		//更新个人积分
-		AdJifenManager.getInstance(this).updateLocalJifen();
+		//AdJifenManager.getInstance(this).updateLocalJifen();
 		
 	}
 
@@ -95,8 +90,8 @@ public class MainActivity extends ActivityBase implements EventListener{
 		
 		fragments = new Fragment[] {recentFragment, contactFragment, gamesFragment,settingFragment};
 		// 添加显示第一个fragment
-		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, recentFragment).add(R.id.fragment_container, gamesFragment).
-			add(R.id.fragment_container, contactFragment).hide(contactFragment).show(recentFragment).hide(gamesFragment).commit();
+		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, recentFragment).add(R.id.fragment_container, gamesFragment)
+		.hide(gamesFragment).show(recentFragment).commit();
 	}
 	
 	
@@ -142,15 +137,19 @@ public class MainActivity extends ActivityBase implements EventListener{
 		//小圆点提示
 		if(BmobDB.create(this).hasUnReadMsg()){
 			iv_recent_tips.setVisibility(View.VISIBLE);
+			Log.i("msgRec", "get unReadMsg in onResume");
 		}else{
 			iv_recent_tips.setVisibility(View.GONE);
 		}
 		if(BmobDB.create(this).hasNewInvite()){
 			iv_contact_tips.setVisibility(View.VISIBLE);
+		    Log.i("msgRec", "get Invite in onResume");
 		}else{
 			iv_contact_tips.setVisibility(View.GONE);
 		}
+		Log.i("msgRec", this.toString());
 		MyMessageReceiver.ehList.add(this);// 监听推送的消息
+		
 		//清空
 		MyMessageReceiver.mNewNum=0;
 		
@@ -167,6 +166,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 	public void onMessage(BmobMsg message) {
 		// TODO Auto-generated method stub
 		refreshNewMsg(message);
+		Log.i("msgRec", "onMessage");
 	}
 	
 	
@@ -183,10 +183,12 @@ public class MainActivity extends ActivityBase implements EventListener{
 		if(isAllow){
 			CustomApplcation.getInstance().getMediaPlayer().start();
 		}
+		Log.i("msgRec", "refreshNewMsg");
 		iv_recent_tips.setVisibility(View.VISIBLE);
 		//也要存储起来
 		if(message!=null){
 			BmobChatManager.getInstance(MainActivity.this).saveReceiveMessage(true,message);
+			Log.i("msgRec", "saveReceiveMsg");
 		}
 		if(currentTabIndex==0){
 			//当前页面如果为会话页面，刷新此页面
@@ -205,6 +207,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		//优先级要低于ChatActivity
 		intentFilter.setPriority(3);
 		registerReceiver(newReceiver, intentFilter);
+		Log.i("msgRec", "init new MessageBroadcast");
 	}
 	
 	/**
@@ -229,7 +232,9 @@ public class MainActivity extends ActivityBase implements EventListener{
 		IntentFilter intentFilter = new IntentFilter(BmobConfig.BROADCAST_ADD_USER_MESSAGE);
 		//优先级要低于ChatActivity
 		intentFilter.setPriority(3);
+		
 		registerReceiver(userReceiver, intentFilter);
+		Log.i("msgRec", "init tag MessageBroadcast");
 	}
 	
 	/**
@@ -257,6 +262,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 	public void onAddUser(BmobInvitation message) {
 		// TODO Auto-generated method stub
 		refreshInvite(message);
+		Log.i("msgRec", "onAddUser");
 	}
 	
 	/** 刷新好友请求
@@ -272,6 +278,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 			CustomApplcation.getInstance().getMediaPlayer().start();
 		}
 		iv_contact_tips.setVisibility(View.VISIBLE);
+		Log.i("msgRec", "refreshInvite");
 		if(currentTabIndex==1){
 			if(contactFragment != null){
 				contactFragment.refresh();
@@ -279,6 +286,8 @@ public class MainActivity extends ActivityBase implements EventListener{
 		}else{
 			//同时提醒通知
 			String tickerText = message.getFromname()+"请求添加好友";
+			
+			Log.i("msgRec", tickerText);
 			boolean isAllowVibrate = CustomApplcation.getInstance().getSpUtil().isAllowVibrate();
 			BmobNotifyManager.getInstance(this).showNotify(isAllow,isAllowVibrate,R.drawable.ic_launcher, tickerText, message.getFromname(), tickerText.toString(),NewFriendActivity.class);
 		}
@@ -324,7 +333,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		} catch (Exception e) {
 		}
 		//取消定时检测服务
-//		BmobChat.getInstance(this).stopPollService();
+		BmobChat.getInstance(this).stopPollService();
 	}
 	
 }

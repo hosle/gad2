@@ -43,13 +43,13 @@ import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
-import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.config.BmobConstants;
 import com.binfen.im.gamead.util.CollectionUtils;
 import com.binfen.im.gamead.util.ImageLoadOptions;
 import com.binfen.im.gamead.util.PhotoUtil;
 import com.binfen.im.gamead.view.dialog.DialogTips;
-import com.binfen.im.gamead.R;
+import com.bmob.im.demo.CustomApplcation;
+import com.bmob.im.demo.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.userim.Blog;
 import com.userim.User;

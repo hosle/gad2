@@ -4,18 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import com.bmob.BTPFileResponse;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
 import com.game.adapter.PersonalGame1SettingAdapter;
 import com.game.config.Config;
 import com.game.operator.GameManager;
 import com.game.pintu.R;
-import com.game.pintu.SelectImage;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -23,27 +18,18 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.text.format.Time;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
-import android.view.View.OnCreateContextMenuListener;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioGroup;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class PersonalPageGameActivity extends Activity {
 	
@@ -238,7 +224,7 @@ public class PersonalPageGameActivity extends Activity {
 		updialog.setCancelable(true);       
 		updialog.setCanceledOnTouchOutside(false);  
 		updialog.show();//"cc9a6ee19b0211fc6a46b1a4bce30c72"
-		com.bmob.btp.file.BTPFileResponse response = BmobProFile.getInstance(PersonalPageGameActivity.this).upload(filePath, new UploadListener() {
+		BTPFileResponse response = BmobProFile.getInstance(PersonalPageGameActivity.this).upload(filePath, new UploadListener() {
 
 			@Override
 			public void onSuccess(String fileName,String url) {

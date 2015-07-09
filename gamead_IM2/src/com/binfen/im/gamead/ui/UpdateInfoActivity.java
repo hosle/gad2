@@ -5,7 +5,7 @@ import android.widget.EditText;
 import cn.bmob.v3.listener.UpdateListener;
 
 import com.binfen.im.gamead.view.HeaderLayout.onRightImageButtonClickListener;
-import com.binfen.im.gamead.R;
+import com.bmob.im.demo.R;
 import com.userim.User;
 
 /**

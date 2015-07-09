@@ -8,6 +8,7 @@ import cn.bmob.im.BmobChatManager;
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.im.bean.BmobMsg;
 
+import com.bmob.BTPFileResponse;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
 import com.game.Game;
@@ -223,7 +224,7 @@ public class ContactActivity extends  Activity implements OnItemClickListener {
 		updialog.setCancelable(true);       
 		updialog.setCanceledOnTouchOutside(false);  
 		updialog.show();//"cc9a6ee19b0211fc6a46b1a4bce30c72"
-		com.bmob.btp.file.BTPFileResponse response = BmobProFile.getInstance(ContactActivity.this).upload(filePath, new UploadListener() {
+		BTPFileResponse response = BmobProFile.getInstance(ContactActivity.this).upload(filePath, new UploadListener() {
 
 			@Override
 			public void onSuccess(String fileName,String url) {

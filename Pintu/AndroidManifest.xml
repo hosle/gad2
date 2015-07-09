@@ -9,7 +9,7 @@
         android:targetSdkVersion="19" />
 
     <application
-        android:name="com.bmob.im.demo.CustomApplcation"
+        android:name="com.binfen.im.gamead.CustomApplcation"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"

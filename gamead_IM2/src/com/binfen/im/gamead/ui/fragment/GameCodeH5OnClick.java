@@ -15,8 +15,8 @@ import android.widget.Toast;
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.im.util.BmobLog;
 
-import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.util.CollectionUtils;
+import com.bmob.im.demo.CustomApplcation;
 import com.game.h5.H5GameMainActivity_0;
 import com.userim.util.SerializableBCU;
 

@@ -22,9 +22,9 @@ import android.widget.Toast;
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.im.util.BmobLog;
 
-import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.util.CollectionUtils;
 import com.bmob.BmobProFile;
+import com.bmob.im.demo.CustomApplcation;
 import com.game.xxh.PintuMainActivity_0;
 import com.userim.util.SerializableBCU;
 

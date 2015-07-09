@@ -16,9 +16,10 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.baidu.mapapi.SDKInitializer;
-import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.config.Config;
-import com.binfen.im.gamead.R;
+import com.bmob.im.demo.CustomApplcation;
+import com.bmob.im.demo.R;
+import com.binfen.im.gamead.ui.MainActivity;
 import com.game.operator.AdJifenManager;
 
 /**
@@ -57,13 +58,13 @@ public class SplashActivity extends BaseActivity {
 		
 		
 		// 开启定位
-		initLocClient();
+		//initLocClient();
 		// 注册地图 SDK 广播监听者
-		IntentFilter iFilter = new IntentFilter();
-		iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
-		iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
-		mReceiver = new BaiduReceiver();
-		registerReceiver(mReceiver, iFilter);
+		//IntentFilter iFilter = new IntentFilter();
+		//iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
+		//iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
+		//mReceiver = new BaiduReceiver();
+		//registerReceiver(mReceiver, iFilter);
 	}
 
 	@Override
@@ -135,7 +136,10 @@ public class SplashActivity extends BaseActivity {
 		if (mLocationClient != null && mLocationClient.isStarted()) {
 			mLocationClient.stop();
 		}
-		unregisterReceiver(mReceiver);
+		if (mReceiver!=null) {
+			unregisterReceiver(mReceiver);
+		}
+		
 		super.onDestroy();
 	}
 

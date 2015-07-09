@@ -18,13 +18,13 @@ import cn.bmob.im.BmobUserManager;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
-import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.ui.BlackListActivity;
 import com.binfen.im.gamead.ui.FragmentBase;
 import com.binfen.im.gamead.ui.LoginActivity;
 import com.binfen.im.gamead.ui.SetMyInfoActivity;
 import com.binfen.im.gamead.util.SharePreferenceUtil;
-import com.binfen.im.gamead.R;
+import com.bmob.im.demo.CustomApplcation;
+import com.bmob.im.demo.R;
 import com.game.jifen.GameJifen;
 import com.game.operator.AdJifenManager;
 import com.game.operator.GameManager;

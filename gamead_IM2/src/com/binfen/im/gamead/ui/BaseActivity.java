@@ -18,14 +18,14 @@ import cn.bmob.im.config.BmobConfig;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.util.CollectionUtils;
 import com.binfen.im.gamead.view.HeaderLayout;
 import com.binfen.im.gamead.view.HeaderLayout.HeaderStyle;
 import com.binfen.im.gamead.view.HeaderLayout.onLeftImageButtonClickListener;
 import com.binfen.im.gamead.view.HeaderLayout.onRightImageButtonClickListener;
 import com.binfen.im.gamead.view.dialog.DialogTips;
-import com.binfen.im.gamead.R;
+import com.bmob.im.demo.CustomApplcation;
+import com.bmob.im.demo.R;
 import com.userim.User;
 
 /** »ùÀà

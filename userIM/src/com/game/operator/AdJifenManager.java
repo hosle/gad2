@@ -62,7 +62,8 @@ public class AdJifenManager {
 
 	private static Game mGame;
 
-	private final String backendURL = "http://219.223.240.65:3000/";
+	//private final String backendURL = "http://219.223.240.65:3000/";
+	private final String backendURL = "http://113.10.157.125:3000/";
 
 	public AdJifenManager(Context context) {
 		super();
