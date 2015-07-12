@@ -17,6 +17,7 @@ import com.game.operator.Quit_PostRecord;
 import com.game.pintu.ContactActivity;
 import com.game.pintu.R;
 import com.game.util.HttpUtils;
+import com.game.xxh.view.AutoGamePintuLayout;
 import com.game.xxh.view.GamePintuLayout;
 import com.userim.util.SerializableBCU;
 
@@ -47,7 +48,7 @@ public class PintuMainActivity_0 extends Activity {
 
 	private ImageButton sendButton, personalButton;
 	private Button mButton;
-	GamePintuLayout mGameView;
+	AutoGamePintuLayout mGameView;
 	private Game currentGame;
 	private final String[] GFgameID = { "00001", "00002", "10001", "00003" };
 	private List<String> GFgameIDList;
@@ -85,7 +86,7 @@ public class PintuMainActivity_0 extends Activity {
 		// tempGame.getPreference();
 		GFgameIDList = Arrays.asList(GFgameID);
 
-		mGameView = (GamePintuLayout) findViewById(R.id.id_gameview);
+		mGameView = (AutoGamePintuLayout) findViewById(R.id.id_gameview);
 
 		mhandler=new Handler(){
 			@Override

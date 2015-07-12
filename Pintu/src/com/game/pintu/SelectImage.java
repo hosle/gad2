@@ -28,9 +28,9 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-import com.bmob.BTPFileResponse;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
+import com.bmob.btp.file.BTPFileResponse;
 import com.game.config.Config;
 import com.game.xxh.PintuMainActivity_customized;
 import com.game.operator.*;

@@ -65,11 +65,10 @@ public final class R {
 		public static final int xxhpintu_game_dir = 0x7f0200d6;
 	}
 	public static final class id {
-		public static final int RelativeLayout01 = 0x7f0b009b;
-		public static final int action_settings = 0x7f0b00d8;
-		public static final int adLayout = 0x7f0b0046;
-		public static final int alpha_userim = 0x7f0b00a3;
-		public static final int b_return = 0x7f0b0066;
+		public static final int RelativeLayout01 = 0x7f0b009a;
+		public static final int action_settings = 0x7f0b00d7;
+		public static final int alpha_userim = 0x7f0b00a2;
+		public static final int b_return = 0x7f0b0065;
 		public static final int btn_personial = 0x7f0b0043;
 		public static final int btn_personial_h = 0x7f0b0024;
 		public static final int btn_save = 0x7f0b0041;
@@ -81,37 +80,37 @@ public final class R {
 		public static final int btnnewGame = 0x7f0b001d;
 		public static final int button1 = 0x7f0b0045;
 		public static final int dialog_activity = 0x7f0b000b;
-		public static final int edt_personallist = 0x7f0b009d;
+		public static final int edt_personallist = 0x7f0b009c;
 		public static final int exit = 0x7f0b0020;
 		public static final int game_info = 0x7f0b0029;
 		public static final int game_info_h5 = 0x7f0b002c;
 		public static final int help = 0x7f0b001f;
 		public static final int id_gameview = 0x7f0b0044;
-		public static final int img_friend_avatar_userim = 0x7f0b00a4;
-		public static final int iv1 = 0x7f0b00af;
-		public static final int iv2 = 0x7f0b00b0;
-		public static final int iv3 = 0x7f0b00b1;
-		public static final int iv4 = 0x7f0b00b2;
-		public static final int iv5 = 0x7f0b00b3;
-		public static final int iv6 = 0x7f0b00b4;
+		public static final int img_friend_avatar_userim = 0x7f0b00a3;
+		public static final int iv1 = 0x7f0b00ae;
+		public static final int iv2 = 0x7f0b00af;
+		public static final int iv3 = 0x7f0b00b0;
+		public static final int iv4 = 0x7f0b00b1;
+		public static final int iv5 = 0x7f0b00b2;
+		public static final int iv6 = 0x7f0b00b3;
 		public static final int layout_list_activity = 0x7f0b0009;
 		public static final int list_friends_activity = 0x7f0b000a;
-		public static final int nandu = 0x7f0b00a6;
-		public static final int ok = 0x7f0b00ae;
-		public static final int radio0 = 0x7f0b00ab;
-		public static final int radio1 = 0x7f0b00ac;
-		public static final int radio2 = 0x7f0b00ad;
-		public static final int radioGroup1 = 0x7f0b00aa;
+		public static final int nandu = 0x7f0b00a5;
+		public static final int ok = 0x7f0b00ad;
+		public static final int radio0 = 0x7f0b00aa;
+		public static final int radio1 = 0x7f0b00ab;
+		public static final int radio2 = 0x7f0b00ac;
+		public static final int radioGroup1 = 0x7f0b00a9;
 		public static final int ranked = 0x7f0b001e;
 		public static final int right_letter_activity = 0x7f0b000c;
-		public static final int selectimagebnt_xxh = 0x7f0b00b5;
+		public static final int selectimagebnt_xxh = 0x7f0b00b4;
 		public static final int textView1 = 0x7f0b001c;
 		public static final int time = 0x7f0b0028;
 		public static final int time_h = 0x7f0b0021;
 		public static final int time_h5 = 0x7f0b002b;
-		public static final int tv_friend_name_userim = 0x7f0b00a5;
-		public static final int txt_personallist = 0x7f0b009c;
-		public static final int view = 0x7f0b00a7;
+		public static final int tv_friend_name_userim = 0x7f0b00a4;
+		public static final int txt_personallist = 0x7f0b009b;
+		public static final int view = 0x7f0b00a6;
 		public static final int webview_h5game = 0x7f0b0025;
 	}
 	public static final class layout {
@@ -122,15 +121,16 @@ public final class R {
 		public static final int activity_personal_game = 0x7f03000b;
 		public static final int activity_personal_h5game = 0x7f03000c;
 		public static final int activity_xxh_main = 0x7f030013;
-		public static final int help = 0x7f03001c;
-		public static final int item_personal_list = 0x7f030031;
-		public static final int item_user_friendpt = 0x7f030035;
-		public static final int new_game = 0x7f030036;
-		public static final int ranked = 0x7f030038;
-		public static final int rr_xxh = 0x7f030039;
-		public static final int select = 0x7f03003a;
-		public static final int select_image = 0x7f03003b;
-		public static final int select_image1 = 0x7f03003c;
+		public static final int activity_xxh_main_customized = 0x7f030014;
+		public static final int help = 0x7f03001d;
+		public static final int item_personal_list = 0x7f030032;
+		public static final int item_user_friendpt = 0x7f030036;
+		public static final int new_game = 0x7f030037;
+		public static final int ranked = 0x7f030039;
+		public static final int rr_xxh = 0x7f03003a;
+		public static final int select = 0x7f03003b;
+		public static final int select_image = 0x7f03003c;
+		public static final int select_image1 = 0x7f03003d;
 	}
 	public static final class menu {
 		public static final int contact = 0x7f0a0000;

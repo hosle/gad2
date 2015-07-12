@@ -13,6 +13,7 @@ import com.game.jifen.GameJifen;
 import com.game.pintu.ContactActivity;
 import com.game.pintu.R;
 import com.game.pintu.SelectImage;
+import com.game.xxh.view.AutoGamePintuLayout;
 import com.game.xxh.view.GamePintuLayout;
 import com.userim.User;
 import com.game.operator.*;
@@ -56,7 +57,7 @@ public class PintuMainActivity_customized extends Activity  {
 		// TODO 自动生成的方法存根
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.activity_xxh_main);
+		setContentView(R.layout.activity_xxh_main_customized);
 		
 		Bundle bundle=getIntent().getExtras();
 		

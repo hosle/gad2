@@ -70,6 +70,9 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 	private List<ImagePiece> mItemBitmaps;
 
 	private boolean once;
+	
+	//本地新图片路径
+	private String filePath="";
 
 	public GamePintuLayout(Context context)
 	{
@@ -163,6 +166,15 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener
 				return Math.random() > 0.5 ? 1 : -1;
 			}
 		});
+	}
+
+	
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 
 	/**

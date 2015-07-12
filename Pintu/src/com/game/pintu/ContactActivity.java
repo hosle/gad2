@@ -8,9 +8,9 @@ import cn.bmob.im.BmobChatManager;
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.im.bean.BmobMsg;
 
-import com.bmob.BTPFileResponse;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
+import com.bmob.btp.file.BTPFileResponse;
 import com.game.Game;
 import com.game.config.Config;
 import com.game.operator.GameManager;

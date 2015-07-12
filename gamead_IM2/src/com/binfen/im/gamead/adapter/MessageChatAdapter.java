@@ -43,10 +43,8 @@ import com.binfen.im.gamead.util.TimeUtil;
 import com.bmob.BmobProFile;
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
-import com.game.Game;
+import com.bmob.im.demo.R.color;
 import com.game.h5.H5GameMainActivity_0;
-import com.game.operator.GameManager;
-import com.game.pintu.NewGame_received;
 import com.game.xxh.PintuMainActivity_0;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -476,6 +474,7 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 		dialog.setCancelable(true);       
 		dialog.setCanceledOnTouchOutside(false);  
 		dialog.show();
+		
 		BmobProFile.getInstance(mContext).download(downloadName, new com.bmob.btp.callback.DownloadListener() {
 			
 			@Override

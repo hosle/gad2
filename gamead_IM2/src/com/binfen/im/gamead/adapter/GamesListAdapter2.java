@@ -94,6 +94,7 @@ public class GamesListAdapter2 extends GamesListAdapterBase {
 			final String tempSource=gamelist.get(vCurrentIndex).getSource();
 			switch (tempSource) {
 			case "innerPintu3":
+				toast("当前难度"+tempSource+"tempSource");
 				holder.mImageView.setImageResource(mThumbID[0]);
 				myOnClickListener=new myOnClickListener2(vCurrentIndex);
 				break;

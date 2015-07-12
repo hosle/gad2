@@ -48,7 +48,7 @@
                android:layout_height="wrap_content"
                android:layout_alignParentLeft="true"
                android:layout_centerVertical="true"
-              
+              android:textColor="@android:color/white"
                android:text="官方"
                android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -78,6 +78,7 @@
                android:layout_alignParentLeft="true"
                android:layout_centerVertical="true"
                android:text="DIY"
+               android:textColor="@android:color/white"
                android:textAppearance="?android:attr/textAppearanceLarge" />
 
            <ImageButton
@@ -111,6 +112,7 @@
                android:layout_alignParentLeft="true"
                android:layout_centerVertical="true"
                android:text="收到/收藏"
+               android:textColor="@android:color/white"
                android:textAppearance="?android:attr/textAppearanceLarge" />
 
            <ImageButton

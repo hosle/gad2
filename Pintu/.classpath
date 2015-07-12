@@ -7,7 +7,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="libs/Baidu_MobAds_SDK.jar"/>
-	<classpathentry kind="lib" path="/gamead_IM2/libs/BmobSDK_V3.3.5_0408.jar"/>
 	<classpathentry kind="lib" path="/gamead_IM2/libs/BmobIM_V1.1.8beta_20150408.jar"/>
+	<classpathentry kind="lib" path="/gamead_IM2/libs/BmobSDK_V3.3.2_0128.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

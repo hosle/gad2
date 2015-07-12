@@ -27,6 +27,7 @@ import com.binfen.im.gamead.ui.fragment.SettingsFragment;
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.MyMessageReceiver;
 import com.bmob.im.demo.R;
+import com.game.operator.AdJifenManager;
 
 /**
  * 登陆
@@ -63,7 +64,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		initTab();
 		
 		//更新个人积分
-		//AdJifenManager.getInstance(this).updateLocalJifen();
+		AdJifenManager.getInstance(this).updateLocalJifen();
 		
 	}
 

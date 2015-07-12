@@ -4,13 +4,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import com.bmob.BTPFileResponse;
+
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
+import com.bmob.btp.file.BTPFileResponse;
 import com.game.adapter.PersonalGame1SettingAdapter;
 import com.game.config.Config;
 import com.game.operator.GameManager;
 import com.game.pintu.R;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -89,7 +91,7 @@ public class PersonalPageGameActivity extends Activity {
                 {
                     //使用ContentProvider通过URI获取原始图片
                     Bitmap mBitmap  = MediaStore.Images.Media.getBitmap(resolver, mUri); 
-                    Bitmap photo= Bitmap.createScaledBitmap(mBitmap, (int)(mBitmap.getWidth()*0.08), (int)(mBitmap.getHeight()*0.08), true);  
+                    Bitmap photo= Bitmap.createScaledBitmap(mBitmap, (int)(mBitmap.getWidth()*0.3), (int)(mBitmap.getHeight()*0.3), true);  
                     try {
                     	
                     	Time t=new Time(); // or Time t=new Time("GMT+8"); 加上Time Zone资料。
@@ -128,11 +130,11 @@ public class PersonalPageGameActivity extends Activity {
     					//gamemanager.saveMyGame(Config.imageId+"",NanDu);//上传自定义游戏
     					upload();
         				
+    					//转换Activity!
+    					Intent intent_game = new Intent(PersonalPageGameActivity.this, PintuMainActivity_customized.class);
+    					startActivity(intent_game);
         				
-        				//转换Activity!
-        				Intent intent_game = new Intent(PersonalPageGameActivity.this, PintuMainActivity_customized.class);
-        				startActivity(intent_game);
-        				//finish();
+        				
         				
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -186,6 +188,7 @@ public class PersonalPageGameActivity extends Activity {
 		}
 	    try {
 		   fOut.close();
+		   //showToast("本地保存完成");
 		} catch (IOException e) {
 		   e.printStackTrace();
 		}
@@ -241,7 +244,11 @@ public class PersonalPageGameActivity extends Activity {
 				com.game.pintu.predict.readTxtFile("/mnt/sdcard/gameimage/gamenandu.txt",newimg);
 				final String NanDu = newimg[0];
 				//showToast("Nandu:"+NanDu);
-				gamemanager.saveMyGame(fileName,NanDu);//上传自定义游戏
+				gamemanager.saveMyGame(fileName,NanDu);//上传自定义游戏信息
+				
+				
+				finish();
+				
 			}
 
 			@Override
