@@ -14,8 +14,8 @@ import com.binfen.im.gamead.adapter.BlackListAdapter;
 import com.binfen.im.gamead.util.CollectionUtils;
 import com.binfen.im.gamead.view.HeaderLayout;
 import com.binfen.im.gamead.view.dialog.DialogTips;
-import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.CustomApplcation;
+import com.binfen.im.gamead.R;
 
 /**
  * 黑名单列表

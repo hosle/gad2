@@ -13,7 +13,7 @@ import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 /** 带清除功能的文本输入框
  * @ClassName: ClearEditText

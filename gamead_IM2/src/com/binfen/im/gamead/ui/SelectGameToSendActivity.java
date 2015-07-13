@@ -2,7 +2,7 @@ package com.binfen.im.gamead.ui;
 
 import com.binfen.im.gamead.adapter.GameExpandableListViewAdapter;
 import com.binfen.im.gamead.view.myExpandableListView;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 import android.app.Activity;
 import android.os.Bundle;

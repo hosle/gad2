@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.binfen.im.gamead.util.PixelUtil;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 /** 通讯录右侧快速滚动栏
    * @ClassName: MyLetterView

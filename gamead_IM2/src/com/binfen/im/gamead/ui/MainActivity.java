@@ -24,9 +24,9 @@ import com.binfen.im.gamead.ui.fragment.ContactFragment;
 import com.binfen.im.gamead.ui.fragment.GamesFragment;
 import com.binfen.im.gamead.ui.fragment.RecentFragment;
 import com.binfen.im.gamead.ui.fragment.SettingsFragment;
-import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.MyMessageReceiver;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.CustomApplcation;
+import com.binfen.im.gamead.MyMessageReceiver;
+import com.binfen.im.gamead.R;
 import com.game.operator.AdJifenManager;
 
 /**

@@ -12,7 +12,7 @@ import cn.bmob.im.bean.BmobChatUser;
 import com.binfen.im.gamead.adapter.base.BaseListAdapter;
 import com.binfen.im.gamead.adapter.base.ViewHolder;
 import com.binfen.im.gamead.util.ImageLoadOptions;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /** ºÚÃûµ¥

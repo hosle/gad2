@@ -17,8 +17,8 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.baidu.mapapi.SDKInitializer;
 import com.binfen.im.gamead.config.Config;
-import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.CustomApplcation;
+import com.binfen.im.gamead.R;
 import com.binfen.im.gamead.ui.MainActivity;
 import com.game.operator.AdJifenManager;
 

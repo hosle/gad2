@@ -30,7 +30,7 @@ import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.binfen.im.gamead.view.HeaderLayout.onRightImageButtonClickListener;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 /**
  * 用于发送位置的界面

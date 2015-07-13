@@ -71,8 +71,8 @@ import com.binfen.im.gamead.view.HeaderLayout;
 import com.binfen.im.gamead.view.dialog.DialogTips;
 import com.binfen.im.gamead.view.xlist.XListView;
 import com.binfen.im.gamead.view.xlist.XListView.IXListViewListener;
-import com.bmob.im.demo.MyMessageReceiver;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.MyMessageReceiver;
+import com.binfen.im.gamead.R;
 import com.game.Game;
 import com.game.operator.GameManager;
 

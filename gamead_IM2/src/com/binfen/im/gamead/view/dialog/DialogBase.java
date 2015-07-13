@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 /**
  *自定义对话框基类

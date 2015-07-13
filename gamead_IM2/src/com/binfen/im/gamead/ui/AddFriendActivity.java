@@ -22,7 +22,7 @@ import com.binfen.im.gamead.adapter.AddFriendAdapter;
 import com.binfen.im.gamead.util.CollectionUtils;
 import com.binfen.im.gamead.view.xlist.XListView;
 import com.binfen.im.gamead.view.xlist.XListView.IXListViewListener;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 /** ÃÌº”∫√”—
   * @ClassName: AddFriendActivity

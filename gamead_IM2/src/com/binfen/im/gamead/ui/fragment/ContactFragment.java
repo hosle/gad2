@@ -48,8 +48,8 @@ import com.binfen.im.gamead.view.MyLetterView;
 import com.binfen.im.gamead.view.HeaderLayout.onRightImageButtonClickListener;
 import com.binfen.im.gamead.view.MyLetterView.OnTouchingLetterChangedListener;
 import com.binfen.im.gamead.view.dialog.DialogTips;
-import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.CustomApplcation;
+import com.binfen.im.gamead.R;
 import com.userim.User;
 
 /**

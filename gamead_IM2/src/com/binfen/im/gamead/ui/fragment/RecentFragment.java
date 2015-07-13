@@ -21,7 +21,7 @@ import com.binfen.im.gamead.ui.ChatActivity;
 import com.binfen.im.gamead.ui.FragmentBase;
 import com.binfen.im.gamead.view.ClearEditText;
 import com.binfen.im.gamead.view.dialog.DialogTips;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 /** 最近会话
   * @ClassName: ConversationFragment

@@ -19,7 +19,7 @@ import android.widget.ListView;
 
 import com.binfen.im.gamead.adapter.GamesListAdapter1;
 import com.binfen.im.gamead.ui.FragmentBase;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 public class ShowFragmentXXH1 extends FragmentBase {
 

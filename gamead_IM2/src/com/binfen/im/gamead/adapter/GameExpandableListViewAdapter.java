@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.binfen.im.gamead.ui.SelectGameToSendActivity;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

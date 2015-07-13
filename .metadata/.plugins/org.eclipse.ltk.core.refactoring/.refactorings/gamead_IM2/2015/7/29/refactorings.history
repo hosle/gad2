@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.bmob.im.demo&apos; to &apos;com.binfen.im.gamead&apos;&#x0D;&#x0A;- Original project: &apos;gamead_IM2&apos;&#x0D;&#x0A;- Original element: &apos;gamead_IM2/src/com.bmob.im.demo&apos;&#x0D;&#x0A;- Renamed element: &apos;gamead_IM2/src/com.binfen.im.gamead&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.bmob.im.demo&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;com.bmob.im.demo" name="com.binfen.im.gamead" qualified="false" references="true" stamp="1436766267729" textual="false" version="1.0"/>
+</session>

@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 public class XListViewHeader extends LinearLayout{
 	private LinearLayout mContainer;

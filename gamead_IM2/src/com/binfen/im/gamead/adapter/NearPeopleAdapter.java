@@ -12,8 +12,8 @@ import cn.bmob.v3.datatype.BmobGeoPoint;
 import com.binfen.im.gamead.adapter.base.BaseListAdapter;
 import com.binfen.im.gamead.adapter.base.ViewHolder;
 import com.binfen.im.gamead.util.ImageLoadOptions;
-import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.CustomApplcation;
+import com.binfen.im.gamead.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.userim.User;
 

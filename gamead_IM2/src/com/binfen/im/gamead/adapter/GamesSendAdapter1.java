@@ -7,7 +7,7 @@ import cn.bmob.v3.listener.FindListener;
 
 import com.binfen.im.gamead.adapter.GamesSendAdapterBase.ViewHolder;
 import com.binfen.im.gamead.ui.SelectGameToSendActivity;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 import com.game.Game;
 import com.game.operator.GameManager;
 

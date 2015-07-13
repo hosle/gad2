@@ -3,7 +3,7 @@ package com.binfen.im.gamead.util;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.bmob.im.demo.CustomApplcation;
+import com.binfen.im.gamead.CustomApplcation;
 
 /** ÏñËØ×ª»»¹¤¾ß
  * @author MarkMjw

@@ -14,7 +14,7 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.binfen.im.gamead.util.ImageLoadOptions;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.userim.User;
 

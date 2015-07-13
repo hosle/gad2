@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.binfen.im.gamead.ui.FragmentBase;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 public class GamesFragment extends FragmentBase {
 

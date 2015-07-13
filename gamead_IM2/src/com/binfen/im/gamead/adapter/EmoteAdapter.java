@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.binfen.im.gamead.adapter.base.BaseArrayListAdapter;
 import com.binfen.im.gamead.bean.FaceText;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 public class EmoteAdapter extends BaseArrayListAdapter {
 

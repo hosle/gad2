@@ -3,7 +3,7 @@ package com.binfen.im.gamead.adapter;
 import java.util.List;
 
 import com.binfen.im.gamead.ui.SelectGameToSendActivity;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 import com.game.Game;
 import com.game.operator.GameManager;
 

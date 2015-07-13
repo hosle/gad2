@@ -19,7 +19,7 @@ import cn.bmob.v3.listener.SaveListener;
 import com.binfen.im.gamead.config.BmobConstants;
 import com.binfen.im.gamead.util.CommonUtils;
 import com.binfen.im.gamead.view.dialog.DialogTips;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 import com.binfen.im.gamead.ui.MainActivity;
 import com.userim.User;
 

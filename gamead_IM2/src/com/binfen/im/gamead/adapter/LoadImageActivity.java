@@ -10,7 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 public class LoadImageActivity extends Activity implements OnCheckedChangeListener {
 	

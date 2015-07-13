@@ -10,7 +10,7 @@ import cn.bmob.im.bean.BmobInvitation;
 import cn.bmob.im.db.BmobDB;
 
 import com.binfen.im.gamead.view.dialog.DialogTips;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 import com.binfen.im.gamead.adapter.NewFriendAdapter;
 import com.binfen.im.gamead.ui.MainActivity;
 

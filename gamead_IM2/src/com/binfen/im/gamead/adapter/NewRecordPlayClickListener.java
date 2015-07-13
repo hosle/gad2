@@ -17,7 +17,7 @@ import cn.bmob.im.config.BmobConfig;
 import cn.bmob.im.util.BmobLog;
 import cn.bmob.im.util.BmobUtils;
 
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.R;
 
 /**
  * ²¥·ÅÂ¼ÒôÎÄ¼ş

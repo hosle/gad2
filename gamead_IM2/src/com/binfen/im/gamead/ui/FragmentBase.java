@@ -15,8 +15,8 @@ import com.binfen.im.gamead.view.HeaderLayout;
 import com.binfen.im.gamead.view.HeaderLayout.HeaderStyle;
 import com.binfen.im.gamead.view.HeaderLayout.onLeftImageButtonClickListener;
 import com.binfen.im.gamead.view.HeaderLayout.onRightImageButtonClickListener;
-import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.binfen.im.gamead.CustomApplcation;
+import com.binfen.im.gamead.R;
 
 /** Fragmenet »ùÀà
   * @ClassName: FragmentBase
