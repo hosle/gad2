@@ -1,7 +1,0 @@
-package com.game.bean;
-
-import cn.bmob.im.bean.BmobChatUser;
-
-public class Users extends BmobChatUser {
-
-}

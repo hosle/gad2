@@ -1,7 +1,0 @@
-package com.game.ad;
-
-import cn.bmob.v3.BmobObject;
-
-public class AdShowRecords extends BmobObject {
-
-}

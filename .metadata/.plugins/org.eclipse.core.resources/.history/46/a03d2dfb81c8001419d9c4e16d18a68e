@@ -1,7 +1,0 @@
-package com.bmob.im.demo.ui.fragment;
-
-import java.io.Serializable;
-
-public class SerializableMap implements Serializable {
-
-}
