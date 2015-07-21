@@ -47,6 +47,8 @@ public class PintuMainActivity_customized extends Activity  {
 	//广告
 	private AdView adView_youmi;
 	
+	private showBannerAd mShowBannerAd;
+	
 	//private AdJifenManager adJifenManager;
 	
 	//private BmobUserManager userManager = BmobUserManager.getInstance(this);
@@ -104,8 +106,10 @@ public class PintuMainActivity_customized extends Activity  {
 	        	t.show(); 
 			}
 		});
-		//添加广告
-		new showBannerAd(this).showBanner();
+		
+		//添加广告banner
+		mShowBannerAd=new showBannerAd(this);
+		mShowBannerAd.showBanner();
 	}
 	
     private Runnable runnable = new Runnable() {
@@ -139,6 +143,13 @@ public class PintuMainActivity_customized extends Activity  {
     	{
     		return super.onKeyDown(keyCode, event);
     	}
+    }
+    @Override
+    protected void onDestroy() {
+    	// TODO Auto-generated method stub
+    	mShowBannerAd.setIsrun(false);
+		mShowBannerAd.rmThread();
+    	super.onDestroy();
     }
     
 }

@@ -21,6 +21,7 @@ import cn.bmob.im.BmobUserManager;
 
 import com.userim.User;
 
+import android.R.string;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -80,7 +81,9 @@ public class Quit_PostRecord {
 	 * @param urlString
 	 *            添加广告成功展示的记录
 	 */
-	private void postDataToBackend(final String urlString) {
+	public void postDataToBackend() {
+		final String urlString=backendURL+"addRecord";
+		
 		mThread_postrecord = new Thread() {
 			@Override
 			public void run() {
@@ -159,7 +162,7 @@ public class Quit_PostRecord {
 
 				//toast("当前的:"+adName);
 				if (adName != null&&adName!=""&&adName!="null") {
-					postDataToBackend(backendURL+"addRecord");
+					postDataToBackend();
 
 				}
 				((Activity) mContext).finish();

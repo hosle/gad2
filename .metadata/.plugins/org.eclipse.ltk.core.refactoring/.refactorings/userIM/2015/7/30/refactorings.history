@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;GameManager.java&apos; to &apos;userIM/src/com.game.operator&apos;&#x0A;- Original project: &apos;userIM&apos;&#x0A;- Destination element: &apos;userIM/src/com.game.operator&apos;&#x0A;- Original element: &apos;com.game.operator.GameManager.java&apos;" description="Copy compilation unit" destination="/src&lt;com.game.operator" element1="/src&lt;com.game.operator{GameManager.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1437468332476" units="1" version="1.0"/>
+</session>

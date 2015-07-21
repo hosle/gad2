@@ -28,6 +28,7 @@ import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.MyMessageReceiver;
 import com.binfen.im.gamead.R;
 import com.game.operator.AdJifenManager;
+import com.game.operator.AdUnionManager;
 
 /**
  * 登陆
@@ -65,6 +66,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		
 		//更新个人积分
 		AdJifenManager.getInstance(this).updateLocalJifen();
+		
 		
 	}
 

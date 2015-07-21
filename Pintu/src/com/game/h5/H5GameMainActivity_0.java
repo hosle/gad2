@@ -34,6 +34,8 @@ public class H5GameMainActivity_0 extends Activity {
 	private WebView webViewGame;
 	private Bundle bundle;
 	
+	private showBannerAd mShowBannerAd;
+	
 	//private AdJifenManager adJifenManager;
 
 	@Override
@@ -95,8 +97,9 @@ public class H5GameMainActivity_0 extends Activity {
 			}
 		});
 
-		// 添加广告banner
-		new showBannerAd(this).showBanner();
+		//添加广告banner
+		mShowBannerAd=new showBannerAd(this);
+		mShowBannerAd.showBanner();
 
 	}
 
@@ -170,6 +173,13 @@ public class H5GameMainActivity_0 extends Activity {
 
 	public void toast(String t) {
 		Toast.makeText(this, t, 200).show();
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		mShowBannerAd.setIsrun(false);
+		mShowBannerAd.rmThread();
+		super.onDestroy();
 	}
 
 }

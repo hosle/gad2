@@ -188,6 +188,10 @@ public class GameManager {
 			public void onSuccess() {
 				// TODO Auto-generated method stub
 				toast("你成功发送了一个游戏给"+vReceiver);
+				
+				// 上传sender积分
+				AdJifenManager.getInstance(mContext).saveGameJifen(mUser, mSendgame, 1);
+				
 				addNewForwardToGame(mSendgame);
 			}
 			

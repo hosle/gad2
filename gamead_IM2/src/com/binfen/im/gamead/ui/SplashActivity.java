@@ -21,6 +21,7 @@ import com.binfen.im.gamead.CustomApplcation;
 import com.binfen.im.gamead.R;
 import com.binfen.im.gamead.ui.MainActivity;
 import com.game.operator.AdJifenManager;
+import com.game.operator.AdUnionManager;
 
 /**
  * 引导页
@@ -55,7 +56,8 @@ public class SplashActivity extends BaseActivity {
 		AdManager.getInstance(this).init("f9cf7b157d4af7ef", " bd70a7efbff3f977", false);
 		//预加载广告数据
 		
-		
+		//获取所有ader的showTimeUpLimit list到AdUnionManager
+		AdUnionManager.getInstance(this).queryShowTimeUpLimit();
 		
 		// 开启定位
 		//initLocClient();

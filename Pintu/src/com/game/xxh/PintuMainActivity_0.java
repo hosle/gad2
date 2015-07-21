@@ -54,6 +54,7 @@ public class PintuMainActivity_0 extends Activity {
 	private List<String> GFgameIDList;
 	
 	private  Handler mhandler;
+	private showBannerAd mShowBannerAd;
 	
 	//private AdJifenManager adJifenManager;
 
@@ -170,7 +171,8 @@ public class PintuMainActivity_0 extends Activity {
 		});*/
 		
 		//Ìí¼Ó¹ã¸æbanner
-		new showBannerAd(this).showBanner();
+		mShowBannerAd=new showBannerAd(this);
+		mShowBannerAd.showBanner();
 
 	}
 	
@@ -197,6 +199,7 @@ public class PintuMainActivity_0 extends Activity {
 			//adJifenManager.showDialogQuit();
 			new Quit_PostRecord(this).showDialogQuit();
 			//showDialogJifen();
+			
 			return true;
 		}
     	else
@@ -205,6 +208,13 @@ public class PintuMainActivity_0 extends Activity {
     	}
 	}
 	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		mShowBannerAd.setIsrun(false);
+		mShowBannerAd.rmThread();
+		super.onDestroy();
+	}
 	
 
 	public void toast(String t) {

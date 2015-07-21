@@ -31,6 +31,7 @@ public class H5GameMainActivity_customized extends Activity {
 	private WebView webViewGame;
 	private String mGameURL;
 	
+	private showBannerAd mShowBannerAd;
 	//private AdJifenManager adJifenManager;
 
 	@Override
@@ -69,10 +70,9 @@ public class H5GameMainActivity_customized extends Activity {
 			}
 		});
 
-		// 添加广告banner
-		new showBannerAd(this).showBanner();
-
-		// handler.removeCallbacks(runnable);
+		//添加广告banner
+		mShowBannerAd=new showBannerAd(this);
+		mShowBannerAd.showBanner();
 
 	}
 	
@@ -134,6 +134,13 @@ public class H5GameMainActivity_customized extends Activity {
 		});
 		webViewGame.loadUrl(mGameURL);
 
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		mShowBannerAd.setIsrun(false);
+		mShowBannerAd.rmThread();
+		super.onDestroy();
 	}
 
 }
