@@ -21,7 +21,6 @@ import cn.bmob.im.BmobUserManager;
 
 import com.userim.User;
 
-import A.This;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;

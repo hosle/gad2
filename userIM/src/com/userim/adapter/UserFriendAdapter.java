@@ -117,6 +117,7 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 	/**
 	 * 根据ListView的当前位置获取分类的首字母的Char ascii值
 	 */
+	@Override
 	public int getSectionForPosition(int position) {
 		return data.get(position).getSortLetters().charAt(0);
 	}
@@ -124,6 +125,7 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 	/**
 	 * 根据分类的首字母的Char ascii值获取其第一次出现该首字母的位置
 	 */
+	@Override
 	@SuppressLint("DefaultLocale")
 	public int getPositionForSection(int section) {
 		for (int i = 0; i < getCount(); i++) {

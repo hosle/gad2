@@ -56,6 +56,7 @@ public class MyLetterView extends View {
 	/**
 	 * 重写这个方法
 	 */
+	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		// 获取焦点改变背景颜色.
