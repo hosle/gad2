@@ -1,0 +1,109 @@
+package com.game.adshow.thread;
+
+import java.io.IOException;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.Toast;
+
+import com.game.operator.AdUnionManager;
+
+public class MyApplyAdThread extends Thread {
+
+	private Context mContext;
+	private Handler vHandler;
+	private String urlString;
+	private boolean isrun = true;
+	
+	private String flagString;
+	
+	public MyApplyAdThread(Context vContext,Handler vHandler,String urlString) {
+		// TODO Auto-generated constructor stub
+		mContext=vContext;
+		this.vHandler=vHandler;
+		this.urlString=urlString;
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+			while (isrun) {
+
+				// 1、http请求展示
+				Message msg = vHandler.obtainMessage();
+				String result = "";
+				HttpGet httpGet = new HttpGet(urlString);
+				HttpResponse response;
+				try {
+					response = new DefaultHttpClient().execute(httpGet);
+					int statusCode = response.getStatusLine()
+							.getStatusCode();
+					if (statusCode == 200) {
+						HttpEntity entity = response.getEntity();
+						result = EntityUtils.toString(entity, HTTP.UTF_8);
+					}
+					msg.what = statusCode;
+					msg.obj = result;
+					vHandler.sendMessage(msg);
+
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				// 等待接收ader信息
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				// 2、sleep 展示完删除
+				map_showTimeUpLimit = AdUnionManager.getInstance(mContext)
+						.getMap_showTimeUpLimit();
+				int showTime;
+				if (flagString == "") {
+					toast("no ader showTime");
+					showTime = 0;
+				} else {
+					showTime = map_showTimeUpLimit.get(flagString);
+					try {
+						Thread.sleep(showTime * 1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Message msgDel = new Message();
+					msgDel.what = 0X1;
+					msgDel.obj = showTime;
+					vHandler.sendMessage(msgDel);
+				}
+
+			}
+		
+	}
+	public boolean isIsrun() {
+		return isrun;
+	}
+	public void setIsrun(boolean isrun) {
+		this.isrun = isrun;
+	}
+	
+	public void toast(String t) {
+		Toast.makeText(mContext, t, 200).show();
+	}
+	
+}

@@ -1,0 +1,5 @@
+package com.game.adshow.thread;
+
+public class ApplyOnceThread extends Thread {
+
+}

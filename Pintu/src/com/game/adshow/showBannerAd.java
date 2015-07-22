@@ -1,32 +1,13 @@
 package com.game.adshow;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import cn.bmob.im.BmobUserManager;
 
+import com.game.adshow.thread.ApplyOnceThread;
+import com.game.adshow.thread.MyApplyAdThread;
 import com.game.operator.AdJifenManager;
-import com.game.operator.AdUnionManager;
 import com.game.operator.Quit_PostRecord;
 import com.qq.e.ads.AdListener;
 import com.qq.e.ads.AdRequest;
@@ -35,21 +16,16 @@ import com.userim.User;
 import net.youmi.android.banner.AdSize;
 import net.youmi.android.banner.AdView;
 import net.youmi.android.banner.AdViewListener;
-import android.R;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +36,7 @@ public class showBannerAd {
 	private FrameLayout.LayoutParams layoutParams;
 	private String flagString = "";
 	private MyApplyAdThread mThread_applyAd;
+	private ApplyOnceThread mThread_once;
 	// private Thread mThread_postrecord;
 	private Handler mhandler_applyAd;
 	private Handler mHandler_applyclick;
@@ -74,9 +51,8 @@ public class showBannerAd {
 
 	private String backendUrl;
 
-	private Map<String, Integer> map_showTimeUpLimit;
 
-	private boolean isrun = true;// adapply thread
+	//private boolean isrun = true;// adapply thread
 
 	public showBannerAd(Context vContext) {
 		// TODO Auto-generated constructor stub
@@ -120,6 +96,7 @@ public class showBannerAd {
 						flagString = jObj.getString("info");
 						AdJifenManager.getInstance(mContext).setAdName(
 								flagString);
+						mThread_applyAd.setFlagString(flagString);
 						Log.i("test", "handler" + resultString);
 						toast(flagString);
 
@@ -168,7 +145,7 @@ public class showBannerAd {
 						((ViewGroup) fLayout.getParent()).removeView(fLayout);
 					}
 
-					if (isrun) {
+					if (mThread_applyAd.isIsrun()) {
 						// add show record
 						new Quit_PostRecord(mContext).postDataToBackend();
 					}
@@ -194,7 +171,7 @@ public class showBannerAd {
 						curAdView.bringToFront();
 					}
 
-					this.removeCallbacks(mThread_applyAd);
+					this.removeCallbacks(mThread_once);
 
 				}
 			}
@@ -210,7 +187,7 @@ public class showBannerAd {
 					String resultString = msg.obj.toString();
 					toast(resultString);
 
-					this.removeCallbacks(mThread_applyAd);
+					this.removeCallbacks(mThread_once);
 
 				}
 			}
@@ -220,13 +197,13 @@ public class showBannerAd {
 
 	public void showBanner() {
 
-		dogetDataFromBackend(mhandler_applyAd, backendUrl + "search?uid="
+		dogetApplyShow(mhandler_applyAd, backendUrl + "search?uid="
 				+ mUser.getObjectId());
 
 	}
 
 	public void setIsrun(boolean isrun) {
-		this.isrun = isrun;
+		mThread_applyAd.setIsrun(isrun);
 	}
 
 	public void rmThread() {
@@ -249,88 +226,21 @@ public class showBannerAd {
 			}
 		}
 	}
-
-	private void dogetDataFromBackend(final Handler vHandler,
+	//do get 申请点击，删除
+	private void dogetApplyOnce(final Handler vHandler,final String urlString){
+		mThread_once=new ApplyOnceThread(vHandler,urlString);
+		mThread_once.start();
+	}
+	
+	
+	private void dogetApplyShow(final Handler vHandler,
 			final String urlString) {
-		mThread_applyAd = new MyApplyAdThread(vHandler, urlString);
+		mThread_applyAd = new MyApplyAdThread(mContext,vHandler, urlString);
 		mThread_applyAd.start();
 
 	}
 
-	private class MyApplyAdThread extends Thread {
-
-		private Handler vHandler;
-		private String urlString;
-		public MyApplyAdThread(Handler vHandler,String urlString) {
-			// TODO Auto-generated constructor stub
-			this.vHandler=vHandler;
-			this.urlString=urlString;
-		}
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			
-				while (isrun) {
-
-					// 1、http请求展示
-					Message msg = vHandler.obtainMessage();
-					String result = "";
-					HttpGet httpGet = new HttpGet(urlString);
-					HttpResponse response;
-					try {
-						response = new DefaultHttpClient().execute(httpGet);
-						int statusCode = response.getStatusLine()
-								.getStatusCode();
-						if (statusCode == 200) {
-							HttpEntity entity = response.getEntity();
-							result = EntityUtils.toString(entity, HTTP.UTF_8);
-						}
-						msg.what = statusCode;
-						msg.obj = result;
-						vHandler.sendMessage(msg);
-
-					} catch (ClientProtocolException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-					// 等待接收ader信息
-					try {
-						Thread.sleep(3000);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-
-					// 2、sleep 展示完删除
-					map_showTimeUpLimit = AdUnionManager.getInstance(mContext)
-							.getMap_showTimeUpLimit();
-					int showTime;
-					if (flagString == "") {
-						toast("no ader showTime");
-						showTime = 0;
-					} else {
-						showTime = map_showTimeUpLimit.get(flagString);
-						try {
-							Thread.sleep(showTime * 1000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						Message msgDel = new Message();
-						msgDel.what = 0X1;
-						msgDel.obj = showTime;
-						vHandler.sendMessage(msgDel);
-					}
-
-				}
-			
-		}
-
-	}
+	
 
 	public void showBanner_youmi(FrameLayout.LayoutParams vlayoutParams) {
 
@@ -520,7 +430,7 @@ public class showBannerAd {
 				// 自动点击无效
 				// curAdView.performClick();
 
-				dogetDataFromBackend(mHandler_applyclick, backendUrl
+				dogetApplyOnce(mHandler_applyclick, backendUrl
 						+ "applyclick?uid=" + mUser.getObjectId() + "&ader="
 						+ flagString);
 
@@ -538,7 +448,7 @@ public class showBannerAd {
 		AdJifenManager.getInstance(mContext).saveGameJifen(flagString, 1);
 
 		// 删除记录
-		dogetDataFromBackend(mHandler_delrec, backendUrl + "delRecord?uid="
+		dogetApplyOnce(mHandler_delrec, backendUrl + "delRecord?uid="
 				+ mUser.getObjectId() + "&ader=" + flagString);
 	}
 
